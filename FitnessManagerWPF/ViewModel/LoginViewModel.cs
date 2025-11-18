@@ -3,6 +3,7 @@ using System.Security;
 using System.Windows.Input;
 using FitnessManagerWPF.Model;
 using FitnessManagerWPF.Services;
+using FitnessManagerWPF.View;
 
 namespace FitnessManagerWPF.ViewModel
 {
@@ -10,7 +11,14 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
+        private AdminViewModel _adminViewModel;
         private DataService _dataService;
+
+        public AdminViewModel AdminViewModel
+        {
+            get => AdminViewModel;
+            set => SetProperty(ref _adminViewModel, value);
+        }
 
         public User CurrentUser { get; private set; }
         public ICommand LoginCommand { get; set; } // Command used for loggin in
@@ -52,9 +60,15 @@ namespace FitnessManagerWPF.ViewModel
 
             switch (CurrentUser.UserRole)
             {
-                // admin
-                // trainer
-                // member
+                case UserRole.Admin:
+                    AdminViewModel AdminViewModel = new AdminViewModel(CurrentUser);
+                    var adminView = new AdminView { DataContext = AdminViewModel };
+                    adminView.Show();
+                    break;
+                case UserRole.Trainer:
+                    break;
+                case UserRole.Member:
+                    break;
             }
         }
 
