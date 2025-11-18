@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class AdminViewModel
+    public class MemberViewModel
     {
     }
 }

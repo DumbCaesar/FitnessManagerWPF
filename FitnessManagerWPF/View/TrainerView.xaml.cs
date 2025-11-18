@@ -16,15 +16,15 @@ using System.Windows.Shapes;
 namespace FitnessManagerWPF.View
 {
     /// <summary>
-    /// Interaction logic for AdminView.xaml
+    /// Interaction logic for TrainerView.xaml
     /// </summary>
-    public partial class AdminView : Window
+    public partial class TrainerView : Window
     {
-        private AdminViewModel viewModel;
-        public AdminView()
+        private TrainerViewModel viewModel;
+        public TrainerView()
         {
             InitializeComponent();
-            viewModel = new AdminViewModel();
+            viewModel = new TrainerViewModel();
             DataContext = viewModel;
         }
     }
