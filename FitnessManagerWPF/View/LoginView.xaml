@@ -23,7 +23,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
         <Button Command="{Binding LoginCommand}" Content="Login" Grid.Row="6" Grid.Column="1"/>
     </Grid>
 </Window>
