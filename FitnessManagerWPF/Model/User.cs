@@ -22,7 +22,8 @@ namespace FitnessManagerWPF.Model
                 }
             }
         }
-        public string Membership { get; set; }        
+        public string Membership { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
 
         public User() { }

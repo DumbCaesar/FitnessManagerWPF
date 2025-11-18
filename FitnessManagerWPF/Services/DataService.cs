@@ -1,13 +1,14 @@
-﻿using System;
+﻿using FitnessManagerWPF.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using FitnessManagerWPF.Model;
 
 namespace FitnessManagerWPF.Services
 {
@@ -36,6 +37,9 @@ namespace FitnessManagerWPF.Services
             {
                 PropertyNameCaseInsensitive = true,
             };
+
+            options.Converters.Add(new JsonStringEnumConverter());
+
             _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
             Debug.WriteLine(_users[1].Name);
             _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
