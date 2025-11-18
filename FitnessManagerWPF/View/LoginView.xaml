@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View"
+        xmlns:helpers="clr-namespace:FitnessManagerWPF.Helpers"
         mc:Ignorable="d"
         Title="LoginView" Height="300" Width="450">
     <Grid>
@@ -22,8 +23,10 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <PasswordBox Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button Content="Login" Grid.Row="6" Grid.Column="1"/>
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <PasswordBox helpers:PasswordBoxHelper.Attach="True"
+             helpers:PasswordBoxHelper.BoundPassword="{Binding Password, Mode=TwoWay}" 
+             Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        <Button Command="{Binding LoginCommand}" Content="Login" Grid.Row="6" Grid.Column="1"/>
     </Grid>
 </Window>
