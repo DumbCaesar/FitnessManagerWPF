@@ -8,5 +8,9 @@ namespace FitnessManagerWPF.Model
 {
     internal class Activity
     {
+        private int _id;
+        private string _name;
+        private int maxParticipants;
+        private List<int> registeredMemberIds;
     }
 }

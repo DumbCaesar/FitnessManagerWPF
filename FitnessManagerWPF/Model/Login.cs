@@ -8,5 +8,8 @@ namespace FitnessManagerWPF.Model
 {
     internal class Login
     {
+        private int _membershipId;
+        private string _username;
+        private string _password;
     }
 }

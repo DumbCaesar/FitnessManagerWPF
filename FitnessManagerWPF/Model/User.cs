@@ -8,5 +8,17 @@ namespace FitnessManagerWPF.Model
 {
     internal class User
     {
+        private int _id;
+        private string _name;
+        private string _email;
+        private string _membership;
+        private Role role;
+    }
+
+    enum Role
+    {
+        Member,
+        Trainer,
+        Admin
     }
 }
