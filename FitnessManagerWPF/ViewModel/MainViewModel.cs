@@ -17,7 +17,7 @@ namespace FitnessManagerWPF.ViewModel
 
         public MainViewModel()
         {
-            CurrentViewModel = new LoginViewModel();
+
         }
 
     }
