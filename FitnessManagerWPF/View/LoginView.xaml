@@ -5,10 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View"
         mc:Ignorable="d"
-        Title="LoginView" Height="300" Width="450">
+        Title="LoginView" Height="300" Width="400">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
@@ -22,8 +21,14 @@
             <ColumnDefinition Width="400"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="2" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="4" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button Command="{Binding LoginCommand}" Content="Login" Grid.Row="6" Grid.Column="1"/>
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
+        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+        </Border>
+        <Border Grid.Row="3" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
+            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+        </Border>
+        <Border Grid.Row="5" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="LightGray">
+            <Button Command="{Binding LoginCommand}" Content="Login" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>
+        </Border>
     </Grid>
 </Window>
