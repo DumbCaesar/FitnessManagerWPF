@@ -6,16 +6,27 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.Model
 {
-    internal class User
+    public class User
     {
-        private int _id;
-        private string _name;
         private string _email;
-        private string _membership;
-        private Role role;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                if (value.Contains('@'))
+                {
+                    _email = value;
+                }
+            }
+        }
+        public string Membership { get; set; }        
+        public UserRole UserRole { get; set; }
     }
 
-    enum Role
+    public enum UserRole
     {
         Member,
         Trainer,
