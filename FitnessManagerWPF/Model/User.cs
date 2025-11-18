@@ -24,6 +24,8 @@ namespace FitnessManagerWPF.Model
         }
         public string Membership { get; set; }        
         public UserRole UserRole { get; set; }
+
+        public User() { }
     }
 
     public enum UserRole

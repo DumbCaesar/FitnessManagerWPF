@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using FitnessManagerWPF.Model;
+
+namespace FitnessManagerWPF.Services
+{
+    public class DataService
+    {
+        private readonly string _basePath;
+        private readonly string _membersFile;
+        private readonly string _loginFile;
+        private List<User> _users;
+        private List<Login> _logins;
+
+        public User CurrentUser { get; private set; }
+
+        public DataService()
+        {
+            _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
+            _membersFile = Path.Combine(_basePath, "Data/members.json");
+            _loginFile = Path.Combine(_basePath, "Data/logins.json");
+
+            LoadData();
+        }
+
+        public void LoadData()
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+            };
+            _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
+            Debug.WriteLine(_users[1].Name);
+            _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
+            Debug.WriteLine(_logins[1].Username);
+        }
+
+        public bool ValidateUser(string username, string password)
+        {
+            var login = _logins.FirstOrDefault(u => u.Username == username && u.Password == password);
+            if (login != null)
+            {
+                CurrentUser = _users.FirstOrDefault(u => u.Id == login.MembershipId);
+                return true;
+            }
+            CurrentUser = null;
+            return false;
+        }
+
+        public User GetUser()
+        {
+            return CurrentUser;
+        }
+    }
+}
