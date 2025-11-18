@@ -1,0 +1,8 @@
+{
+	"members":[
+		{"id": 0, "name": "admin", "email": "admin@admin.dk", "membership": null, "role": "Admin"},
+		{"id": 1, "name": "Bo", "email": "bo@dania.dk", "membership": "Basic", "role": "Member"},
+		{"id": 2, "name": "Bob", "email": "bob@dania.dk", "membership": "VIP", "role": "Member"},
+		{"id": 3, "name": "Bobby", "email": "bobby@dania.dk", "membership": null, "role": "Trainer"},
+	]
+}
