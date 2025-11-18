@@ -31,8 +31,8 @@ namespace FitnessManagerWPF.View
 
         private void OnLoginSucceeded()
         {
-            var main = new MainWindow();
-            main.Show();
+            //var main = new MainWindow();
+            //main.Show();
 
             this.Close();
         }
