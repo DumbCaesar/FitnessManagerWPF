@@ -13,6 +13,7 @@ namespace FitnessManagerWPF.ViewModel
         private string _password;
         private AdminViewModel _adminViewModel;
         private DataService _dataService;
+        public event Action LoginSucceeded;
 
         public AdminViewModel AdminViewModel
         {
@@ -58,17 +59,21 @@ namespace FitnessManagerWPF.ViewModel
                 Debug.WriteLine("User not found!");
             }
 
-            switch (CurrentUser.UserRole)
+            if(CurrentUser != null )
             {
-                case UserRole.Admin:
-                    AdminViewModel AdminViewModel = new AdminViewModel(CurrentUser);
-                    var adminView = new AdminView { DataContext = AdminViewModel };
-                    adminView.Show();
-                    break;
-                case UserRole.Trainer:
-                    break;
-                case UserRole.Member:
-                    break;
+                switch (CurrentUser.UserRole)
+                {
+                    case UserRole.Admin:
+                        AdminViewModel AdminViewModel = new AdminViewModel(CurrentUser);
+                        var adminView = new AdminView { DataContext = AdminViewModel };
+                        adminView.Show();
+                        break;
+                    case UserRole.Trainer:
+                        break;
+                    case UserRole.Member:
+                        break;
+                }
+                LoginSucceeded?.Invoke();
             }
         }
 
