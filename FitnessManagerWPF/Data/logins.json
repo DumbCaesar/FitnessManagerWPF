@@ -1,0 +1,8 @@
+{
+	"members": [
+		{"membershipId": 0, "username": "admin", "password": "password123"},
+		{"membershipId": 1, "username": "bo", "password": "password123"},
+		{"membershipId": 2, "username": "bob", "password": "password123"},
+		{"membershipId": 3, "username": "bobby", "password": "password123"}
+	]
+}
