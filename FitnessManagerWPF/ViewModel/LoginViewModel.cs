@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Security;
 using System.Windows.Input;
+using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel
 {
@@ -8,8 +10,9 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
-        public event Action LoginSucceeded;
+        private DataService _dataService;
 
+        public User CurrentUser { get; private set; }
         public ICommand LoginCommand { get; set; } // Command used for loggin in
 
         public string Username
@@ -26,15 +29,33 @@ namespace FitnessManagerWPF.ViewModel
 
         public LoginViewModel()
         {
-           LoginCommand = new RelayCommand(_ => Login());   
+            LoginCommand = new RelayCommand(_ => Login());
+            _dataService = new DataService();
+            
         }
 
         private void Login()
         {
-            // validate login information
             Debug.WriteLine($"Username is: {Username}");
             Debug.WriteLine($"Password is: {Password}");
-            LoginSucceeded?.Invoke();
+
+            if (_dataService.ValidateUser(Username, Password))
+            {
+                Debug.WriteLine("Found user!");
+                Debug.WriteLine($"User role is {_dataService.CurrentUser.UserRole}");
+                CurrentUser = _dataService.CurrentUser;
+            }
+            else
+            {
+                Debug.WriteLine("User not found!");
+            }
+
+            switch (CurrentUser.UserRole)
+            {
+                // admin
+                // trainer
+                // member
+            }
         }
 
     }
