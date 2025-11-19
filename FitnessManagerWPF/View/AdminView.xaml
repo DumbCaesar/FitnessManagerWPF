@@ -7,6 +7,19 @@
         mc:Ignorable="d"
         Title="AdminView" Height="450" Width="800">
     <Grid>
-        <TextBlock Text="{Binding CurrentUser.Name}" Width="100" Height="50"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" IsChecked="True"/>
+            <RadioButton Content="Members" Style="{StaticResource RadioButtonStyle}"/>
+            <RadioButton Content="Trainers" Style="{StaticResource RadioButtonStyle}"/>
+            <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}"/>
+        </StackPanel>
     </Grid>
 </Window>

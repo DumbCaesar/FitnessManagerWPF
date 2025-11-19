@@ -57,10 +57,5 @@ namespace FitnessManagerWPF.Services
             CurrentUser = null;
             return false;
         }
-
-        public User GetUser()
-        {
-            return CurrentUser;
-        }
     }
 }

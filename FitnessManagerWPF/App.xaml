@@ -27,5 +27,52 @@
             </Setter>
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style>
+        
+        <!-- Side bar menu items -->
+        <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 2 0 2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="R">
+                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                                <Border x:Name="Indicator" Grid.Column="0" Visibility="Collapsed" Background="#0284C7" Height="45"/>
+                                <TextBlock Grid.Column="1"
+                                       x:Name="textBlock"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Text="{TemplateBinding Content}"/>
+                        </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="False">
+                                <Setter Property="Background" Value="Transparent" TargetName="R"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textBlock" Property="Margin" Value="10 0 0 0"/>
+                                <Setter Property="Foreground" Value="#000" TargetName="textBlock"/>
+                                <Setter Property="Background" Value="#F1F5F9" TargetName="R"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="textBlock" Property="Margin" Value="10 0 0 0"/>
+                                <Setter Property="Foreground" Value="#000" TargetName="textBlock"/>
+                                <Setter Property="Background" Value="#E0F2FE" TargetName="R"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

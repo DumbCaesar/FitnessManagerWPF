@@ -15,7 +15,7 @@ namespace FitnessManagerWPF.ViewModel
         public event Action LoginSucceeded;
 
         public User CurrentUser { get; private set; }
-        public ICommand LoginCommand { get; set; } // Command used for loggin in
+        public ICommand LoginCommand { get; set; } // Command used for logging in
 
         public string Username
         {
