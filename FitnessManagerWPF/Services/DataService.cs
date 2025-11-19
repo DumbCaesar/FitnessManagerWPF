@@ -28,22 +28,48 @@ namespace FitnessManagerWPF.Services
             _membersFile = Path.Combine(_basePath, "Data/members.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
 
-            LoadData();
+            _users = new List<User>();
+            _logins = new List<Login>();
+
+            try
+            {
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Failed to initialize DataService: {ex.Message}");
+                throw;
+            }
         }
 
         public void LoadData()
         {
-            var options = new JsonSerializerOptions
+            try
             {
-                PropertyNameCaseInsensitive = true,
-            };
+                var options = new JsonSerializerOptions
+                {
+                    PropertyNameCaseInsensitive = true,
+                };
 
-            options.Converters.Add(new JsonStringEnumConverter());
+                options.Converters.Add(new JsonStringEnumConverter());
 
-            _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
-            Debug.WriteLine(_users[1].Name);
-            _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
-            Debug.WriteLine(_logins[1].Username);
+                _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
+                Debug.WriteLine(_users[1].Name);
+                _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
+                Debug.WriteLine(_logins[1].Username);
+            }
+            catch (FileNotFoundException ex)
+            {
+                Debug.WriteLine($"Data file not found: {ex.Message}");        
+            }
+            catch (JsonException ex)
+            {
+                Debug.WriteLine($"Invalid JSON format: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading data: {ex.Message}");
+            }
         }
 
         public bool ValidateUser(string username, string password)

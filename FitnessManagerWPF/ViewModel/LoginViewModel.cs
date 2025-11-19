@@ -50,9 +50,10 @@ namespace FitnessManagerWPF.ViewModel
             else
             {
                 Debug.WriteLine("User not found!");
+                return;
             }
 
-            if(CurrentUser != null )
+            if(CurrentUser != null)
             {
                 switch (CurrentUser.UserRole)
                 {
@@ -72,7 +73,7 @@ namespace FitnessManagerWPF.ViewModel
                         memberView.Show();
                         break;
                 }
-                LoginSucceeded?.Invoke();
+                LoginSucceeded.Invoke();
             }
         }
 
