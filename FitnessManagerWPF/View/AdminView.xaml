@@ -16,10 +16,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Grid.Row="1">
-            <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" IsChecked="True"/>
-            <RadioButton Content="Members" Style="{StaticResource RadioButtonStyle}"/>
-            <RadioButton Content="Trainers" Style="{StaticResource RadioButtonStyle}"/>
-            <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}"/>
+            <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" Command="{Binding DashboardCommand}" IsChecked="True"/>
+            <RadioButton Content="Members" Style="{StaticResource RadioButtonStyle}" Command="{Binding MemberCommand}"/>
+            <RadioButton Content="Trainers" Style="{StaticResource RadioButtonStyle}" Command="{Binding TrainerCommand}"/>
+            <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}" Command="{Binding ClassesCommand}"/>
         </StackPanel>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
