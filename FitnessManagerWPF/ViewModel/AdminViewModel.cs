@@ -11,7 +11,7 @@ namespace FitnessManagerWPF.ViewModel
     {
         private User? _currentUser;
 
-        public User? CurrentUser
+        public User CurrentUser
         {
             get => _currentUser;
             set => SetProperty (ref _currentUser, value);

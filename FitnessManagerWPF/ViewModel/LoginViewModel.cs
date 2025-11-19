@@ -11,15 +11,8 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
-        private AdminViewModel _adminViewModel;
         private DataService _dataService;
         public event Action LoginSucceeded;
-
-        public AdminViewModel AdminViewModel
-        {
-            get => AdminViewModel;
-            set => SetProperty(ref _adminViewModel, value);
-        }
 
         public User CurrentUser { get; private set; }
         public ICommand LoginCommand { get; set; } // Command used for loggin in
@@ -64,13 +57,19 @@ namespace FitnessManagerWPF.ViewModel
                 switch (CurrentUser.UserRole)
                 {
                     case UserRole.Admin:
-                        AdminViewModel AdminViewModel = new AdminViewModel(CurrentUser);
-                        var adminView = new AdminView { DataContext = AdminViewModel };
+                        AdminViewModel adminViewModel = new AdminViewModel(CurrentUser);
+                        var adminView = new AdminView { DataContext = adminViewModel };
                         adminView.Show();
                         break;
                     case UserRole.Trainer:
+                        TrainerViewModel trainerViewModel = new TrainerViewModel(CurrentUser);
+                        var trainerView = new TrainerView { DataContext = trainerViewModel };
+                        trainerView.Show();
                         break;
                     case UserRole.Member:
+                        MemberViewModel memberViewModel = new MemberViewModel(CurrentUser);
+                        var memberView = new MemberView { DataContext = memberViewModel };
+                        memberView.Show();
                         break;
                 }
                 LoginSucceeded?.Invoke();
