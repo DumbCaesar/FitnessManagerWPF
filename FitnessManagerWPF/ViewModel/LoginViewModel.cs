@@ -11,11 +11,21 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
+        private object _currentView;
         private DataService _dataService;
+        private RegisterViewModel _registerViewModel;
         public event Action LoginSucceeded;
 
         public User CurrentUser { get; private set; }
         public ICommand LoginCommand { get; set; } // Command used for logging in
+        public ICommand ShowRegisterCommand { get; set; } // responsible for switching to register user control
+        public ICommand ShowLoginCommand { get; set; } // responsible for switching to login user control
+
+        public object CurrentView
+        {
+            get => _currentView;
+            set => SetProperty(ref _currentView, value);
+        }
 
         public string Username
         {
@@ -32,8 +42,22 @@ namespace FitnessManagerWPF.ViewModel
         public LoginViewModel()
         {
             LoginCommand = new RelayCommand(_ => Login());
+            ShowRegisterCommand = new RelayCommand(_ => ShowRegister());
+            ShowLoginCommand = new RelayCommand(_ => ShowLogin());
             _dataService = new DataService();
-            
+            _registerViewModel = new RegisterViewModel(this);
+
+            ShowLogin();
+        }
+
+        private void ShowLogin()
+        {
+            CurrentView = this;
+        }
+        
+        private void ShowRegister()
+        {
+            CurrentView = _registerViewModel;
         }
 
         private void Login()
@@ -50,9 +74,10 @@ namespace FitnessManagerWPF.ViewModel
             else
             {
                 Debug.WriteLine("User not found!");
+                return;
             }
 
-            if(CurrentUser != null )
+            if(CurrentUser != null)
             {
                 switch (CurrentUser.UserRole)
                 {
@@ -72,7 +97,7 @@ namespace FitnessManagerWPF.ViewModel
                         memberView.Show();
                         break;
                 }
-                LoginSucceeded?.Invoke();
+                LoginSucceeded.Invoke();
             }
         }
 
