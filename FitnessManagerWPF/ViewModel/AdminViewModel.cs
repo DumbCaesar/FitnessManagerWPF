@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using FitnessManagerWPF.Model;
 using FitnessManagerWPF.View.UserControl.Admin;
+using FitnessManagerWPF.ViewModel.Admin;
 
 namespace FitnessManagerWPF.ViewModel
 {
@@ -13,6 +14,10 @@ namespace FitnessManagerWPF.ViewModel
     {
         private User? _currentUser;
         private object _currentView;
+        private AdminDashboardViewModel _adminDashboardViewModel;
+        private AdminClassesViewModel _adminClassesViewModel;
+        private AdminMemberViewModel _adminMemberViewModel;
+        private AdminTrainerViewModel _adminTrainerViewModel;
         public ICommand DashboardCommand { get; set; }
         public ICommand MemberCommand { get; set; }
         public ICommand TrainerCommand { get; set; }
@@ -31,6 +36,10 @@ namespace FitnessManagerWPF.ViewModel
         public AdminViewModel(User user)
         {
             _currentUser = user;
+            _adminDashboardViewModel = new AdminDashboardViewModel(this);
+            _adminClassesViewModel = new AdminClassesViewModel(this);
+            _adminMemberViewModel = new AdminMemberViewModel(this);
+            _adminTrainerViewModel = new AdminTrainerViewModel(this);
             DashboardCommand = new RelayCommand(_ => ShowDashboard());
             MemberCommand = new RelayCommand(_ => ShowMembers());
             TrainerCommand = new RelayCommand(_ => ShowTrainers());
@@ -41,22 +50,22 @@ namespace FitnessManagerWPF.ViewModel
 
         public void ShowDashboard()
         {
-            CurrentView = new AdminDashboardView();
+            CurrentView = _adminDashboardViewModel;
         }
 
         public void ShowMembers()
         {
-            CurrentView = new AdminMemberView();
+            CurrentView = _adminMemberViewModel;
         }
 
         public void ShowTrainers()
         {
-            CurrentView = new AdminTrainerView();
+            CurrentView = _adminTrainerViewModel;
         }
 
         public void ShowClasses()
         {
-            CurrentView = new AdminClassesView();
+            CurrentView = _adminClassesViewModel;
         }
 
         public AdminViewModel()
