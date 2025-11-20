@@ -10,6 +10,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
     {
         private object _currentView;
         private AdminViewModel _parentViewModel;
+        private string _memberCount;
+        private string _memberMonthlyRevenue;
 
         public object CurrentView
         {
