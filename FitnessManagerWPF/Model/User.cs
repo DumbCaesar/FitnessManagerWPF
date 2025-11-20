@@ -33,8 +33,7 @@ namespace FitnessManagerWPF.Model
 
         public MembershipSubscription CurrentMembership()
         {
-            Debug.WriteLine(MembershipSubscriptions);
-            int numberOfSubscriptions = MembershipSubscriptions?.Count ?? 0;
+            int numberOfSubscriptions = MembershipSubscriptions?.Count ?? 0; // Certain users do not have any subscriptions
             if (numberOfSubscriptions == 0) return null;
 
             MembershipSubscription currentSubscription = MembershipSubscriptions[numberOfSubscriptions - 1]; // most recent subscription
