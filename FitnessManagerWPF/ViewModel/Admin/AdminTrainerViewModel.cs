@@ -1,5 +1,8 @@
-﻿using System;
+﻿using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,8 +11,24 @@ namespace FitnessManagerWPF.ViewModel.Admin
 {
     public class AdminTrainerViewModel : ViewModelBase
     {
+        private User _selectedTrainer;
+        private List<User> _trainerList;
+        private ObservableCollection<User> _listOfTrainers;
+        private DataService _dataService;
         private object _currentView;
         private AdminViewModel _parentViewModel;
+
+        public ObservableCollection<User> TrainerList
+        {
+            get => _listOfTrainers;
+            set => SetProperty(ref _listOfTrainers, value);
+        }
+
+        public User SelectedTrainer
+        {
+            get => _selectedTrainer;
+            set => SetProperty(ref _selectedTrainer, value);
+        }
 
         public object CurrentView
         {
@@ -20,6 +39,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public AdminTrainerViewModel(AdminViewModel parentViewModel)
         {
             _parentViewModel = parentViewModel;
+            _trainerList = new List<User>();
+            _dataService = new DataService();
+            _dataService.LoadData();
+            _trainerList = GetTrainers();
+            _listOfTrainers = new ObservableCollection<User>(_trainerList);
+        }
+
+        private List<User> GetTrainers()
+        {
+            return _dataService.Users.Where(u => u.UserRole == UserRole.Trainer).ToList();
         }
     }
 }
