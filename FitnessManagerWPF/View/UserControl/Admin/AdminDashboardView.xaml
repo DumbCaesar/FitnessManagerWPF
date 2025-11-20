@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
-        <TextBlock Text="Admin"/>
+        <TextBlock Text="Dashboard"/>
     </Grid>
 </UserControl>

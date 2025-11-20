@@ -1,6 +1,54 @@
 [
-	{"id": 0, "name": "admin", "email": "admin@admin.dk", "membership": null, "role": "Admin"},
-	{"id": 1, "name": "Bo", "email": "bo@dania.dk", "membership": "Basic", "role": "Member"},
-	{"id": 2, "name": "Bob", "email": "bob@dania.dk", "membership": "VIP", "role": "Member"},
-	{"id": 3, "name": "Bobby", "email": "bobby@dania.dk", "membership": null, "role": "Trainer"}
+    {
+        "id": 0,
+        "name": "Admin",
+        "email": "admin@admin.dk",
+        "role": "Admin",
+        "dateJoined": "2020-01-01",
+        "memberships": []
+    },
+    {
+        "id": 1,
+        "name": "Bo",
+        "email": "bo@dania.dk",
+        "role": "Member",
+        "dateJoined": "2023-09-15",
+        "memberships": [
+            {
+                "id": 100,
+                "membershipId": 1,
+                "startDate": "2024-01-01",
+                "endDate": "2024-01-31"
+            },
+            {
+                "id": 101,
+                "membershipId": 1,
+                "startDate": "2024-02-01",
+                "endDate": "2024-02-29"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Bob",
+        "email": "bob@dania.dk",
+        "role": "Member",
+        "dateJoined": "2022-05-10",
+        "memberships": [
+            {
+                "id": 200,
+                "membershipId": 3,
+                "startDate": "2024-01-15",
+                "endDate": "2024-02-15"
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "Bobby",
+        "email": "bobby@dania.dk",
+        "role": "Trainer",
+        "dateJoined": "2021-03-20",
+        "memberships": []
+    }
 ]

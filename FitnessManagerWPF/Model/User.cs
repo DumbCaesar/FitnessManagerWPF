@@ -22,7 +22,8 @@ namespace FitnessManagerWPF.Model
                 }
             }
         }
-        public string Membership { get; set; }
+        public List<MembershipSubscription> _membershipSubscriptions; // list of all subscriptions the user has had, i.e billing history
+        public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
 
