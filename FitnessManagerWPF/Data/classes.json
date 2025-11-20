@@ -1,0 +1,20 @@
+﻿[
+  {
+    "id": 1,
+    "name": "Morning Yoga",
+    "maxParticipants": 20,
+    "registeredMemberIds": [ 0, 2 ]
+  },
+  {
+    "id": 2,
+    "name": "Strength Training",
+    "maxParticipants": 15,
+    "registeredMemberIds": [ 3 ]
+  },
+  {
+    "id": 3,
+    "name": "Indoor Cycling",
+    "maxParticipants": 25,
+    "registeredMemberIds": []
+  }
+]

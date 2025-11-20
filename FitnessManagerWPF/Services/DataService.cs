@@ -17,8 +17,11 @@ namespace FitnessManagerWPF.Services
         private readonly string _basePath;
         private readonly string _membersFile;
         private readonly string _loginFile;
+        private readonly string _classesFile;
         private List<User> _users;
         private List<Login> _logins;
+        
+        public List<Classes> Activities { get; private set; }
 
         public User CurrentUser { get; private set; }
 
@@ -33,9 +36,11 @@ namespace FitnessManagerWPF.Services
             _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
             _membersFile = Path.Combine(_basePath, "Data/members.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
+            _classesFile = Path.Combine(_basePath, "Data/classes.json");
 
             _users = new List<User>();
             _logins = new List<Login>();
+            Activities = new List<Classes>();
 
             try
             {
@@ -63,6 +68,9 @@ namespace FitnessManagerWPF.Services
                 Debug.WriteLine(_users[1].Name);
                 _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
                 Debug.WriteLine(_logins[1].Username);
+                Activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
+                Debug.WriteLine(Activities[1].Name);
+
             }
             catch (FileNotFoundException ex)
             {
