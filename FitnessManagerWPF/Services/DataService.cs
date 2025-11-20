@@ -76,6 +76,8 @@ namespace FitnessManagerWPF.Services
                 Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
+
+                SetUserCurrentMembership();
             }
             catch (FileNotFoundException ex)
             {
@@ -103,7 +105,7 @@ namespace FitnessManagerWPF.Services
             return false;
         }
 
-        public void SetUserCurrentMembership()
+        private void SetUserCurrentMembership()
         {
             foreach (User u in _users)
             {

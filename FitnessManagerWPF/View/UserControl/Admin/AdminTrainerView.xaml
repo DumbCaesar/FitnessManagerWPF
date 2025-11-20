@@ -13,7 +13,6 @@
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="70"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="180"/>
                     <GridViewColumn Header="Email" DisplayMemberBinding="{Binding Email}" Width="200"/>
-                    <GridViewColumn Header="Membership" DisplayMemberBinding="{Binding Membership}" Width="140"/>
                 </GridView>
             </ListView.View>
         </ListView>
