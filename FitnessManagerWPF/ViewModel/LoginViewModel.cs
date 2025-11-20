@@ -48,6 +48,8 @@ namespace FitnessManagerWPF.ViewModel
             _registerViewModel = new RegisterViewModel(this);
 
             ShowLogin();
+            _username = "admin";
+            _password = "password123";
         }
 
         private void ShowLogin()

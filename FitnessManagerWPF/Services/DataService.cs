@@ -22,6 +22,12 @@ namespace FitnessManagerWPF.Services
 
         public User CurrentUser { get; private set; }
 
+        public List<User> Users
+        {
+            get => _users;
+            private set => _users = value;
+        }
+
         public DataService()
         {
             _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
