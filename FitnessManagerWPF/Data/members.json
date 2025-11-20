@@ -13,7 +13,7 @@
         "email": "bo@dania.dk",
         "role": "Member",
         "dateJoined": "2023-09-15",
-        "memberships": [
+        "membershipSubscriptions": [
             {
                 "id": 100,
                 "membershipId": 1,
