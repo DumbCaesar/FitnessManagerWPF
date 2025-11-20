@@ -46,3 +46,9 @@
     {
         "id": 3,
         "name": "Bobby",
+        "email": "bobby@dania.dk",
+        "role": "Trainer",
+        "dateJoined": "2021-03-20",
+        "memberships": []
+    }
+]
