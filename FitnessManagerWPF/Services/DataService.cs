@@ -19,12 +19,9 @@ namespace FitnessManagerWPF.Services
         private readonly string _loginFile;
         private readonly string _classesFile;
         private List<User> _users;
-        private List<Login> _logins;
-        
+        private List<Login> _logins;    
         public List<Classes> Activities { get; private set; }
         private readonly string _membershipsFile;
-        private List<User> _users;
-        private List<Login> _logins;
         private List<Membership> _memberships;
 
         public User CurrentUser { get; private set; }
