@@ -43,6 +43,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _dataService = new DataService();
             _dataService.LoadData();
             _userList = _dataService.Users;
+            _dataService.SetUserCurrentMembership();
             _listOfMembers = new ObservableCollection<User>(_userList);
         }
 
