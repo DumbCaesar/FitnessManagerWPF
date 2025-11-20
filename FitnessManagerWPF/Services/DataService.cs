@@ -22,6 +22,10 @@ namespace FitnessManagerWPF.Services
         private List<Login> _logins;
         
         public List<Classes> Activities { get; private set; }
+        private readonly string _membershipsFile;
+        private List<User> _users;
+        private List<Login> _logins;
+        private List<Membership> _memberships;
 
         public User CurrentUser { get; private set; }
 
@@ -37,10 +41,11 @@ namespace FitnessManagerWPF.Services
             _membersFile = Path.Combine(_basePath, "Data/members.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
             _classesFile = Path.Combine(_basePath, "Data/classes.json");
-
             _users = new List<User>();
             _logins = new List<Login>();
             Activities = new List<Classes>();
+            _membershipsFile = Path.Combine(_basePath, "Data/memberships.json");
+            _memberships = new List<Membership>();
 
             try
             {
@@ -65,12 +70,15 @@ namespace FitnessManagerWPF.Services
                 options.Converters.Add(new JsonStringEnumConverter());
 
                 _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
-                Debug.WriteLine(_users[1].Name);
+                Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_membersFile}");
+
                 _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
                 Debug.WriteLine(_logins[1].Username);
                 Activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
                 Debug.WriteLine(Activities[1].Name);
-
+                Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
+                _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
+                Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
             }
             catch (FileNotFoundException ex)
             {
@@ -96,6 +104,33 @@ namespace FitnessManagerWPF.Services
             }
             CurrentUser = null;
             return false;
+        }
+
+        public void SetUserCurrentMembership()
+        {
+            foreach (User u in _users)
+            {
+                if (u.UserRole == UserRole.Trainer)
+                {
+                    u.MembershipType = "Trainer";
+                    continue;
+                }
+                if (u.UserRole == UserRole.Admin)
+                {
+                    u.MembershipType = "Admin";
+                    continue;
+                }
+
+                var activeSub = u.CurrentMembership();
+                if (activeSub == null)
+                {
+                    u.MembershipType = "No Active Membership";
+                    continue;
+                }
+
+                var membershipType = _memberships.FirstOrDefault(m => m.Id == activeSub.MembershipId);
+                u.MembershipType = membershipType?.Name ?? "Unknown";
+            }
         }
     }
 }

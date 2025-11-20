@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,23 @@ namespace FitnessManagerWPF.Model
                 }
             }
         }
-        public List<MembershipSubscription> _membershipSubscriptions; // list of all subscriptions the user has had, i.e billing history
+        public string MembershipType { get; set; } // string used for data binding
+        public List<MembershipSubscription> MembershipSubscriptions { get; set; } // list of all subscriptions the user has had, i.e billing history
         public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
 
         public User() { }
+
+        public MembershipSubscription CurrentMembership()
+        {
+            Debug.WriteLine(MembershipSubscriptions);
+            int numberOfSubscriptions = MembershipSubscriptions?.Count ?? 0;
+            if (numberOfSubscriptions == 0) return null;
+
+            MembershipSubscription currentSubscription = MembershipSubscriptions[numberOfSubscriptions - 1]; // most recent subscription
+            return currentSubscription;
+        }
     }
 
     public enum UserRole
