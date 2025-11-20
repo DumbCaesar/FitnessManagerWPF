@@ -11,8 +11,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="{Binding Name}"/>
-                        <TextBlock Text="{Binding ActivityStats}"/>
+                        <TextBlock Text="{Binding ClassInfo}"/>
+                        <TextBlock Text="{Binding ClassSummary}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -3,18 +3,24 @@
     "id": 1,
     "name": "Morning Yoga",
     "maxParticipants": 20,
-    "registeredMemberIds": [ 0, 2 ]
+    "registeredMemberIds": [ 0, 2 ],
+    "trainerId": 3,
+    "trainerName": "Bobby"
   },
   {
     "id": 2,
     "name": "Strength Training",
     "maxParticipants": 15,
-    "registeredMemberIds": [ 3 ]
+    "registeredMemberIds": [ 3 ],
+    "trainerId": 3,
+    "trainerName": "Bobby"
   },
   {
     "id": 3,
     "name": "Indoor Cycling",
     "maxParticipants": 25,
-    "registeredMemberIds": []
+    "registeredMemberIds": [],
+    "trainerId": 3,
+    "trainerName": "Bobby"
   }
 ]

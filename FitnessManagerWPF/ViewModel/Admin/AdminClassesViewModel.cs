@@ -8,6 +8,7 @@ using System.Linq;
 using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
@@ -20,12 +21,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private Classes _selectedActivity;
         private List<Classes> _activityList;
         private ObservableCollection<Classes> _activities;
-
-        public string ActivityStats
-        {
-            get => _activityStats;
-            set => SetProperty(ref _activityStats, value);
-        }
 
         public Classes SelectedActivity
         {
@@ -54,15 +49,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _activityList = _dataService.Activities.ToList();
             _activities = new ObservableCollection<Classes>(_activityList);
 
-        }
-
-        private string GetParticipantNames(Classes classes)
-        {
-            var names = classes.RegisteredMemberIds
-                .Select(id => _dataService.Users.FirstOrDefault(u => u.Id == id)?.Name ?? "Unknown")
-                .ToList();
-
-            return string.Join(", ", names);
         }
     }
 }
