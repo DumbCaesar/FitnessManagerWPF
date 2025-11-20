@@ -13,7 +13,7 @@ namespace FitnessManagerWPF.Model
     {
         private int _id;
         private string _name;
-        private float _price;
-        private int _durationMonths;
+        private float _price; 
+        private int _durationMonths; // number of months the subscription lasts
     }
 }

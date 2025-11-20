@@ -1,0 +1,5 @@
+[
+    { "id": 1, "name": "Basic", "price": 199.99, "durationInMonths": 1 },
+    { "id": 2, "name": "Premium", "price": 299.99, "durationInMonths": 1 },
+    { "id": 3, "name": "VIP", "price": 499.99, "durationInMonths": 1 }
+]

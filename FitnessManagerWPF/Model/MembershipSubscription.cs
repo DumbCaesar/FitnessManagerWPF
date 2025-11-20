@@ -14,8 +14,8 @@ namespace FitnessManagerWPF.Model
         private int _id;
         private Membership _membership;
         private int _userId;
-        private DateTime _startDate;
-        private DateTime _endDate;
-        private bool isActive;
+        private DateTime _startDate; // start date for the subscription
+        private DateTime _endDate; // end date for the subscription
+        private bool isActive; 
     }
 }
