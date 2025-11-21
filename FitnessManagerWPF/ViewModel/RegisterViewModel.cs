@@ -1,4 +1,5 @@
-﻿using FitnessManagerWPF.Services;
+﻿using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -13,6 +14,8 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
+        private string _email;
+        private string _fullname;
         private object _currentView;
         private DataService _dataService;
         private LoginViewModel _parentViewModel;
@@ -37,6 +40,16 @@ namespace FitnessManagerWPF.ViewModel
             get => _password;
             set => SetProperty(ref _password, value);
         }
+        public string Email
+        {
+            get => _email;
+            set => SetProperty(ref _email, value);
+        }
+        public string FullName
+        {
+            get => _fullname;
+            set => SetProperty(ref _fullname, value);
+        }
         private void ShowLogin()
         {
             _parentViewModel.ShowLoginCommand.Execute(null);
@@ -51,9 +64,16 @@ namespace FitnessManagerWPF.ViewModel
         }
         private void CreateUser()
         {
-            Debug.WriteLine($"Creating user: {Username}");
-            // Implement your user creation logic here
-            Debug.WriteLine(++_dataService.MaxUserId);
+            Debug.WriteLine("Creating new user...");
+            int newUserId = ++_dataService.MaxUserId;
+            User newUser = new User(newUserId, FullName, Email, UserRole.Member);
+            Login newLogin = new Login(newUserId, Username, Password);
+            Debug.WriteLine("New user created:");
+            Debug.WriteLine($"ID: {newUserId}");
+            Debug.WriteLine($"Name: {FullName}");
+            Debug.WriteLine($"Username: {Username}");
+            Debug.WriteLine($"Email: {Email}");
+            Debug.WriteLine($"Password: {Password}");
             // After successful registration, automatically switch back to login:
             // need to use _parentViewModel.ShowLoginCommand.Execute(null) or it wont work;
         }

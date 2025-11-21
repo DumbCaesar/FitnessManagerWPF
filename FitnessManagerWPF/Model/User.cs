@@ -30,7 +30,7 @@ namespace FitnessManagerWPF.Model
         public UserRole UserRole { get; set; }
 
         public User() { }
-        public User(int id, string email, string name, UserRole role)
+        public User(int id, string name, string email, UserRole role)
         {
             Id = id;
             _email = email;

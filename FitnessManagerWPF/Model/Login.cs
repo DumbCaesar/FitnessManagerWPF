@@ -11,6 +11,13 @@ namespace FitnessManagerWPF.Model
         public int MembershipId { get; set; }
         public string Username { get; set; } 
         public string Password { get; set; }
-        public Login() { }
+        public Login() { } // Empty constructor used for JSON serialization
+
+        public Login(int id, string username, string password)
+        {
+            MembershipId = id;
+            Username = username;
+            Password = password;
+        }
     }
 }

@@ -26,16 +26,16 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Border Grid.Row="1" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
-            <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Full Name"  Text="{Binding FullName, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
         <Border Grid.Row="3" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
-            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Username" Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
         <Border Grid.Row="5" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
-            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Password" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
         <Border Grid.Row="7" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
-            <TextBox Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="E-mail" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
         <Border Grid.Row="9" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="LightSlateGray" Margin="0 0 110 0">
             <Button Command="{Binding CreateUserCommand}" Content="Create User" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>

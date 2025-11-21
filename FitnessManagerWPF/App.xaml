@@ -74,5 +74,42 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!-- TextBox placeholder text -->
+        <Style x:Key="PlaceholderTextBoxStyle" TargetType="TextBox">
+            <!-- Override default Template -->
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <!-- Wrap everything in a grid so layers overlap -->
+                        <Grid>
+                            <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="4"/>
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="5"/>
+                            <TextBlock Text="{TemplateBinding Tag}" 
+                               Foreground="#AA999999"
+                               Margin="5" 
+                               IsHitTestVisible="False"
+                               VerticalAlignment="Center">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Opacity" Value="0.8"/>
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                        <Style.Triggers>
+                                            <!-- When textbox is null show the placeholder -->
+                                            <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value="">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
