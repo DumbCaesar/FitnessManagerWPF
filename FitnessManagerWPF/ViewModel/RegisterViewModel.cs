@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using FitnessManagerWPF.Model;
 using FitnessManagerWPF.Services;
@@ -80,6 +81,7 @@ namespace FitnessManagerWPF.ViewModel
             Debug.WriteLine($"Email: {Email}");
 
             _dataService.SaveUser(newUser, newLogin);
+            MessageBox.Show("User successfully created!");
             // After successful registration, automatically switch back to login:
             _parentViewModel.ShowLoginCommand.Execute(null);
         }
