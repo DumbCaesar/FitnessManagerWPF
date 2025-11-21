@@ -92,11 +92,13 @@ namespace FitnessManagerWPF.ViewModel
             if (string.IsNullOrWhiteSpace(Username)) return false;
             if (UsernameExists(Username)) return false;
             if (string.IsNullOrWhiteSpace(Password)) return false;
+            if (EmailExists(Email)) return false;
             if (!IsValidEmail(Email)) return false;
             return true;
         }
 
-        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username);
+        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username); 
+        private bool EmailExists(string email) => _dataService.Users.Any(u => u.Email == email);
         private bool IsValidEmail(string email) 
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
