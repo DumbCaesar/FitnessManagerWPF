@@ -45,7 +45,7 @@ namespace FitnessManagerWPF.ViewModel
             ShowRegisterCommand = new RelayCommand(_ => ShowRegister());
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
             _dataService = new DataService();
-            _registerViewModel = new RegisterViewModel(this);
+            _registerViewModel = new RegisterViewModel(this, _dataService);
 
             ShowLogin();
             _username = "admin";

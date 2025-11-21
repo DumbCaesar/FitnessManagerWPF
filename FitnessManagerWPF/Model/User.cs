@@ -30,6 +30,15 @@ namespace FitnessManagerWPF.Model
         public UserRole UserRole { get; set; }
 
         public User() { }
+        public User(int id, string email, string name, UserRole role)
+        {
+            Id = id;
+            _email = email;
+            Name = name;
+            UserRole = role; 
+            DateJoined = DateTime.Now;
+            MembershipSubscriptions = new List<MembershipSubscription>();
+        }
 
         public MembershipSubscription CurrentMembership()
         {

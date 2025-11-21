@@ -42,10 +42,10 @@ namespace FitnessManagerWPF.ViewModel
             _parentViewModel.ShowLoginCommand.Execute(null);
         }
 
-        public RegisterViewModel(LoginViewModel parentViewModel)
+        public RegisterViewModel(LoginViewModel parentViewModel, DataService dataService)
         {
             _parentViewModel = parentViewModel;
-            _dataService = new DataService();
+            _dataService = dataService;
             CreateUserCommand = new RelayCommand(_ => CreateUser());
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
         }
@@ -53,7 +53,7 @@ namespace FitnessManagerWPF.ViewModel
         {
             Debug.WriteLine($"Creating user: {Username}");
             // Implement your user creation logic here
-
+            Debug.WriteLine(++_dataService.MaxUserId);
             // After successful registration, automatically switch back to login:
             // need to use _parentViewModel.ShowLoginCommand.Execute(null) or it wont work;
         }
