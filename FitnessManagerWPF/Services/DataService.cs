@@ -31,6 +31,11 @@ namespace FitnessManagerWPF.Services
             get => _users;
             private set => _users = value;
         }
+        public List<Login> Logins
+        {
+            get => _logins;
+            private set => _logins = value;
+        }
 
         public DataService()
         {
@@ -84,7 +89,7 @@ namespace FitnessManagerWPF.Services
             }
             catch (FileNotFoundException ex)
             {
-                Debug.WriteLine($"Data file not found: {ex.Message}");        
+                Debug.WriteLine($"Data file not found: {ex.Message}");
             }
             catch (JsonException ex)
             {
@@ -133,6 +138,27 @@ namespace FitnessManagerWPF.Services
                 var membershipType = _memberships.FirstOrDefault(m => m.Id == activeSub.MembershipId);
                 u.MembershipType = membershipType?.Name ?? "Unknown";
             }
+        }
+
+        public void SaveUser(User newUser, Login newLogin)
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+
+            _users.Add(newUser);
+            _logins.Add(newLogin);
+
+            string userJson = JsonSerializer.Serialize(_users, options);
+            string loginJson = JsonSerializer.Serialize(_logins, options); 
+
+            File.WriteAllText(_membersFile, userJson);
+            File.WriteAllText(_loginFile, loginJson);
+
+            Debug.WriteLine($"Added {newUser.Name} to {_membersFile}");
+            Debug.WriteLine($"Added {newLogin.Username} to {_loginFile}");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.Model
 {
-    internal class Login
+    public class Login
     {
         public int MembershipId { get; set; }
         public string Username { get; set; } 

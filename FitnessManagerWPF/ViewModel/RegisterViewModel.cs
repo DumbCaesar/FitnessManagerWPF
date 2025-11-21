@@ -1,12 +1,13 @@
-﻿using FitnessManagerWPF.Model;
-using FitnessManagerWPF.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel
 {
@@ -59,7 +60,10 @@ namespace FitnessManagerWPF.ViewModel
         {
             _parentViewModel = parentViewModel;
             _dataService = dataService;
-            CreateUserCommand = new RelayCommand(_ => CreateUser());
+            CreateUserCommand = new RelayCommand(
+                _ => CreateUser(),
+                _ => CanCreateUser()
+                );
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
         }
         private void CreateUser()
@@ -68,14 +72,34 @@ namespace FitnessManagerWPF.ViewModel
             int newUserId = ++_dataService.MaxUserId;
             User newUser = new User(newUserId, FullName, Email, UserRole.Member);
             Login newLogin = new Login(newUserId, Username, Password);
+
             Debug.WriteLine("New user created:");
             Debug.WriteLine($"ID: {newUserId}");
             Debug.WriteLine($"Name: {FullName}");
             Debug.WriteLine($"Username: {Username}");
             Debug.WriteLine($"Email: {Email}");
-            Debug.WriteLine($"Password: {Password}");
+
+            _dataService.SaveUser(newUser, newLogin);
             // After successful registration, automatically switch back to login:
-            // need to use _parentViewModel.ShowLoginCommand.Execute(null) or it wont work;
+            _parentViewModel.ShowLoginCommand.Execute(null);
+        }
+
+        private bool CanCreateUser()
+        {
+            if (string.IsNullOrWhiteSpace(FullName)) return false;
+            if (string.IsNullOrWhiteSpace(Username)) return false;
+            if (UsernameExists(Username)) return false;
+            if (string.IsNullOrWhiteSpace(Password)) return false;
+            if (!IsValidEmail(Email)) return false;
+            return true;
+        }
+
+        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username);
+        private bool IsValidEmail(string email) 
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            if (!MailAddress.TryCreate(email, out var mailAddress)) return false;
+            return mailAddress.Host.Contains('.');
         }
     }
 }

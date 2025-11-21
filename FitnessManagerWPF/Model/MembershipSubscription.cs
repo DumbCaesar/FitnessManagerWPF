@@ -11,17 +11,15 @@ namespace FitnessManagerWPF.Model
     /// </summary>
     public class MembershipSubscription
     {
-        private DateTime _startDate; // start date for the subscription
-        private DateTime _endDate; // end date for the subscription
+        public DateTime StartDate { get; set; } // start date for the subscription
+        public DateTime EndDate { get; set; }// end date for the subscription
 
         public int Id { get; set; }
         public int MembershipId { get; set; }
-        public Membership Membership { get; set; }
-
         public MembershipSubscription() { }
         public bool isActive()
         {
-            return DateTime.Now < _endDate && DateTime.Now > _startDate;
+            return DateTime.Now < EndDate && DateTime.Now > StartDate;
         } 
     }
 }
