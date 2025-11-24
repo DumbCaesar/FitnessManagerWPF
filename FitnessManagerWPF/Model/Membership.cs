@@ -12,7 +12,7 @@ namespace FitnessManagerWPF.Model
     public class Membership
     {
         public decimal Price { get; set; }
-        public int DurationMonths { get; set; } // number of months the subscription lasts
+        public int DurationInMonths { get; set; } // number of months the subscription lasts
 
         public int Id { get; set; }
         public string Name { get; set; }
