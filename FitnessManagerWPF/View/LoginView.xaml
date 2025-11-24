@@ -6,7 +6,7 @@
         xmlns:viewModel="clr-namespace:FitnessManagerWPF.ViewModel"
         xmlns:userControl="clr-namespace:FitnessManagerWPF.View.UserControl"
         mc:Ignorable="d"
-        Title="LoginView" Height="400" Width="400" ResizeMode="NoResize">
+        Title="LoginView" Height="450" Width="400" ResizeMode="NoResize">
 
     <Window.DataContext>
         <viewModel:LoginViewModel/>
