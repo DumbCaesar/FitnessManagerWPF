@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
         mc:Ignorable="d"
         Title="SelectedMemberView" Height="450" Width="800">
-    <Grid>
+    <Grid Background="GhostWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -15,29 +15,47 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <TextBlock Text="{Binding SelectedMember.Name}"/>
-        <ListBox ItemsSource="{Binding MemberClasses}" Grid.Row="1" Grid.Column="0">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding MaxParticipants, StringFormat='Max Participants: {0}'}" VerticalAlignment="Center"/>
-                        <TextBlock Text="{Binding TrainerName, StringFormat='Trainer: {0}'}" VerticalAlignment="Center"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        <ListBox ItemsSource="{Binding MembershipSubscriptions}" Grid.Row="1" Grid.Column="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Id, StringFormat='Membership Id: {0}'}"/>
-                        <TextBlock Text="{Binding DurationLeftFormatted}"/>
-                        <TextBlock Text="{Binding StartDate}"/>
-                        <TextBlock Text="{Binding EndDate}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2" Grid.ColumnSpan="2">
+            <StackPanel Margin="2">
+                <TextBlock Text="{Binding SelectedMember.Id, StringFormat='ID: {0}'}"/>
+                <TextBlock Text="{Binding SelectedMember.Name, StringFormat='Navn: {0}'}"/>
+                <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}"/>
+                <TextBlock Text="{Binding SelectedMember.MembershipType, StringFormat='Status: {0}'}"/>
+                <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Medlem siden: {0:dd/MM/yyyy}'}"/>
+            </StackPanel>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
+            <ListBox ItemsSource="{Binding MemberClasses}" Grid.Row="1" Grid.Column="0" Padding="5" Margin="5" BorderThickness="0" Background="GhostWhite">
+                <ListBox.Resources>
+                    <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="Bold"/>
+                            <TextBlock Text="{Binding MaxParticipants, StringFormat='Max Participants: {0}'}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding TrainerName, StringFormat='Trainer: {0}'}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
+            <ListBox ItemsSource="{Binding MembershipSubscriptions}" Grid.Row="1" Grid.Column="1" Padding="5" Margin="5" BorderThickness="0" Background="GhostWhite">
+                <ListBox.Resources>
+                    <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
+                </ListBox.Resources>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="5">
+                            <TextBlock Text="{Binding Id, StringFormat='Membership Id: {0}'}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding DurationLeftFormatted, StringFormat='Status: {0}'}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding StartDate, StringFormat='Start Date: {0:dd/MM/yyyy}'}"/>
+                            <TextBlock Text="{Binding EndDate, StringFormat='End Date: {0:dd/MM/yyyy}'}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
     </Grid>
 </Window>
