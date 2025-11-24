@@ -110,5 +110,75 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!-- Modern Minimal ScrollBar -->
+        <Style x:Key="VerticalCleanScrollBar" TargetType="ScrollBar">
+            <Setter Property="Width" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+                            <Track Name="PART_Track" IsDirectionReversed="True">
+
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Background="Transparent" BorderThickness="0"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Cursor="SizeNS">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Background="#8E8E8E"
+                                                CornerRadius="2"
+                                                Width="6"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Background="Transparent" BorderThickness="0"/>
+                                </Track.IncreaseRepeatButton>
+
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="HorizontalCleanScrollBar" TargetType="ScrollBar">
+            <Setter Property="Height" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="Transparent">
+                            <Track Name="PART_Track">
+
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Background="Transparent" BorderThickness="0"/>
+                                </Track.DecreaseRepeatButton>
+
+                                <Track.Thumb>
+                                    <Thumb Cursor="SizeWE">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Border Background="#8E8E8E"
+                                                CornerRadius="2"
+                                                Height="6"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Background="Transparent" BorderThickness="0"/>
+                                </Track.IncreaseRepeatButton>
+
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>

@@ -66,7 +66,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void OnMemberDoubleClick()
         {
-            SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember);
+            if (SelectedMember == null) return;
+            SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
             var SelectedMemberView = new SelectedMemberView { DataContext = SelectedMemberViewModel };
             SelectedMemberView.Show();
         }
