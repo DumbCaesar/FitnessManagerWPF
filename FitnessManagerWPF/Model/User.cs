@@ -17,7 +17,7 @@ namespace FitnessManagerWPF.Model
         public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
-        public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership().IsActive == true;
+        public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership()?.IsActive == true;
         public decimal MonthlyContribution => CurrentMembership()?.MonthlyValue ?? 0m;
 
         public User() { }
@@ -26,18 +26,16 @@ namespace FitnessManagerWPF.Model
             Id = id;
             Email = email;
             Name = name;
-            UserRole = role; 
+            UserRole = role;
             DateJoined = DateTime.Now;
             BillingHistory = new List<MembershipSubscription>();
         }
 
         public MembershipSubscription CurrentMembership()
         {
-            int numberOfSubscriptions = BillingHistory?.Count ?? 0; // Some users do not have any subscriptions
-            if (numberOfSubscriptions == 0) return null;
-
-            MembershipSubscription currentSubscription = BillingHistory[numberOfSubscriptions - 1]; // most recent subscription
-            return currentSubscription;
+            if (BillingHistory == null || !BillingHistory.Any())
+                return null;
+            return BillingHistory[^1];
         }
     }
 

@@ -6,7 +6,9 @@
     "MembershipType": "Admin",
     "BillingHistory": [],
     "DateJoined": "2020-01-01T00:00:00",
-    "role": 2
+    "role": 2,
+    "IsActiveMember": false,
+    "MonthlyContribution": 0
   },
   {
     "Id": 1,
@@ -17,24 +19,56 @@
       {
         "StartDate": "2024-01-01T00:00:00",
         "EndDate": "2024-01-31T00:00:00",
+        "DurationLeft": "00:00:00",
+        "DurationLeftFormatted": "Expired",
         "Id": 100,
-        "MembershipId": 1
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        },
+        "IsActive": false,
+        "MonthlyValue": 0
       },
       {
         "StartDate": "2024-02-01T00:00:00",
         "EndDate": "2024-02-29T00:00:00",
+        "DurationLeft": "00:00:00",
+        "DurationLeftFormatted": "Expired",
         "Id": 101,
-        "MembershipId": 1
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        },
+        "IsActive": false,
+        "MonthlyValue": 0
       },
       {
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
+        "DurationLeft": "4.10:19:02.7505673",
+        "DurationLeftFormatted": "4 days, 10 hours, 19 minutes left",
         "Id": 102,
-        "MembershipId": 1
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        },
+        "IsActive": true,
+        "MonthlyValue": 199.99
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
-    "role": 0
+    "role": 0,
+    "IsActiveMember": true,
+    "MonthlyContribution": 199.99
   },
   {
     "Id": 2,
@@ -45,12 +79,24 @@
       {
         "StartDate": "2025-10-29T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
+        "DurationLeft": "4.10:19:02.7500039",
+        "DurationLeftFormatted": "4 days, 10 hours, 19 minutes left",
         "Id": 200,
-        "MembershipId": 3
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 499.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "VIP"
+        },
+        "IsActive": true,
+        "MonthlyValue": 499.99
       }
     ],
     "DateJoined": "2025-10-29T00:00:00",
-    "role": 0
+    "role": 0,
+    "IsActiveMember": true,
+    "MonthlyContribution": 499.99
   },
   {
     "Id": 3,
@@ -59,6 +105,8 @@
     "MembershipType": "Trainer",
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
-    "role": 1
+    "role": 1,
+    "IsActiveMember": false,
+    "MonthlyContribution": 0
   }
 ]
