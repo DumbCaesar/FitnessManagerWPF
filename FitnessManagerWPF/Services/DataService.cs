@@ -19,17 +19,22 @@ namespace FitnessManagerWPF.Services
         private readonly string _loginFile;
         private readonly string _classesFile;
         private List<User> _users;
-        private List<Login> _logins;    
-        public List<Classes> Activities { get; private set; }
+        private List<Login> _logins;
         private readonly string _membershipsFile;
         private List<Membership> _memberships;
-
+        public List<Classes> Activities { get; private set; }
         public User CurrentUser { get; private set; }
+        public int MaxUserId { get; set; }
 
         public List<User> Users
         {
             get => _users;
             private set => _users = value;
+        }
+        public List<Login> Logins
+        {
+            get => _logins;
+            private set => _logins = value;
         }
 
         public DataService()
@@ -38,15 +43,16 @@ namespace FitnessManagerWPF.Services
             _membersFile = Path.Combine(_basePath, "Data/members.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
             _classesFile = Path.Combine(_basePath, "Data/classes.json");
+            _membershipsFile = Path.Combine(_basePath, "Data/memberships.json");
+
             _users = new List<User>();
             _logins = new List<Login>();
             Activities = new List<Classes>();
-            _membershipsFile = Path.Combine(_basePath, "Data/memberships.json");
             _memberships = new List<Membership>();
-
             try
             {
                 LoadData();
+                MaxUserId = _users.Max(u => u.Id);
             }
             catch (Exception ex)
             {
@@ -70,10 +76,12 @@ namespace FitnessManagerWPF.Services
                 Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_membersFile}");
 
                 _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
-                Debug.WriteLine(_logins[1].Username);
-                Activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
-                Debug.WriteLine(Activities[1].Name);
                 Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
+
+
+                Activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
+                Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_classesFile}");
+
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
 
@@ -81,7 +89,7 @@ namespace FitnessManagerWPF.Services
             }
             catch (FileNotFoundException ex)
             {
-                Debug.WriteLine($"Data file not found: {ex.Message}");        
+                Debug.WriteLine($"Data file not found: {ex.Message}");
             }
             catch (JsonException ex)
             {
@@ -130,6 +138,27 @@ namespace FitnessManagerWPF.Services
                 var membershipType = _memberships.FirstOrDefault(m => m.Id == activeSub.MembershipId);
                 u.MembershipType = membershipType?.Name ?? "Unknown";
             }
+        }
+
+        public void SaveUser(User newUser, Login newLogin)
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+
+            _users.Add(newUser);
+            _logins.Add(newLogin);
+
+            string userJson = JsonSerializer.Serialize(_users, options);
+            string loginJson = JsonSerializer.Serialize(_logins, options); 
+
+            File.WriteAllText(_membersFile, userJson);
+            File.WriteAllText(_loginFile, loginJson);
+
+            Debug.WriteLine($"Added {newUser.Name} to {_membersFile}");
+            Debug.WriteLine($"Added {newLogin.Username} to {_loginFile}");
         }
     }
 }

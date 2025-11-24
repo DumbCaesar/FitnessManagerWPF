@@ -1,54 +1,58 @@
 [
-    {
-        "id": 0,
-        "name": "Admin",
-        "email": "admin@admin.dk",
-        "role": "Admin",
-        "dateJoined": "2020-01-01",
-        "memberships": []
-    },
-    {
-        "id": 1,
-        "name": "Bo",
-        "email": "bo@dania.dk",
-        "role": "Member",
-        "dateJoined": "2023-09-15",
-        "membershipSubscriptions": [
-            {
-                "id": 100,
-                "membershipId": 1,
-                "startDate": "2024-01-01",
-                "endDate": "2024-01-31"
-            },
-            {
-                "id": 101,
-                "membershipId": 1,
-                "startDate": "2024-02-01",
-                "endDate": "2024-02-29"
-            }
-        ]
-    },
-    {
-        "id": 2,
-        "name": "Bob",
-        "email": "bob@dania.dk",
-        "role": "Member",
-        "dateJoined": "2022-05-10",
-        "memberships": [
-            {
-                "id": 200,
-                "membershipId": 3,
-                "startDate": "2024-01-15",
-                "endDate": "2024-02-15"
-            }
-        ]
-    },
-    {
-        "id": 3,
-        "name": "Bobby",
-        "email": "bobby@dania.dk",
-        "role": "Trainer",
-        "dateJoined": "2021-03-20",
-        "memberships": []
-    }
+  {
+    "Id": 0,
+    "Name": "Admin",
+    "Email": "admin@admin.dk",
+    "MembershipType": "Admin",
+    "BillingHistory": [],
+    "DateJoined": "2020-01-01T00:00:00",
+    "role": 2
+  },
+  {
+    "Id": 1,
+    "Name": "Bo",
+    "Email": "bo@dania.dk",
+    "MembershipType": "Basic",
+    "BillingHistory": [
+      {
+        "StartDate": "2024-01-01T00:00:00",
+        "EndDate": "2024-01-31T00:00:00",
+        "Id": 100,
+        "MembershipId": 1
+      },
+      {
+        "StartDate": "2024-02-01T00:00:00",
+        "EndDate": "2024-02-29T00:00:00",
+        "Id": 101,
+        "MembershipId": 1
+      }
+    ],
+    "DateJoined": "2023-09-15T00:00:00",
+    "role": 0
+  },
+  {
+    "Id": 2,
+    "Name": "Bob",
+    "Email": "bob@dania.dk",
+    "MembershipType": "VIP",
+    "BillingHistory": [
+      {
+        "StartDate": "2024-01-15T00:00:00",
+        "EndDate": "2024-02-15T00:00:00",
+        "Id": 200,
+        "MembershipId": 3
+      }
+    ],
+    "DateJoined": "2022-05-10T00:00:00",
+    "role": 0
+  },
+  {
+    "Id": 3,
+    "Name": "Bobby",
+    "Email": "bobby@dania.dk",
+    "MembershipType": "Trainer",
+    "BillingHistory": [],
+    "DateJoined": "2021-03-20T00:00:00",
+    "role": 1
+  }
 ]
