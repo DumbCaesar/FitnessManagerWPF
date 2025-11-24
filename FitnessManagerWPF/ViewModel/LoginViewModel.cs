@@ -9,10 +9,10 @@ namespace FitnessManagerWPF.ViewModel
 {
     public class LoginViewModel : ViewModelBase
     {
+        private readonly DataService _dataService;
         private string _username;
         private string _password;
         private object _currentView;
-        private DataService _dataService;
         private RegisterViewModel _registerViewModel;
         public event Action LoginSucceeded;
 
@@ -39,12 +39,12 @@ namespace FitnessManagerWPF.ViewModel
             set => SetProperty(ref _password, value);
         }
 
-        public LoginViewModel()
+        public LoginViewModel(DataService dataService)
         {
+            _dataService = dataService;
             LoginCommand = new RelayCommand(_ => Login());
             ShowRegisterCommand = new RelayCommand(_ => ShowRegister());
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
-            _dataService = new DataService();
             _registerViewModel = new RegisterViewModel(this, _dataService);
 
             ShowLogin();
@@ -84,7 +84,7 @@ namespace FitnessManagerWPF.ViewModel
                 switch (CurrentUser.UserRole)
                 {
                     case UserRole.Admin:
-                        AdminViewModel adminViewModel = new AdminViewModel(CurrentUser);
+                        AdminViewModel adminViewModel = new AdminViewModel(CurrentUser, _dataService);
                         var adminView = new AdminView { DataContext = adminViewModel };
                         adminView.Show();
                         break;
