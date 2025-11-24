@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
         mc:Ignorable="d"
-        Title="SelectedMemberView" Height="450" Width="800">
+        Title="{Binding SelectedMember.Name, StringFormat='Medlemsoplysninger: {0}'}" Height="450" Width="800">
     <Grid Background="GhostWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
