@@ -49,11 +49,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void UpdateClasses()
         {
-            ClassesToday = _dataService.Activities.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
-            ClassesWeek = _dataService.Activities.Count();
-            int MaxAttendance = _dataService.Activities.Sum(a => a.MaxParticipants);
+            ClassesToday = _dataService._activities.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
+            ClassesWeek = _dataService._activities.Count();
+            int MaxAttendance = _dataService._activities.Sum(a => a.MaxParticipants);
             Debug.WriteLine($"Max attendance this week: {MaxAttendance}");
-            int CurrentAttendance = _dataService.Activities.Sum(a => a.RegisteredMemberIds.Count());
+            int CurrentAttendance = _dataService._activities.Sum(a => a.RegisteredMemberIds.Count());
             Debug.WriteLine($"Current attendance this week: {CurrentAttendance}");
             Attendance = $"{CurrentAttendance}/{MaxAttendance}";
             Debug.WriteLine($"Attendance: {CurrentAttendance}/{MaxAttendance}");
