@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 using FitnessManagerWPF.View.UserControl.Admin;
 using FitnessManagerWPF.ViewModel.Admin;
 
@@ -12,6 +13,7 @@ namespace FitnessManagerWPF.ViewModel
 {
     public class AdminViewModel : ViewModelBase
     {
+        private readonly DataService _dataService;
         private User? _currentUser;
         private object _currentView;
         private AdminDashboardViewModel _adminDashboardViewModel;
@@ -33,10 +35,11 @@ namespace FitnessManagerWPF.ViewModel
             get => _currentUser;
             set => SetProperty (ref _currentUser, value);
         }
-        public AdminViewModel(User user)
+        public AdminViewModel(User user, DataService dataService)
         {
             _currentUser = user;
-            _adminDashboardViewModel = new AdminDashboardViewModel(this);
+            _dataService = dataService;
+            _adminDashboardViewModel = new AdminDashboardViewModel(this, _dataService);
             _adminClassesViewModel = new AdminClassesViewModel(this);
             _adminMemberViewModel = new AdminMemberViewModel(this);
             _adminTrainerViewModel = new AdminTrainerViewModel(this);

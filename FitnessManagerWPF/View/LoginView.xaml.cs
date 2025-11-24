@@ -24,7 +24,7 @@ namespace FitnessManagerWPF.View
         public LoginView()
         {
             InitializeComponent();
-            viewModel = new LoginViewModel();
+            viewModel = new LoginViewModel(App.DataService);
             viewModel.LoginSucceeded += OnLoginSucceeded;
             DataContext = viewModel;
         }

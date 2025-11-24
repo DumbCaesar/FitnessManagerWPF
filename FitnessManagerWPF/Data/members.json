@@ -43,13 +43,13 @@
     "MembershipType": "VIP",
     "BillingHistory": [
       {
-        "StartDate": "2024-01-15T00:00:00",
-        "EndDate": "2024-02-15T00:00:00",
+        "StartDate": "2025-10-29T00:00:00",
+        "EndDate": "2025-11-29T00:00:00",
         "Id": 200,
         "MembershipId": 3
       }
     ],
-    "DateJoined": "2022-05-10T00:00:00",
+    "DateJoined": "2025-10-29T00:00:00",
     "role": 0
   },
   {

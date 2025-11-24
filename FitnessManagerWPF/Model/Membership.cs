@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace FitnessManagerWPF.Model
 {
     /// <summary>
-    /// Membership plans offered by the gym
+    /// A membership plan offered by the gym
     /// </summary>
     public class Membership
     {
-        public float Price { get; set; }
-        public int DurationMonths { get; set; }
+        public decimal Price { get; set; }
+        public int DurationMonths { get; set; } // number of months the subscription lasts
 
         public int Id { get; set; }
         public string Name { get; set; }

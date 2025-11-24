@@ -116,28 +116,32 @@ namespace FitnessManagerWPF.Services
 
         private void SetUserCurrentMembership()
         {
-            foreach (User u in _users)
+            foreach (User u in _users.Where(u => u.UserRole == UserRole.Member))
             {
-                if (u.UserRole == UserRole.Trainer)
+                // Link Membership object to each subscription in BillingHistory
+                if (u.BillingHistory != null)
                 {
-                    u.MembershipType = "Trainer";
-                    continue;
-                }
-                if (u.UserRole == UserRole.Admin)
-                {
-                    u.MembershipType = "Admin";
-                    continue;
+                    foreach (MembershipSubscription sub in u.BillingHistory)
+                    {
+                        sub.Membership = _memberships.FirstOrDefault(m => m.Id == sub.MembershipId);
+                    }
                 }
 
                 var activeSub = u.CurrentMembership();
-                if (activeSub == null)
+                if (activeSub?.Membership != null)
+                {
+                    u.MembershipType = activeSub.Membership.Name;
+                }
+                else
                 {
                     u.MembershipType = "No Active Membership";
-                    continue;
                 }
+            }
 
-                var membershipType = _memberships.FirstOrDefault(m => m.Id == activeSub.MembershipId);
-                u.MembershipType = membershipType?.Name ?? "Unknown";
+            // Trainers & Admins
+            foreach (User u in _users.Where(u => u.UserRole != UserRole.Member))
+            {
+                u.MembershipType = u.UserRole.ToString();
             }
         }
 
