@@ -33,7 +33,7 @@
                     <DataTemplate>
                         <StackPanel>
                             <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding MaxParticipants, StringFormat='Max Participants: {0}'}" VerticalAlignment="Center"/>
+                            <TextBlock Text="{Binding ClassSummary}" VerticalAlignment="Center"/>
                             <TextBlock Text="{Binding TrainerName, StringFormat='Trainer: {0}'}" VerticalAlignment="Center"/>
                         </StackPanel>
                     </DataTemplate>
