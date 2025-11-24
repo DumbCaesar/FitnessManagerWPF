@@ -5,7 +5,9 @@
     "maxParticipants": 20,
     "registeredMemberIds": [ 0, 2 ],
     "trainerId": 3,
-    "trainerName": "Bobby"
+    "trainerName": "Bobby",
+    "day": "Monday",
+    "time": "07:00:00"
   },
   {
     "id": 2,
@@ -13,14 +15,48 @@
     "maxParticipants": 15,
     "registeredMemberIds": [ 3 ],
     "trainerId": 3,
-    "trainerName": "Bobby"
+    "trainerName": "Bobby",
+    "day": "Tuesday",
+    "time": "18:30:00"
   },
   {
     "id": 3,
     "name": "Indoor Cycling",
     "maxParticipants": 25,
+    "registeredMemberIds": [ 2, 3 ],
+    "trainerId": 3,
+    "trainerName": "Bobby",
+    "day": "Wednesday",
+    "time": "17:45:00"
+  },
+  {
+    "id": 4,
+    "name": "HIIT Blast",
+    "maxParticipants": 18,
+    "registeredMemberIds": [ 2 ],
+    "trainerId": 3,
+    "trainerName": "Bobby",
+    "day": "Thursday",
+    "time": "19:00:00"
+  },
+  {
+    "id": 5,
+    "name": "Weekend Flow Yoga",
+    "maxParticipants": 22,
     "registeredMemberIds": [],
     "trainerId": 3,
-    "trainerName": "Bobby"
+    "trainerName": "Bobby",
+    "day": "Saturday",
+    "time": "10:00:00"
+  },
+  {
+    "id": 6,
+    "name": "Core & Stretch",
+    "maxParticipants": 20,
+    "registeredMemberIds": [],
+    "trainerId": 3,
+    "trainerName": "Bobby",
+    "day": "Friday",
+    "time": "16:30:00"
   }
 ]

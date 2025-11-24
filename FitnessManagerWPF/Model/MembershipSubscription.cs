@@ -16,10 +16,11 @@ namespace FitnessManagerWPF.Model
 
         public int Id { get; set; }
         public int MembershipId { get; set; }
+        public Membership Membership { get; set; }
+        public bool IsActive => DateTime.Now < EndDate && DateTime.Now > StartDate;
+        public decimal MonthlyValue => Membership != null && Membership.DurationMonths > 0
+            ? Membership.Price / Membership.DurationMonths
+            : 0m;
         public MembershipSubscription() { }
-        public bool isActive()
-        {
-            return DateTime.Now < EndDate && DateTime.Now > StartDate;
-        } 
     }
 }

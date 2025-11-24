@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using FitnessManagerWPF.Services;
+using FitnessManagerWPF.View;
 
 namespace FitnessManagerWPF
 {
@@ -17,6 +18,9 @@ namespace FitnessManagerWPF
             base.OnStartup(e);
 
             DataService = new DataService();
+
+            var loginView = new LoginView();
+            loginView.Show();
         }
     }
 }

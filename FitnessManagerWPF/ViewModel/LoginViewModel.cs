@@ -38,7 +38,6 @@ namespace FitnessManagerWPF.ViewModel
             get => _password;
             set => SetProperty(ref _password, value);
         }
-
         public LoginViewModel(DataService dataService)
         {
             _dataService = dataService;

@@ -17,6 +17,8 @@ namespace FitnessManagerWPF.Model
         public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
+        public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership().IsActive == true;
+        public decimal MonthlyContribution => CurrentMembership()?.MonthlyValue ?? 0m;
 
         public User() { }
         public User(int id, string name, string email, UserRole role)
