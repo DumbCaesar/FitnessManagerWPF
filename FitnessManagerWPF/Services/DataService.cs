@@ -1,6 +1,7 @@
 ﻿using FitnessManagerWPF.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace FitnessManagerWPF.Services
         private List<Login> _logins;
         private readonly string _membershipsFile;
         private List<Membership> _memberships;
-        public List<Classes> Activities { get; private set; }
+        public List<Classes> _activities;
         public User CurrentUser { get; private set; }
         public int MaxUserId { get; set; }
 
@@ -47,8 +48,9 @@ namespace FitnessManagerWPF.Services
 
             _users = new List<User>();
             _logins = new List<Login>();
-            Activities = new List<Classes>();
+            _activities = new List<Classes>();
             _memberships = new List<Membership>();
+
             try
             {
                 LoadData();
@@ -78,9 +80,8 @@ namespace FitnessManagerWPF.Services
                 _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
                 Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
 
-
-                Activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
-                Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_classesFile}");
+                _activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
+                Debug.WriteLine($"Loaded {_activities?.Count ?? 0} entries from {_classesFile}");
 
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
@@ -137,6 +138,36 @@ namespace FitnessManagerWPF.Services
 
                 var membershipType = _memberships.FirstOrDefault(m => m.Id == activeSub.MembershipId);
                 u.MembershipType = membershipType?.Name ?? "Unknown";
+            }
+        }
+
+        public void GetMemberDetails(int memberId,
+        ObservableCollection<Classes> MemberClasses,
+        ObservableCollection<MembershipSubscription> MemberSubscriptions)
+        {
+            MemberClasses.Clear();
+            MemberSubscriptions.Clear();
+
+            // Find all classes where the member is registered
+            var memberClasses = _activities
+                .Where(c => c.RegisteredMemberIds != null && c.RegisteredMemberIds.Contains(memberId))
+                .ToList();
+
+            // ADD the classes to the collection
+            foreach (var cls in memberClasses)
+            {
+                MemberClasses.Add(cls);
+            }
+
+            // Get the member's billing history
+            var member = _users.FirstOrDefault(u => u.Id == memberId);
+            if (member?.BillingHistory != null)
+            {
+                // ADD the billing records to the collection
+                foreach (var billing in member.BillingHistory)
+                {
+                    MemberSubscriptions.Add(billing);
+                }
             }
         }
 
