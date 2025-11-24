@@ -9,7 +9,7 @@
         xmlns:userControl="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="AdminView" Height="450" Width="800">
+        Title="Admin Panel" Height="450" Width="800">
     <Window.DataContext>
         <viewModel:AdminViewModel/>
     </Window.DataContext>
