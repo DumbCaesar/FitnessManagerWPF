@@ -39,8 +39,8 @@ namespace FitnessManagerWPF.Model
         public int MembershipId { get; set; }
         public Membership Membership { get; set; }
         public bool IsActive => DateTime.Now < EndDate && DateTime.Now > StartDate;
-        public decimal MonthlyValue => Membership != null && Membership.DurationMonths > 0
-            ? Membership.Price / Membership.DurationMonths
+        public decimal MonthlyValue => Membership != null && DurationLeft > TimeSpan.Zero
+            ? Membership.Price / Membership.DurationInMonths
             : 0m;
         public MembershipSubscription() { }
     }
