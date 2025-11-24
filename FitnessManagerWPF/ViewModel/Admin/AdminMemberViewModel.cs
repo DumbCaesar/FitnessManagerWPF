@@ -53,13 +53,12 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set => SetProperty(ref _currentView, value);
         }
 
-        public AdminMemberViewModel(AdminViewModel parentViewModel)
+        public AdminMemberViewModel(AdminViewModel parentViewModel, DataService dataService)
         {
             MemberDoubleClickCommand = new RelayCommand(_ => OnMemberDoubleClick());
             _parentViewModel = parentViewModel;
             _userList = new List<User>();
-            _dataService = new DataService();
-            _dataService.LoadData();
+            _dataService = dataService;
             _userList = _dataService.Users;
             _listOfMembers = new ObservableCollection<User>(_userList.Where(u => u.UserRole == UserRole.Member));
         }
