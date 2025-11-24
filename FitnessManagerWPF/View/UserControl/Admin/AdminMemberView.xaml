@@ -9,6 +9,9 @@
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
         <ListView Grid.Row="1" ItemsSource="{Binding MemberList}" SelectedItem="{Binding SelectedMember}" Margin="5">
+            <ListView.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource HorizontalCleanScrollBar}" />
+            </ListView.Resources>
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
                     <i:InvokeCommandAction Command="{Binding MemberDoubleClickCommand}" CommandParameter="{Binding SelectedMember}"/>

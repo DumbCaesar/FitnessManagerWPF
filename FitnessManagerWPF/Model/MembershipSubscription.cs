@@ -32,7 +32,7 @@ namespace FitnessManagerWPF.Model
                 if (span == TimeSpan.Zero)
                     return "Expired";
 
-                return $"{span.Days} days, {span.Hours} hours, {span.Minutes} minutes";
+                return $"{span.Days} days, {span.Hours} hours, {span.Minutes} minutes left";
             }
         }
         public int Id { get; set; }
