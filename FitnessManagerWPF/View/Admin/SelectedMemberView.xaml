@@ -7,6 +7,37 @@
         mc:Ignorable="d"
         Title="SelectedMemberView" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <TextBlock Text="{Binding SelectedMember.Name}"/>
+        <ListBox ItemsSource="{Binding MemberClasses}" Grid.Row="1" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding MaxParticipants, StringFormat='Max Participants: {0}'}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding TrainerName, StringFormat='Trainer: {0}'}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <ListBox ItemsSource="{Binding MembershipSubscriptions}" Grid.Row="1" Grid.Column="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Id, StringFormat='Membership Id: {0}'}"/>
+                        <TextBlock Text="{Binding DurationLeftFormatted}"/>
+                        <TextBlock Text="{Binding StartDate}"/>
+                        <TextBlock Text="{Binding EndDate}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
 </Window>

@@ -18,14 +18,18 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private string _activityStats;
         private DataService _dataService;
         private AdminViewModel _parentViewModel;
-        private Classes _selectedActivity;
+        private Classes? _selectedActivity;
         private List<Classes> _activityList;
         private ObservableCollection<Classes> _activities;
 
-        public Classes SelectedActivity
+        public Classes? SelectedActivity
         {
             get => _selectedActivity;
-            set => SetProperty(ref _selectedActivity, value);
+            set
+            {
+                SetProperty(ref _selectedActivity, value);
+                Debug.WriteLine($"Selected Activity is: {_selectedActivity.Name}");
+            }
         }
 
         public ObservableCollection<Classes> Activities
@@ -46,7 +50,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _activityList = new List<Classes>();
             _dataService = new DataService();
             _dataService.LoadData();
-            _activityList = _dataService.Activities.ToList();
+            _activityList = _dataService._activities.ToList();
             _activities = new ObservableCollection<Classes>(_activityList);
 
         }

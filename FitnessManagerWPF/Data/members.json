@@ -25,6 +25,12 @@
         "EndDate": "2024-02-29T00:00:00",
         "Id": 101,
         "MembershipId": 1
+      },
+      {
+        "StartDate": "2025-11-01T00:00:00",
+        "EndDate": "2025-11-29T00:00:00",
+        "Id": 101,
+        "MembershipId": 1
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",

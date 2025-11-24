@@ -11,8 +11,8 @@ namespace FitnessManagerWPF.Model
     /// </summary>
     public class Membership
     {
-        private float _price; 
-        private int _durationMonths; // number of months the subscription lasts
+        public float Price { get; set; }
+        public int DurationMonths { get; set; }
 
         public int Id { get; set; }
         public string Name { get; set; }
