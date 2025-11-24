@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace FitnessManagerWPF.Model
 {
     /// <summary>
-    /// Memberships belonging to individual members
+    /// A membership plan belonging to a user
     /// </summary>
     public class MembershipSubscription
     {
