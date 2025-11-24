@@ -44,12 +44,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set => SetProperty(ref _currentView, value);
         }
 
-        public AdminClassesViewModel(AdminViewModel parentViewModel)
+        public AdminClassesViewModel(AdminViewModel parentViewModel, DataService dataService)
         {
             _parentViewModel = parentViewModel;
             _activityList = new List<Classes>();
-            _dataService = new DataService();
-            _dataService.LoadData();
+            _dataService = dataService;
             _activityList = _dataService._activities.ToList();
             _activities = new ObservableCollection<Classes>(_activityList);
 

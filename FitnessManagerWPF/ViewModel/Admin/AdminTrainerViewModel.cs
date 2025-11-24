@@ -36,12 +36,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set => SetProperty(ref _currentView, value);
         }
 
-        public AdminTrainerViewModel(AdminViewModel parentViewModel)
+        public AdminTrainerViewModel(AdminViewModel parentViewModel, DataService dataService)
         {
             _parentViewModel = parentViewModel;
             _trainerList = new List<User>();
-            _dataService = new DataService();
-            _dataService.LoadData();
+            _dataService = dataService;
             _trainerList = GetTrainers();
             _listOfTrainers = new ObservableCollection<User>(_trainerList);
         }

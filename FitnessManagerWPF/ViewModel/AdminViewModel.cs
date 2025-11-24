@@ -40,9 +40,9 @@ namespace FitnessManagerWPF.ViewModel
             _currentUser = user;
             _dataService = dataService;
             _adminDashboardViewModel = new AdminDashboardViewModel(this, _dataService);
-            _adminClassesViewModel = new AdminClassesViewModel(this);
-            _adminMemberViewModel = new AdminMemberViewModel(this);
-            _adminTrainerViewModel = new AdminTrainerViewModel(this);
+            _adminClassesViewModel = new AdminClassesViewModel(this, _dataService);
+            _adminMemberViewModel = new AdminMemberViewModel(this, _dataService);
+            _adminTrainerViewModel = new AdminTrainerViewModel(this, _dataService);
             DashboardCommand = new RelayCommand(_ => ShowDashboard());
             MemberCommand = new RelayCommand(_ => ShowMembers());
             TrainerCommand = new RelayCommand(_ => ShowTrainers());
