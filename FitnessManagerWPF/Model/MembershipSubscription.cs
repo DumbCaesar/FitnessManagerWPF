@@ -13,6 +13,10 @@ namespace FitnessManagerWPF.Model
     {
         public DateTime StartDate { get; set; } // start date for the subscription
         public DateTime EndDate { get; set; }// end date for the subscription
+        public int Id { get; set; }
+        public int MembershipId { get; set; }
+        public Membership Membership { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore] // ignore derived properties
         public TimeSpan DurationLeft
         {
             get
@@ -23,6 +27,7 @@ namespace FitnessManagerWPF.Model
                 return EndDate - DateTime.Now;
             }
         }
+        [System.Text.Json.Serialization.JsonIgnore]
         public string DurationLeftFormatted
         {
             get
@@ -35,10 +40,9 @@ namespace FitnessManagerWPF.Model
                 return $"{span.Days} days, {span.Hours} hours, {span.Minutes} minutes left";
             }
         }
-        public int Id { get; set; }
-        public int MembershipId { get; set; }
-        public Membership Membership { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore]
         public bool IsActive => DateTime.Now < EndDate && DateTime.Now > StartDate;
+        [System.Text.Json.Serialization.JsonIgnore]
         public decimal MonthlyValue => Membership != null && DurationLeft > TimeSpan.Zero
             ? Membership.Price / Membership.DurationInMonths
             : 0m;
