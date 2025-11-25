@@ -3,10 +3,10 @@
     "Id": 0,
     "Name": "Admin",
     "Email": "admin@admin.dk",
-    "MembershipType": "Admin",
     "BillingHistory": [],
     "DateJoined": "2020-01-01T00:00:00",
     "role": 2,
+    "MembershipTypeDisplay": "Admin",
     "IsActiveMember": false,
     "MonthlyContribution": 0
   },
@@ -14,7 +14,6 @@
     "Id": 1,
     "Name": "Bo",
     "Email": "bo@dania.dk",
-    "MembershipType": "Basic",
     "BillingHistory": [
       {
         "StartDate": "2024-01-01T00:00:00",
@@ -51,8 +50,8 @@
       {
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.13:58:55.0520991",
-        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
+        "DurationLeft": "3.12:39:32.8336252",
+        "DurationLeftFormatted": "3 days, 12 hours, 39 minutes left",
         "Id": 102,
         "MembershipId": 1,
         "Membership": {
@@ -67,6 +66,7 @@
     ],
     "DateJoined": "2023-09-15T00:00:00",
     "role": 0,
+    "MembershipTypeDisplay": "Basic",
     "IsActiveMember": true,
     "MonthlyContribution": 199.99
   },
@@ -74,13 +74,12 @@
     "Id": 2,
     "Name": "Bob",
     "Email": "bob@dania.dk",
-    "MembershipType": "VIP",
     "BillingHistory": [
       {
         "StartDate": "2025-10-29T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.13:58:55.0516610",
-        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
+        "DurationLeft": "3.12:39:32.8332878",
+        "DurationLeftFormatted": "3 days, 12 hours, 39 minutes left",
         "Id": 200,
         "MembershipId": 3,
         "Membership": {
@@ -95,6 +94,7 @@
     ],
     "DateJoined": "2025-10-29T00:00:00",
     "role": 0,
+    "MembershipTypeDisplay": "VIP",
     "IsActiveMember": true,
     "MonthlyContribution": 499.99
   },
@@ -102,21 +102,21 @@
     "Id": 3,
     "Name": "Bobby",
     "Email": "bobby@dania.dk",
-    "MembershipType": "Trainer",
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
     "role": 1,
+    "MembershipTypeDisplay": "Trainer",
     "IsActiveMember": false,
     "MonthlyContribution": 0
   },
   {
     "Id": 4,
-    "Name": "John Jensen",
-    "Email": "jjbigman214@hotmail.dk",
-    "MembershipType": null,
+    "Name": "Nicolaj",
+    "Email": "niha12@student.eadania.dk",
     "BillingHistory": [],
-    "DateJoined": "2025-11-25T08:55:36.5589846+01:00",
+    "DateJoined": "2025-11-25T11:20:27.1252694+01:00",
     "role": 0,
+    "MembershipTypeDisplay": "No Active Membership",
     "IsActiveMember": false,
     "MonthlyContribution": 0
   }

@@ -86,7 +86,7 @@ namespace FitnessManagerWPF.Services
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
 
-                SetUserCurrentMembership();
+                LinkMemberships();
             }
             catch (FileNotFoundException ex)
             {
@@ -114,34 +114,17 @@ namespace FitnessManagerWPF.Services
             return false;
         }
 
-        private void SetUserCurrentMembership()
+        private void LinkMemberships()
         {
-            foreach (User u in _users.Where(u => u.UserRole == UserRole.Member))
+            foreach(User u in _users)
             {
-                // Link Membership object to each subscription in BillingHistory
                 if (u.BillingHistory != null)
                 {
-                    foreach (MembershipSubscription sub in u.BillingHistory)
+                    foreach(MembershipSubscription sub in u.BillingHistory)
                     {
                         sub.Membership = _memberships.FirstOrDefault(m => m.Id == sub.MembershipId);
                     }
                 }
-
-                var activeSub = u.CurrentMembership();
-                if (activeSub?.Membership != null)
-                {
-                    u.MembershipType = activeSub.Membership.Name;
-                }
-                else
-                {
-                    u.MembershipType = "No Active Membership";
-                }
-            }
-
-            // Trainers & Admins
-            foreach (User u in _users.Where(u => u.UserRole != UserRole.Member))
-            {
-                u.MembershipType = u.UserRole.ToString();
             }
         }
 
