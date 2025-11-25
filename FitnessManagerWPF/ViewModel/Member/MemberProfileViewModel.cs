@@ -23,41 +23,25 @@ namespace FitnessManagerWPF.ViewModel.Member
         public string Name
         {
             get => _name;
-            set
-            {
-                Debug.WriteLine($"Setting Name: {value}");
-                SetProperty(ref _name, value);
-            }
+            set => SetProperty(ref _name, value);
         }
 
         public string Email
         {
             get => _email;
-            set
-            {
-                Debug.WriteLine($"Setting Email: {value}");
-                SetProperty(ref _email, value);
-            }
+            set => SetProperty(ref _email, value);
         }
 
         public string Username
         {
             get => _username;
-            set
-            {
-                Debug.WriteLine($"Setting Username: {value}");
-                SetProperty(ref _username, value);
-            }
+            set => SetProperty(ref _username, value);
         }
 
         public string Password
         {
             get => _password;
-            set
-            {
-                Debug.WriteLine($"Setting Password: {value}");
-                SetProperty(ref _password, value);
-            }
+            set => SetProperty(ref _password, value);
         }
 
         public int MembershipId

@@ -80,13 +80,5 @@
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
     "role": 1
-  },
-  {
-    "Id": 4,
-    "Name": "John Jihad",
-    "Email": "jjbigman214@hotmail.dk",
-    "BillingHistory": [],
-    "DateJoined": "2025-03-20T00:00:00",
-    "role": 0,
   }
 ]
