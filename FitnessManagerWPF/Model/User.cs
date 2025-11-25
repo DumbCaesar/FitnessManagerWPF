@@ -12,11 +12,20 @@ namespace FitnessManagerWPF.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public string MembershipType { get; set; } // string used for data binding
         public List<MembershipSubscription> BillingHistory { get; set; } // list of all subscriptions the user has had
         public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
+        public string MembershipTypeDisplay
+        {
+            get
+            {
+                if (UserRole != UserRole.Member) return UserRole.ToString();
+
+                var activeSub = CurrentMembership();
+                return activeSub?.Membership?.Name ?? "No Active Membership";
+            }
+        }
         public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership()?.IsActive == true;
         public decimal MonthlyContribution => CurrentMembership()?.MonthlyValue ?? 0m;
 
