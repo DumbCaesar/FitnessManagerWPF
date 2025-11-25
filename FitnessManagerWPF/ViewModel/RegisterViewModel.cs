@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Mail;
+using System.Text.RegularExpressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +22,30 @@ namespace FitnessManagerWPF.ViewModel
         private object _currentView;
         private DataService _dataService;
         private LoginViewModel _parentViewModel;
+        public string UsernameValidationError => UsernameExists(_username) ? "Username is taken" : "";
+        public string EmailValidationError
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_email)) return "";
+                if (!IsValidEmail(_email)) return "Invalid email";
+                if (EmailExists(_email)) return "Email is already taken";
+                return "";
+            }
+        }
+        public string PasswordValidationError
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(_password)) return "";
+                if (_password.Length < 8) return "Password must be at least 8 characters";
+                if (Regex.IsMatch(_password, @"\s")) return "Password cannot contain spaces";
+                if (!Regex.IsMatch(_password, @"[A-Z]")) return "Password must contain at least one uppercase letter";
+                if (!Regex.IsMatch(_password, @"[a-z]")) return "Password must contain at least one lowercase letter";
+                if (!Regex.IsMatch(_password, @"\d")) return "Password must contain at least one number";
+                return "";
+            }
+        }
 
         public ICommand CreateUserCommand { get; }
         public ICommand ShowLoginCommand { get; }
@@ -34,18 +59,30 @@ namespace FitnessManagerWPF.ViewModel
         public string Username
         {
             get => _username;
-            set => SetProperty(ref _username, value);
+            set
+            {
+                if (SetProperty(ref _username, value))
+                    OnPropertyChanged(nameof(UsernameValidationError));
+            }
         }
 
         public string Password
         {
             get => _password;
-            set => SetProperty(ref _password, value);
+            set
+            {
+                if (SetProperty(ref _password, value))
+                    OnPropertyChanged(nameof(PasswordValidationError));
+            }
         }
         public string Email
         {
             get => _email;
-            set => SetProperty(ref _email, value);
+            set
+            {
+                if (SetProperty(ref _email, value))
+                    OnPropertyChanged(nameof(EmailValidationError));
+            }
         }
         public string FullName
         {
@@ -94,6 +131,7 @@ namespace FitnessManagerWPF.ViewModel
             if (string.IsNullOrWhiteSpace(Password)) return false;
             if (EmailExists(Email)) return false;
             if (!IsValidEmail(Email)) return false;
+            if (!IsValidPassword(Password)) return false;
             return true;
         }
 
@@ -104,6 +142,18 @@ namespace FitnessManagerWPF.ViewModel
             if (string.IsNullOrWhiteSpace(email)) return false;
             if (!MailAddress.TryCreate(email, out var mailAddress)) return false;
             return mailAddress.Host.Contains('.');
+        }
+
+        private bool IsValidPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password)) return false;
+            if (password.Length < 8) return false;
+
+            var hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
+            var hasLowerCase = Regex.IsMatch(password, @"[a-z]");
+            var hasDigit = Regex.IsMatch(password, @"\d");
+
+            return hasUpperCase && hasLowerCase && hasDigit;
         }
     }
 }

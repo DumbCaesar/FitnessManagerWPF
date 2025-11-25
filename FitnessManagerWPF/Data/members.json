@@ -51,8 +51,8 @@
       {
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.15:04:23.3788879",
-        "DurationLeftFormatted": "3 days, 15 hours, 4 minutes left",
+        "DurationLeft": "3.13:58:55.0520991",
+        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
         "Id": 102,
         "MembershipId": 1,
         "Membership": {
@@ -79,8 +79,8 @@
       {
         "StartDate": "2025-10-29T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.15:04:23.3783645",
-        "DurationLeftFormatted": "3 days, 15 hours, 4 minutes left",
+        "DurationLeft": "3.13:58:55.0516610",
+        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
         "Id": 200,
         "MembershipId": 3,
         "Membership": {
