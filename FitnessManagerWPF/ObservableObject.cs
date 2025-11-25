@@ -5,7 +5,7 @@ namespace FitnessManagerWPF.ViewModel
 {
     // Abstract class, as we don't want object creation to be possible.
     // Implements INotifyPropertyChanged, allowing property change notifications to update the UI.
-    public abstract class ViewModelBase : INotifyPropertyChanged 
+    public abstract class ObservableObject : INotifyPropertyChanged 
     {
         public event PropertyChangedEventHandler PropertyChanged; // PropertyChangedEventHandler
                                                                   // is the event responsible for

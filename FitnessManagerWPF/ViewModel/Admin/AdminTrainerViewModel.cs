@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    public class AdminTrainerViewModel : ViewModelBase
+    public class AdminTrainerViewModel : ObservableObject
     {
         private User _selectedTrainer;
         private List<User> _trainerList;

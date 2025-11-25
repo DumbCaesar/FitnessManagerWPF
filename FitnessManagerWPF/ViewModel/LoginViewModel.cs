@@ -7,7 +7,7 @@ using FitnessManagerWPF.View;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class LoginViewModel : ViewModelBase
+    public class LoginViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private string _username;
@@ -47,7 +47,7 @@ namespace FitnessManagerWPF.ViewModel
             _registerViewModel = new RegisterViewModel(this, _dataService);
 
             ShowLogin();
-            _username = "admin";
+            _username = "jjbigman214";
             _password = "password123";
         }
 
@@ -93,7 +93,7 @@ namespace FitnessManagerWPF.ViewModel
                         trainerView.Show();
                         break;
                     case UserRole.Member:
-                        MemberViewModel memberViewModel = new MemberViewModel(CurrentUser, _dataService);
+                        MemberViewModel memberViewModel = new MemberViewModel(CurrentUser,  _dataService);
                         var memberView = new MemberView { DataContext = memberViewModel };
                         memberView.Show();
                         break;

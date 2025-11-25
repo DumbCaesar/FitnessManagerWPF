@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    public class AdminClassesViewModel : ViewModelBase
+    public class AdminClassesViewModel : ObservableObject
     {
         private object _currentView;
         private string _activityStats;

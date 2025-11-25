@@ -11,7 +11,7 @@ using FitnessManagerWPF.ViewModel.Admin;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class AdminViewModel : ViewModelBase
+    public class AdminViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private User _currentUser;

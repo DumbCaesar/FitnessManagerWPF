@@ -51,8 +51,8 @@
       {
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.13:58:55.0520991",
-        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
+        "DurationLeft": "3.11:15:26.2766175",
+        "DurationLeftFormatted": "3 days, 11 hours, 15 minutes left",
         "Id": 102,
         "MembershipId": 1,
         "Membership": {
@@ -79,8 +79,8 @@
       {
         "StartDate": "2025-10-29T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.13:58:55.0516610",
-        "DurationLeftFormatted": "3 days, 13 hours, 58 minutes left",
+        "DurationLeft": "3.11:15:26.2761716",
+        "DurationLeftFormatted": "3 days, 11 hours, 15 minutes left",
         "Id": 200,
         "MembershipId": 3,
         "Membership": {
@@ -111,11 +111,11 @@
   },
   {
     "Id": 4,
-    "Name": "John Jensen",
+    "Name": "John Jihad",
     "Email": "jjbigman214@hotmail.dk",
-    "MembershipType": null,
+    "MembershipType": "No Active Membership",
     "BillingHistory": [],
-    "DateJoined": "2025-11-25T08:55:36.5589846+01:00",
+    "DateJoined": "2025-03-20T00:00:00",
     "role": 0,
     "IsActiveMember": false,
     "MonthlyContribution": 0
