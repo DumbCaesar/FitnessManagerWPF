@@ -5,10 +5,7 @@
     "Email": "admin@admin.dk",
     "BillingHistory": [],
     "DateJoined": "2020-01-01T00:00:00",
-    "role": 2,
-    "MembershipTypeDisplay": "Admin",
-    "IsActiveMember": false,
-    "MonthlyContribution": 0
+    "role": 2
   },
   {
     "Id": 1,
@@ -18,8 +15,6 @@
       {
         "StartDate": "2024-01-01T00:00:00",
         "EndDate": "2024-01-31T00:00:00",
-        "DurationLeft": "00:00:00",
-        "DurationLeftFormatted": "Expired",
         "Id": 100,
         "MembershipId": 1,
         "Membership": {
@@ -27,15 +22,11 @@
           "DurationInMonths": 1,
           "Id": 1,
           "Name": "Basic"
-        },
-        "IsActive": false,
-        "MonthlyValue": 0
+        }
       },
       {
         "StartDate": "2024-02-01T00:00:00",
         "EndDate": "2024-02-29T00:00:00",
-        "DurationLeft": "00:00:00",
-        "DurationLeftFormatted": "Expired",
         "Id": 101,
         "MembershipId": 1,
         "Membership": {
@@ -43,15 +34,11 @@
           "DurationInMonths": 1,
           "Id": 1,
           "Name": "Basic"
-        },
-        "IsActive": false,
-        "MonthlyValue": 0
+        }
       },
       {
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.12:39:32.8336252",
-        "DurationLeftFormatted": "3 days, 12 hours, 39 minutes left",
         "Id": 102,
         "MembershipId": 1,
         "Membership": {
@@ -59,16 +46,11 @@
           "DurationInMonths": 1,
           "Id": 1,
           "Name": "Basic"
-        },
-        "IsActive": true,
-        "MonthlyValue": 199.99
+        }
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
-    "role": 0,
-    "MembershipTypeDisplay": "Basic",
-    "IsActiveMember": true,
-    "MonthlyContribution": 199.99
+    "role": 0
   },
   {
     "Id": 2,
@@ -78,8 +60,6 @@
       {
         "StartDate": "2025-10-29T00:00:00",
         "EndDate": "2025-11-29T00:00:00",
-        "DurationLeft": "3.12:39:32.8332878",
-        "DurationLeftFormatted": "3 days, 12 hours, 39 minutes left",
         "Id": 200,
         "MembershipId": 3,
         "Membership": {
@@ -87,16 +67,11 @@
           "DurationInMonths": 1,
           "Id": 3,
           "Name": "VIP"
-        },
-        "IsActive": true,
-        "MonthlyValue": 499.99
+        }
       }
     ],
     "DateJoined": "2025-10-29T00:00:00",
-    "role": 0,
-    "MembershipTypeDisplay": "VIP",
-    "IsActiveMember": true,
-    "MonthlyContribution": 499.99
+    "role": 0
   },
   {
     "Id": 3,
@@ -104,20 +79,22 @@
     "Email": "bobby@dania.dk",
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
-    "role": 1,
-    "MembershipTypeDisplay": "Trainer",
-    "IsActiveMember": false,
-    "MonthlyContribution": 0
+    "role": 1
   },
   {
     "Id": 4,
     "Name": "Nicolaj",
     "Email": "niha12@student.eadania.dk",
     "BillingHistory": [],
-    "DateJoined": "2025-11-25T11:20:27.1252694+01:00",
-    "role": 0,
-    "MembershipTypeDisplay": "No Active Membership",
-    "IsActiveMember": false,
-    "MonthlyContribution": 0
+    "DateJoined": "2025-11-25T11:35:53.2053284+01:00",
+    "role": 0
+  },
+  {
+    "Id": 5,
+    "Name": "bobo",
+    "Email": "bobo@dania.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-11-25T11:46:19.2524099+01:00",
+    "role": 0
   }
 ]

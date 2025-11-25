@@ -16,6 +16,7 @@ namespace FitnessManagerWPF.Model
         public DateTime DateJoined { get; set; } // Date the user signed up
         [System.Text.Json.Serialization.JsonPropertyName("role")]
         public UserRole UserRole { get; set; }
+        [System.Text.Json.Serialization.JsonIgnore] // ignore derived properties
         public string MembershipTypeDisplay
         {
             get
@@ -26,7 +27,9 @@ namespace FitnessManagerWPF.Model
                 return activeSub?.Membership?.Name ?? "No Active Membership";
             }
         }
+        [System.Text.Json.Serialization.JsonIgnore]
         public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership()?.IsActive == true;
+        [System.Text.Json.Serialization.JsonIgnore]
         public decimal MonthlyContribution => CurrentMembership()?.MonthlyValue ?? 0m;
 
         public User() { }
