@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
         mc:Ignorable="d"
-        Title="{Binding SelectedMember.Name, StringFormat='Medlemsoplysninger: {0}'}" Height="450" Width="800">
+        Title="{Binding SelectedMember.Name, StringFormat='Member information: {0}'}" Height="450" Width="800">
     <Grid Background="GhostWhite">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,11 +17,11 @@
         </Grid.ColumnDefinitions>
         <Border Grid.Row="0" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2" Grid.ColumnSpan="2">
             <StackPanel Margin="2">
-                <TextBlock Text="{Binding SelectedMember.Id, StringFormat='ID: {0}'}"/>
-                <TextBlock Text="{Binding SelectedMember.Name, StringFormat='Navn: {0}'}"/>
-                <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}"/>
-                <TextBlock Text="{Binding SelectedMember.MembershipType, StringFormat='Status: {0}'}"/>
-                <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Medlem siden: {0:dd/MM/yyyy}'}"/>
+                <TextBlock Text="{Binding SelectedMember.Id, StringFormat='ID: {0}'}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedMember.Name, StringFormat='Name: {0}'}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedMember.MembershipType, StringFormat='Status: {0}'}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" FontSize="16"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
