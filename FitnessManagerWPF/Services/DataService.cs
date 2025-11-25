@@ -175,7 +175,7 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        public void SaveUser(User newUser, Login newLogin)
+        public void CreateUser(User user, Login login)
         {
             var options = new JsonSerializerOptions
             {
@@ -183,8 +183,8 @@ namespace FitnessManagerWPF.Services
                 WriteIndented = true
             };
 
-            _users.Add(newUser);
-            _logins.Add(newLogin);
+            _users.Add(user);
+            _logins.Add(login);
 
             string userJson = JsonSerializer.Serialize(_users, options);
             string loginJson = JsonSerializer.Serialize(_logins, options); 
@@ -192,8 +192,57 @@ namespace FitnessManagerWPF.Services
             File.WriteAllText(_membersFile, userJson);
             File.WriteAllText(_loginFile, loginJson);
 
-            Debug.WriteLine($"Added {newUser.Name} to {_membersFile}");
-            Debug.WriteLine($"Added {newLogin.Username} to {_loginFile}");
+            Debug.WriteLine($"Added {user.Name} to {_membersFile}");
+            Debug.WriteLine($"Added {login.Username} to {_loginFile}");
+        }
+
+        public void SaveUser(User user, Login login)
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+
+            var _user = _users.FirstOrDefault(u => u.Id == user.Id);
+            var _userLogin = _logins.FirstOrDefault(u => u.MembershipId == login.MembershipId);
+
+            if (user == null || login == null)
+            {
+                Debug.WriteLine("User or login not found, nothing to update.");
+                return;
+            }
+
+            try
+            {
+                _user.Name = user.Name;
+                _user.Email = user.Email; 
+                _userLogin.Username = login.Username;
+                _userLogin.Password = login.Password;
+
+                string userJson = JsonSerializer.Serialize(_users, options);
+                string loginJson = JsonSerializer.Serialize(_logins, options);
+                File.WriteAllText(_membersFile, userJson);
+                File.WriteAllText(_loginFile, loginJson);
+
+                Debug.WriteLine($"Saved {user.Name} to {_membersFile}");
+                Debug.WriteLine($"Saved {login.Username} to {_loginFile}");
+            }
+            catch (FileNotFoundException ex)
+            {
+                Debug.WriteLine($"Data file not found: {ex.Message}");
+            }
+            catch (JsonException ex)
+            {
+                Debug.WriteLine($"Invalid JSON format: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Exception occured: {ex.Message}");
+            }
+            
+
+            
         }
     }
 }
