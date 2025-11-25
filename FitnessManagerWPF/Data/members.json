@@ -83,10 +83,18 @@
   },
   {
     "Id": 4,
-    "Name": "John Jihad",
-    "Email": "jjbigman214@hotmail.dk",
+    "Name": "bobo",
+    "Email": "bobo@dania.dk",
     "BillingHistory": [],
-    "DateJoined": "2025-03-20T00:00:00",
-    "role": 0,
+    "DateJoined": "2025-11-25T12:58:27.1346229+01:00",
+    "role": 0
+  },
+  {
+    "Id": 5,
+    "Name": "Nicolaj",
+    "Email": "niha12@dania.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-11-25T13:14:54.7909601+01:00",
+    "role": 0
   }
 ]

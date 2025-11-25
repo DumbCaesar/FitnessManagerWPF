@@ -22,7 +22,7 @@ namespace FitnessManagerWPF.Model
         public TimeSpan Time { get; set; }
 
         public string ClassSummary => $"Current Participants: {RegisteredMemberIds.Count}/{MaxParticipants}";
-
+        public string Attendance => $"{RegisteredMemberIds.Count}/{MaxParticipants}";
         public string ClassInfo => $"{Name} - {TrainerName}";
     }
 }
