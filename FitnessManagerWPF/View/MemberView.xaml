@@ -4,9 +4,40 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View"
+        xmlns:viewModel="clr-namespace:FitnessManagerWPF.ViewModel"
+        xmlns:userControl="clr-namespace:FitnessManagerWPF.View.UserControl.User"
+        xmlns:memberViewModel="clr-namespace:FitnessManagerWPF.ViewModel.Member"
         mc:Ignorable="d"
         Title="MemberView" Height="450" Width="800">
+    <Window.DataContext>
+        <viewModel:MemberViewModel/>
+    </Window.DataContext>
+
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type memberViewModel:MemberDashboardViewModel}">
+            <userControl:UserDashboardView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type memberViewModel:MemberClassesViewModel}">
+            <userControl:UserClassesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type memberViewModel:MemberProfileViewModel}">
+            <userControl:UserProfileView/>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="1">
+            <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" Command="{Binding DashboardCommand}" IsChecked="True"/>
+            <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}" Command="{Binding ClassesCommand}"/>
+            <RadioButton Content="Profile" Style="{StaticResource RadioButtonStyle}" Command="{Binding ProfileCommand}"/>
+        </StackPanel>
+        <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>
