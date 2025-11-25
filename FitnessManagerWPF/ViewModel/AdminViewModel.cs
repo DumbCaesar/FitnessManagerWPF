@@ -14,7 +14,7 @@ namespace FitnessManagerWPF.ViewModel
     public class AdminViewModel : ViewModelBase
     {
         private readonly DataService _dataService;
-        private User? _currentUser;
+        private User _currentUser;
         private object _currentView;
         private AdminDashboardViewModel _adminDashboardViewModel;
         private AdminClassesViewModel _adminClassesViewModel;

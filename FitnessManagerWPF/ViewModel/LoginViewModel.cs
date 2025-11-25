@@ -88,12 +88,12 @@ namespace FitnessManagerWPF.ViewModel
                         adminView.Show();
                         break;
                     case UserRole.Trainer:
-                        TrainerViewModel trainerViewModel = new TrainerViewModel(CurrentUser);
+                        TrainerViewModel trainerViewModel = new TrainerViewModel(CurrentUser, _dataService);
                         var trainerView = new TrainerView { DataContext = trainerViewModel };
                         trainerView.Show();
                         break;
                     case UserRole.Member:
-                        MemberViewModel memberViewModel = new MemberViewModel(CurrentUser);
+                        MemberViewModel memberViewModel = new MemberViewModel(CurrentUser, _dataService);
                         var memberView = new MemberView { DataContext = memberViewModel };
                         memberView.Show();
                         break;

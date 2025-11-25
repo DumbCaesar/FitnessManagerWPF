@@ -1,4 +1,5 @@
 ﻿using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace FitnessManagerWPF.ViewModel
 {
     public class TrainerViewModel : ViewModelBase
     {
-        private User? _currentUser;
+        private readonly DataService _dataService;
+        private User _currentUser;
 
         public User CurrentUser
         {
@@ -17,9 +19,10 @@ namespace FitnessManagerWPF.ViewModel
             set => SetProperty(ref _currentUser, value);
         }
 
-        public TrainerViewModel(User currentUser)
+        public TrainerViewModel(User currentUser, DataService dataService)
         {
             _currentUser = currentUser;
+            _dataService = dataService;
         }
 
         public TrainerViewModel()

@@ -18,5 +18,10 @@
     "MembershipId": 3,
     "Username": "bobby",
     "Password": "password123"
+  },
+  {
+    "MembershipId": 4,
+    "Username": "jjbigman214",
+    "Password": "password123"
   }
 ]
