@@ -23,5 +23,10 @@ namespace FitnessManagerWPF.ViewModel
             _currentUser = currentUser;
             _dataService = dataService;
         }
+
+        public MemberViewModel() // Empty ctor used for DataContext in view
+        {
+            
+        }
     }
 }

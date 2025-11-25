@@ -51,6 +51,11 @@ namespace FitnessManagerWPF.ViewModel
             ShowDashboard();
         }
 
+        public AdminViewModel() // Empty ctor used for DataContext in view
+        {
+            
+        }
+
         public void ShowDashboard()
         {
             CurrentView = _adminDashboardViewModel;
