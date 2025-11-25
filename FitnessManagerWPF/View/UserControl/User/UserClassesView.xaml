@@ -7,6 +7,28 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
-            
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Classes}" Margin="20">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Margin="5" Background="WhiteSmoke" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Width="250">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontSize="28" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="Trainer" FontSize="14" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding TrainerName}" FontSize="28" FontWeight="Bold"/>
+                                <TextBlock Text="Participants" FontSize="14" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Attendance}" FontSize="28" FontWeight="Bold"/>
+                                <Button Content="Sign Up" FontSize="14"/>
+                            </StackPanel>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -39,7 +39,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             UpdateClasses();
             UpdateKPIs();
         }
-
         private void UpdateMemberCounts()
         {
             TotalMemberCount = _dataService.Users.Where(u => u.UserRole == Model.UserRole.Member).Count();
