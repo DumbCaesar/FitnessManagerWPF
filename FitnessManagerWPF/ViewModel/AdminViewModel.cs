@@ -14,7 +14,7 @@ namespace FitnessManagerWPF.ViewModel
     public class AdminViewModel : ViewModelBase
     {
         private readonly DataService _dataService;
-        private User? _currentUser;
+        private User _currentUser;
         private object _currentView;
         private AdminDashboardViewModel _adminDashboardViewModel;
         private AdminClassesViewModel _adminClassesViewModel;
@@ -47,8 +47,13 @@ namespace FitnessManagerWPF.ViewModel
             MemberCommand = new RelayCommand(_ => ShowMembers());
             TrainerCommand = new RelayCommand(_ => ShowTrainers());
             ClassesCommand = new RelayCommand(_ => ShowClasses());
-
+            
             ShowDashboard();
+        }
+
+        public AdminViewModel() // Empty ctor used for DataContext in view
+        {
+            
         }
 
         public void ShowDashboard()
@@ -69,11 +74,6 @@ namespace FitnessManagerWPF.ViewModel
         public void ShowClasses()
         {
             CurrentView = _adminClassesViewModel;
-        }
-
-        public AdminViewModel()
-        {
-
         }
     }
 }

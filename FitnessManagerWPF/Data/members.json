@@ -108,5 +108,16 @@
     "role": 1,
     "IsActiveMember": false,
     "MonthlyContribution": 0
+  },
+  {
+    "Id": 4,
+    "Name": "John Jensen",
+    "Email": "jjbigman214@hotmail.dk",
+    "MembershipType": null,
+    "BillingHistory": [],
+    "DateJoined": "2025-11-25T08:55:36.5589846+01:00",
+    "role": 0,
+    "IsActiveMember": false,
+    "MonthlyContribution": 0
   }
 ]
