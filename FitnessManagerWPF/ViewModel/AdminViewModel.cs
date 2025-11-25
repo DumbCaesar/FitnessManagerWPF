@@ -47,7 +47,7 @@ namespace FitnessManagerWPF.ViewModel
             MemberCommand = new RelayCommand(_ => ShowMembers());
             TrainerCommand = new RelayCommand(_ => ShowTrainers());
             ClassesCommand = new RelayCommand(_ => ShowClasses());
-
+            
             ShowDashboard();
         }
 
@@ -69,11 +69,6 @@ namespace FitnessManagerWPF.ViewModel
         public void ShowClasses()
         {
             CurrentView = _adminClassesViewModel;
-        }
-
-        public AdminViewModel()
-        {
-
         }
     }
 }

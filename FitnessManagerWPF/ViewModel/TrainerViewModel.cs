@@ -24,10 +24,5 @@ namespace FitnessManagerWPF.ViewModel
             _currentUser = currentUser;
             _dataService = dataService;
         }
-
-        public TrainerViewModel()
-        {
-            
-        }
     }
 }
