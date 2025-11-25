@@ -20,7 +20,7 @@
                 <TextBlock Text="{Binding SelectedMember.Id, StringFormat='ID: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.Name, StringFormat='Name: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}" FontSize="16"/>
-                <TextBlock Text="{Binding SelectedMember.MembershipType, StringFormat='Status: {0}'}" FontSize="16"/>
+                <TextBlock Text="{Binding SelectedMember.MembershipTypeDisplay, StringFormat='Status: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" FontSize="16"/>
             </StackPanel>
         </Border>
