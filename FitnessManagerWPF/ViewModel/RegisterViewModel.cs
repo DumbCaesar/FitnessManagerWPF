@@ -13,7 +13,7 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class RegisterViewModel : ViewModelBase
+    public class RegisterViewModel : ObservableObject
     {
         private string _username;
         private string _password;

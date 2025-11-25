@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class TrainerViewModel : ViewModelBase
+    public class TrainerViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private User _currentUser;

@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    public class AdminMemberViewModel : ViewModelBase
+    public class AdminMemberViewModel : ObservableObject
     {
         private object _currentView;
         private User _selectedMember;

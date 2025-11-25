@@ -15,15 +15,31 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0">
-            <TextBlock Text="Name:"/>
-            <TextBox/>
-            <TextBlock Text="Email:"/>
-            <TextBox/>
-            <TextBlock Text="Login:"/>
-            <TextBox/>
-            <TextBlock Text="Password:"/>
-            <TextBox/>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
+            <TextBlock Text="Name:" Margin="2"/>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+            <TextBox Margin="2" BorderThickness="0" Text="{Binding Name}"/>
+            </Border>
+            <TextBlock Text="Email:" Margin="2"/>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                <TextBox Margin="2" BorderThickness="0" Text="{Binding Email}"/>
+            </Border>
+            <TextBlock Text="Login:" Margin="2"/>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                <TextBox Margin="2" BorderThickness="0" Text="{Binding Username}"/>
+            </Border>
+            <TextBlock Text="Password:" Margin="2"/>
+            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                <TextBox Margin="2" BorderThickness="0" Text="{Binding Password}"/>
+            </Border>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Height="20" Width="50" Content="Save" Command="{Binding SaveCommand}"/>
+                <Button Grid.Row="1" Height="20" Width="50" Content="Discard" Command="{Binding DiscardCommand}"/>
+            </Grid>
         </StackPanel>
     </Grid>
 </UserControl>

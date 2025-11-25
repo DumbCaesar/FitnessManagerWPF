@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    public class SelectedMemberViewModel : ViewModelBase
+    public class SelectedMemberViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private User _user;

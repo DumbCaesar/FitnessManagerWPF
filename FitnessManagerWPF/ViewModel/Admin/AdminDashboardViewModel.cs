@@ -9,7 +9,7 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    public class AdminDashboardViewModel : ViewModelBase
+    public class AdminDashboardViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private object _currentView;

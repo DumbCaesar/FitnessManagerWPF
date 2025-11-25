@@ -8,6 +8,7 @@
         xmlns:userControl="clr-namespace:FitnessManagerWPF.View.UserControl.User"
         xmlns:memberViewModel="clr-namespace:FitnessManagerWPF.ViewModel.Member"
         mc:Ignorable="d"
+        ResizeMode="NoResize"
         Title="MemberView" Height="450" Width="800">
     <Window.DataContext>
         <viewModel:MemberViewModel/>

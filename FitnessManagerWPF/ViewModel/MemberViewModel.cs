@@ -10,7 +10,7 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    public class MemberViewModel : ViewModelBase
+    public class MemberViewModel : ObservableObject
     {
         private readonly DataService _dataService;
         private object _currentView;
@@ -40,7 +40,7 @@ namespace FitnessManagerWPF.ViewModel
             _dataService = dataService;
             _memberDashboardViewModel = new MemberDashboardViewModel(this, _dataService);
             _memberClassesViewModel = new MemberClassesViewModel(this, _dataService);
-            _memberProfileViewModel = new MemberProfileViewModel(this, _dataService);
+            _memberProfileViewModel = new MemberProfileViewModel(this, _dataService, CurrentUser);
             DashboardCommand = new RelayCommand(_ => ShowDashboard());
             ClassesCommand = new RelayCommand(_ => ShowClasses());
             ProfileCommand = new RelayCommand(_ => ShowProfile());

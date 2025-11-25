@@ -158,6 +158,36 @@ namespace FitnessManagerWPF.Services
             }
         }
 
+        public Login? LoadUserInfo(User user)
+        {
+            var _user = _users.FirstOrDefault(u => u.Id == user.Id);
+            var _login = _user != null ? _logins.FirstOrDefault(l => l.MembershipId == _user.Id) : null;
+
+            if (_user == null ||  _login == null)
+            {
+                Debug.WriteLine("User or Login null");
+                return null;
+            }
+
+            try
+            {
+                user.Name = _user.Name;
+                user.Email = _user.Email;
+
+                return new Login
+                {
+                    MembershipId = _login.MembershipId,
+                    Username = _login.Username,
+                    Password = _login.Password
+                };
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Exception occurred: {ex.Message}");
+                return null;
+            }
+        }
+
         public void CreateUser(User user, Login login)
         {
             var options = new JsonSerializerOptions
@@ -188,9 +218,9 @@ namespace FitnessManagerWPF.Services
             };
 
             var _user = _users.FirstOrDefault(u => u.Id == user.Id);
-            var _userLogin = _logins.FirstOrDefault(u => u.MembershipId == login.MembershipId);
+            var _userLogin = _logins.FirstOrDefault(l => l.MembershipId == _user.Id);
 
-            if (user == null || login == null)
+            if (_user == null || _userLogin == null)
             {
                 Debug.WriteLine("User or login not found, nothing to update.");
                 return;
@@ -198,10 +228,17 @@ namespace FitnessManagerWPF.Services
 
             try
             {
+
                 _user.Name = user.Name;
-                _user.Email = user.Email; 
+                _user.Email = user.Email;
                 _userLogin.Username = login.Username;
                 _userLogin.Password = login.Password;
+
+                int userIndex = _users.IndexOf(_user);
+                int loginIndex = _logins.IndexOf(_userLogin);
+
+                _users[userIndex] = _user;
+                _logins[loginIndex] = _userLogin;
 
                 string userJson = JsonSerializer.Serialize(_users, options);
                 string loginJson = JsonSerializer.Serialize(_logins, options);
@@ -223,9 +260,6 @@ namespace FitnessManagerWPF.Services
             {
                 Debug.WriteLine($"Exception occured: {ex.Message}");
             }
-            
-
-            
         }
     }
 }
