@@ -80,7 +80,7 @@ namespace FitnessManagerWPF.ViewModel
             Debug.WriteLine($"Username: {Username}");
             Debug.WriteLine($"Email: {Email}");
 
-            _dataService.SaveUser(newUser, newLogin);
+            _dataService.CreateUser(newUser, newLogin);
             MessageBox.Show("User successfully created!");
             // After successful registration, automatically switch back to login:
             _parentViewModel.ShowLoginCommand.Execute(null);
