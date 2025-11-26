@@ -17,7 +17,7 @@ namespace FitnessManagerWPF.ViewModel
         private MemberClassesViewModel _memberClassesViewModel;
         private MemberDashboardViewModel _memberDashboardViewModel;
         private MemberProfileViewModel _memberProfileViewModel;
-        private MemberMembershipViewModel _memberViewModel;
+        private MemberMembershipViewModel _memberMembershipViewModel;
         private User _currentUser;
 
         public ICommand DashboardCommand { get; set; }
@@ -43,11 +43,13 @@ namespace FitnessManagerWPF.ViewModel
             _memberDashboardViewModel = new MemberDashboardViewModel(this, _dataService);
             _memberClassesViewModel = new MemberClassesViewModel(this, _dataService);
             _memberProfileViewModel = new MemberProfileViewModel(this, _dataService, CurrentUser);
-            _memberViewModel = new MemberMembershipViewModel(this, _dataService, CurrentUser);
+            _memberMembershipViewModel = new MemberMembershipViewModel(this, _dataService, CurrentUser);
             DashboardCommand = new RelayCommand(_ => ShowDashboard());
             ClassesCommand = new RelayCommand(_ => ShowClasses());
             ProfileCommand = new RelayCommand(_ => ShowProfile());
             MembershipCommand = new RelayCommand(_ => ShowMembership());
+
+            _memberMembershipViewModel.UpdateMembershipEvent += _memberProfileViewModel.UpdateMemberRole;
 
             ShowDashboard();
         }
@@ -74,7 +76,7 @@ namespace FitnessManagerWPF.ViewModel
 
         private void ShowMembership()
         {
-            CurrentView = _memberViewModel;
+            CurrentView = _memberMembershipViewModel;
         }
     }
 }

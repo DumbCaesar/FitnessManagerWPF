@@ -26,6 +26,7 @@ namespace FitnessManagerWPF.Model
                 var activeSub = CurrentMembership();
                 return activeSub?.Membership?.Name ?? "No Active Membership";
             }
+            set => MembershipTypeDisplay = value;
         }
         [System.Text.Json.Serialization.JsonIgnore]
         public bool IsActiveMember => UserRole == UserRole.Member && CurrentMembership()?.IsActive == true;
