@@ -38,7 +38,7 @@
       },
       {
         "StartDate": "2025-11-01T00:00:00",
-        "EndDate": "2025-11-29T00:00:00",
+        "EndDate": "2025-11-26T13:16:37.2815366+01:00",
         "Id": 102,
         "MembershipId": 1,
         "Membership": {
@@ -46,6 +46,18 @@
           "DurationInMonths": 1,
           "Id": 1,
           "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:16:37.2816553+01:00",
+        "EndDate": "2025-12-26T13:16:37.281656+01:00",
+        "Id": 201,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 499.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "VIP"
         }
       }
     ],

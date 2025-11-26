@@ -287,5 +287,17 @@ namespace FitnessManagerWPF.Services
             File.WriteAllText(_classesFile, classesJson);
             Debug.WriteLine($"Updated {_classesFile}");
         }
+
+        public void SaveMembers()
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+            string membersJson = JsonSerializer.Serialize(_users, options);
+            File.WriteAllText(_membersFile, membersJson);
+            Debug.WriteLine($"Updated {_membersFile}");
+        }
     }
 }

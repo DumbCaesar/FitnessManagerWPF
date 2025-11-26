@@ -68,10 +68,16 @@ namespace FitnessManagerWPF.ViewModel.Member
                 MessageBox.Show("A membership needs to be selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (CurrentUser.IsActiveMember && SelectedMembership.Id != CurrentUser.CurrentMembership().MembershipId)
+            {
+                CurrentUser.CurrentMembership().EndDate = DateTime.Now;
+            }
             var subscription = new MembershipSubscription(SelectedMembership, ++_dataService.MaxSubscriptionId);
             CurrentUser.BillingHistory.Add(subscription);
             UserSubscriptions = new ObservableCollection<MembershipSubscription>(CurrentUser.BillingHistory);
             Debug.WriteLine($"Sucess! {SelectedMembership.Name} bought.");
+            Debug.WriteLine($"{CurrentUser.Name} is now {CurrentUser.MembershipTypeDisplay}");
+            _dataService.SaveMembers();
         }
     }
 }
