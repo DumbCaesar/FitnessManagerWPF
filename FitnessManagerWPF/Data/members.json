@@ -50,7 +50,7 @@
       },
       {
         "StartDate": "2025-11-26T13:16:37.2816553+01:00",
-        "EndDate": "2025-12-26T13:16:37.281656+01:00",
+        "EndDate": "2025-11-26T13:23:03.5705743+01:00",
         "Id": 201,
         "MembershipId": 3,
         "Membership": {
@@ -58,6 +58,138 @@
           "DurationInMonths": 1,
           "Id": 3,
           "Name": "VIP"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:23:03.5707785+01:00",
+        "EndDate": "2025-11-26T13:23:49.0444405+01:00",
+        "Id": 202,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:23:49.04472+01:00",
+        "EndDate": "2025-11-26T13:24:22.2856342+01:00",
+        "Id": 203,
+        "MembershipId": 2,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 2,
+          "Name": "Premium"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:24:22.2858503+01:00",
+        "EndDate": "2025-11-26T13:35:10.8957098+01:00",
+        "Id": 204,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:35:10.8959103+01:00",
+        "EndDate": "2025-11-26T13:38:32.080558+01:00",
+        "Id": 205,
+        "MembershipId": 2,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 2,
+          "Name": "Premium"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:38:32.0808237+01:00",
+        "EndDate": "2025-11-26T13:44:42.5739995+01:00",
+        "Id": 206,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:44:42.5742674+01:00",
+        "EndDate": "2025-11-26T13:51:06.1782773+01:00",
+        "Id": 207,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 499.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "VIP"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:51:06.1786856+01:00",
+        "EndDate": "2025-11-26T13:52:23.727504+01:00",
+        "Id": 208,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:52:23.7277692+01:00",
+        "EndDate": "2025-11-26T13:55:43.2435509+01:00",
+        "Id": 209,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 499.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "VIP"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:55:43.2437159+01:00",
+        "EndDate": "2025-11-26T13:58:06.3413987+01:00",
+        "Id": 210,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:58:06.3416712+01:00",
+        "EndDate": "2025-11-26T13:58:12.6008565+01:00",
+        "Id": 211,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 499.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "VIP"
+        }
+      },
+      {
+        "StartDate": "2025-11-26T13:58:12.6008602+01:00",
+        "EndDate": "2025-12-26T13:58:12.6008651+01:00",
+        "Id": 212,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 199.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic"
         }
       }
     ],

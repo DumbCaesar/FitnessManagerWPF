@@ -10,6 +10,7 @@ namespace FitnessManagerWPF.ViewModel.Member
     {
         private DataService _dataService;
         private MemberViewModel _parentViewModel;
+        private MemberMembershipViewModel _memberMembershipViewModel;
         private User _currentUser;
         private Login _currentUserLogin;
         private string _name;
@@ -17,7 +18,6 @@ namespace FitnessManagerWPF.ViewModel.Member
         private string _username;
         private string _password;
         private DateTime _dateJoined;
-        private string _membershipTypeDisplay;
         private int _membershipId;
 
         public ICommand SaveCommand { get; }
@@ -54,8 +54,7 @@ namespace FitnessManagerWPF.ViewModel.Member
 
         public string MembershipTypeDisplay
         {
-            get => _membershipTypeDisplay;
-            set => SetProperty(ref _membershipTypeDisplay, value);
+            get => _currentUser?.MembershipTypeDisplay ?? "No Active Membership";
         }
 
         public int MembershipId
@@ -71,7 +70,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = user;
             _dateJoined = user.DateJoined;
-            _membershipTypeDisplay = user.MembershipTypeDisplay;
 
             SaveCommand = new RelayCommand(_ => Save());
             DiscardCommand = new RelayCommand(_ => Discard());
@@ -121,6 +119,11 @@ namespace FitnessManagerWPF.ViewModel.Member
             Password = restoredLogin?.Password ?? "";
 
             Debug.WriteLine("Discard complete");
+        }
+
+        public void UpdateMemberRole()
+        {
+            OnPropertyChanged(nameof(MembershipTypeDisplay));
         }
     }
 }

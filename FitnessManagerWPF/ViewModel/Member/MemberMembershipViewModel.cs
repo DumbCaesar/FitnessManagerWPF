@@ -21,6 +21,8 @@ namespace FitnessManagerWPF.ViewModel.Member
         private List<Membership> _listOfMemberships;
         private ObservableCollection<MembershipSubscription> _userSubscriptions;
 
+        public event Action UpdateMembershipEvent;
+
         public ICommand BuyMembershipCommand { get; }
 
         public User CurrentUser
@@ -78,6 +80,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             Debug.WriteLine($"Sucess! {SelectedMembership.Name} bought.");
             Debug.WriteLine($"{CurrentUser.Name} is now {CurrentUser.MembershipTypeDisplay}");
             _dataService.SaveMembers();
+            UpdateMembershipEvent.Invoke();
         }
     }
 }
