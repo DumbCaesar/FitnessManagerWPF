@@ -15,31 +15,41 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
-            <TextBlock Text="Name:" Margin="2"/>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-            <TextBox Margin="2" BorderThickness="0" Text="{Binding Name}"/>
-            </Border>
-            <TextBlock Text="Email:" Margin="2"/>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                <TextBox Margin="2" BorderThickness="0" Text="{Binding Email}"/>
-            </Border>
-            <TextBlock Text="Login:" Margin="2"/>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                <TextBox Margin="2" BorderThickness="0" Text="{Binding Username}"/>
-            </Border>
-            <TextBlock Text="Password:" Margin="2"/>
-            <Border BorderBrush="Black" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                <TextBox Margin="2" BorderThickness="0" Text="{Binding Password}"/>
-            </Border>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Button Grid.Row="0" Height="20" Width="50" Content="Save" Command="{Binding SaveCommand}"/>
-                <Button Grid.Row="1" Height="20" Width="50" Content="Discard" Command="{Binding DiscardCommand}"/>
-            </Grid>
-        </StackPanel>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="2" CornerRadius="12" Grid.RowSpan="2" VerticalAlignment="Top" Height="245" Background="WhiteSmoke">
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
+                <TextBlock Text="{Binding DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" Margin="2 0 0 0"/>
+                <TextBlock Text="{Binding MembershipTypeDisplay, StringFormat='Status: {0}'}" Margin="2 2 0 0"/>
+                <Separator Margin="2 2 0 0" Width="195" HorizontalAlignment="Left" Background="Black"/>
+                <TextBlock Text="Name:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Name}"/>
+                </Border>
+                <TextBlock Text="Email:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Email}"/>
+                </Border>
+                <TextBlock Text="Login:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Username}"/>
+                </Border>
+                <TextBlock Text="Password:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Password}"/>
+                </Border>
+                <Grid Margin="2 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#63bf3c">
+                        <Button Height="20" Width="50" Content="Save" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding SaveCommand}" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Column="1" Margin="2 0 0 0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#DC143C">
+                        <Button Height="20" Width="50" Content="Discard" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding DiscardCommand}" HorizontalAlignment="Center"/>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

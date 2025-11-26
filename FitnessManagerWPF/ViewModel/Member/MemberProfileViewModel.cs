@@ -15,6 +15,8 @@ namespace FitnessManagerWPF.ViewModel.Member
         private string _email;
         private string _username;
         private string _password;
+        private DateTime _dateJoined;
+        private string _membershipTypeDisplay;
         private int _membershipId;
 
         public ICommand SaveCommand { get; }
@@ -44,6 +46,17 @@ namespace FitnessManagerWPF.ViewModel.Member
             set => SetProperty(ref _password, value);
         }
 
+        public DateTime DateJoined
+        {
+            get => _dateJoined;
+        }
+
+        public string MembershipTypeDisplay
+        {
+            get => _membershipTypeDisplay;
+            set => SetProperty(ref _membershipTypeDisplay, value);
+        }
+
         public int MembershipId
         {
             get => _membershipId;
@@ -56,6 +69,8 @@ namespace FitnessManagerWPF.ViewModel.Member
             _parentViewModel = parentViewModel;
             _dataService = dataService;
             _currentUser = user;
+            _dateJoined = user.DateJoined;
+            _membershipTypeDisplay = user.MembershipTypeDisplay;
 
             SaveCommand = new RelayCommand(_ => Save());
             DiscardCommand = new RelayCommand(_ => Discard());
