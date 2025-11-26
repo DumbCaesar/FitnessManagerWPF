@@ -24,6 +24,9 @@
         <DataTemplate DataType="{x:Type memberViewModel:MemberProfileViewModel}">
             <userControl:UserProfileView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type memberViewModel:MemberMembershipViewModel}">
+            <userControl:UserMembershipView/>
+        </DataTemplate>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -37,6 +40,7 @@
         <StackPanel Grid.Column="0" Grid.Row="1">
             <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" Command="{Binding DashboardCommand}" IsChecked="True"/>
             <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}" Command="{Binding ClassesCommand}"/>
+            <RadioButton Content="Membership" Style="{StaticResource RadioButtonStyle}" Command="{Binding MembershipCommand}"/>
             <RadioButton Content="Profile" Style="{StaticResource RadioButtonStyle}" Command="{Binding ProfileCommand}"/>
         </StackPanel>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>
