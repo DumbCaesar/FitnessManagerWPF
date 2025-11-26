@@ -2,6 +2,7 @@
 using FitnessManagerWPF.Services;
 using System.Windows.Input;
 using System.Diagnostics;
+using System.Windows;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
@@ -88,13 +89,18 @@ namespace FitnessManagerWPF.ViewModel.Member
         private void Save()
         {
             Debug.WriteLine("Save clicked");
-            _currentUser.Name = Name;
-            _currentUser.Email = Email;
-            _currentUserLogin.Username = Username;
-            _currentUserLogin.Password = Password;
-            _currentUserLogin.MembershipId = MembershipId;
-
-            _dataService.SaveUser(_currentUser, _currentUserLogin);
+            var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
+            if (messageBox == MessageBoxResult.OK)
+            {
+                _currentUser.Name = Name;
+                _currentUser.Email = Email;
+                _currentUserLogin.Username = Username;
+                _currentUserLogin.Password = Password;
+                _currentUserLogin.MembershipId = MembershipId;
+                _dataService.SaveUser(_currentUser, _currentUserLogin);
+                Debug.WriteLine("Saved...");
+            }
+            return;
         }
 
         private void Discard()
