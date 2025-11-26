@@ -53,7 +53,7 @@ namespace FitnessManagerWPF.Model
             Membership = membership;
             MembershipId = membership.Id;
             StartDate = DateTime.Now;
-            EndDate = DateTime.Now.AddMonths(1);
+            EndDate = DateTime.Now.AddMonths(membership.DurationInMonths);
         }
     }
 }
