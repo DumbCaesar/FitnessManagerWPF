@@ -261,5 +261,17 @@ namespace FitnessManagerWPF.Services
                 Debug.WriteLine($"Exception occured: {ex.Message}");
             }
         }
+
+        public void SaveClasses()
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+            string classesJson = JsonSerializer.Serialize(_activities, options);
+            File.WriteAllText(_classesFile, classesJson);
+            Debug.WriteLine($"Updated {_classesFile}");
+        }
     }
 }
