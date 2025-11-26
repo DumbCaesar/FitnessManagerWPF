@@ -47,5 +47,13 @@ namespace FitnessManagerWPF.Model
             ? Membership.Price / Membership.DurationInMonths
             : 0m;
         public MembershipSubscription() { }
+        public MembershipSubscription(Membership membership, int id) 
+        {
+            Id = id;
+            Membership = membership;
+            MembershipId = membership.Id;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.Now.AddMonths(1);
+        }
     }
 }

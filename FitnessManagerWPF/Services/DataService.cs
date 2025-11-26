@@ -25,7 +25,14 @@ namespace FitnessManagerWPF.Services
         private List<Membership> _memberships;
         public List<Classes> _activities;
         public User CurrentUser { get; private set; }
+        public List<Membership> Memberships
+        {
+            get => _memberships;
+            set => _memberships = value;
+        }
         public int MaxUserId { get; set; }
+
+        public int MaxSubscriptionId { get; set; }
 
         public List<User> Users
         {
@@ -55,6 +62,13 @@ namespace FitnessManagerWPF.Services
             {
                 LoadData();
                 MaxUserId = _users.Max(u => u.Id);
+                MaxSubscriptionId = _users
+                .Where(u => u.BillingHistory != null)
+                .SelectMany(u => u.BillingHistory)
+                .Select(sub => sub.Id)
+                .DefaultIfEmpty(0)
+                .Max();
+
             }
             catch (Exception ex)
             {
