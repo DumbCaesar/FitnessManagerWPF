@@ -80,5 +80,21 @@
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
     "role": 1
+  },
+  {
+    "Id": 4,
+    "Name": "philip",
+    "Email": "philip@dania.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-11-26T10:33:01.7652093+01:00",
+    "role": 0
+  },
+  {
+    "Id": 5,
+    "Name": "Martin",
+    "Email": "martin@dania.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-11-26T12:17:11.9751633+01:00",
+    "role": 0
   }
 ]

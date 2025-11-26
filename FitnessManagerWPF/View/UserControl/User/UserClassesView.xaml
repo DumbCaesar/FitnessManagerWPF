@@ -23,7 +23,18 @@
                                 <TextBlock Text="{Binding TrainerName}" FontSize="28" FontWeight="Bold"/>
                                 <TextBlock Text="Participants" FontSize="14" FontWeight="SemiBold"/>
                                 <TextBlock Text="{Binding Attendance}" FontSize="28" FontWeight="Bold"/>
-                                <Button Content="Sign Up" FontSize="14"/>
+                                <Button FontSize="14" Command="{Binding DataContext.SignUpCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Height="30">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Content" Value="Sign up"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsUserEnrolled}" Value="True">
+                                                    <Setter Property="Content" Value="Cancel"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </StackPanel>
                         </Border>
                     </DataTemplate>
