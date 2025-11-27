@@ -18,15 +18,5 @@
     "MembershipId": 3,
     "Username": "bobby",
     "Password": "password123"
-  },
-  {
-    "MembershipId": 4,
-    "Username": "philip",
-    "Password": "Password123"
-  },
-  {
-    "MembershipId": 5,
-    "Username": "martin",
-    "Password": "Password123"
   }
 ]
