@@ -27,7 +27,7 @@
                     <StackPanel>
                         <TextBlock Text="{Binding Id, StringFormat='Subscription ID: {0}'}"/>
                         <TextBlock Text="{Binding StartDate, StringFormat='Subscription Start: {0:hh:mm tt dd/MM/yyyy}'}"/>
-                        <TextBlock Text="{Binding EndDate, StringFormat='Subscription Start: {0:hh:mm tt dd/MM/yyyy}'}"/>
+                        <TextBlock Text="{Binding EndDate, StringFormat='Subscription End: {0:hh:mm tt dd/MM/yyyy}'}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
