@@ -80,7 +80,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             Debug.WriteLine($"Sucess! {SelectedMembership.Name} bought.");
             Debug.WriteLine($"{CurrentUser.Name} is now {CurrentUser.MembershipTypeDisplay}");
             _dataService.SaveMembers();
-            UpdateMembershipEvent.Invoke();
+            UpdateMembershipEvent?.Invoke();
         }
     }
 }

@@ -22,6 +22,7 @@
                 <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.MembershipTypeDisplay, StringFormat='Status: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" FontSize="16"/>
+                <Button Content="Edit" Width="40" Height="25" HorizontalAlignment="Left" Command="{Binding EditMemberCommand}"/>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">

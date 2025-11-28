@@ -1,0 +1,51 @@
+﻿<Window x:Class="FitnessManagerWPF.View.Admin.EditMemberView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
+        mc:Ignorable="d"
+        Title="EditMemberView" Height="284" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border BorderBrush="Black" BorderThickness="1" Margin="2" CornerRadius="12" Grid.RowSpan="2" VerticalAlignment="Top" Height="245" Background="WhiteSmoke">
+            <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
+                <TextBlock Text="Name:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Name}"/>
+                </Border>
+                <TextBlock Text="Email:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Email}"/>
+                </Border>
+                <TextBlock Text="Login:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Username}"/>
+                </Border>
+                <TextBlock Text="Password:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Password}"/>
+                </Border>
+                <Grid Margin="2 5 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Grid.Column="0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#63bf3c">
+                        <Button Height="20" Width="50" Content="Save" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding SaveCommand}" HorizontalAlignment="Center"/>
+                    </Border>
+                    <Border Grid.Column="1" Margin="2 0 0 0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#DC143C">
+                        <Button Height="20" Width="50" Content="Discard" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding DiscardCommand}" HorizontalAlignment="Center"/>
+                    </Border>
+
+                </Grid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
