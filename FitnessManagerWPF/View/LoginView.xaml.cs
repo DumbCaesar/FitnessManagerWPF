@@ -31,6 +31,7 @@ namespace FitnessManagerWPF.View
 
         private void OnLoginSucceeded()
         {
+            viewModel.LoginSucceeded -= OnLoginSucceeded;
             this.Close();
         }
     }

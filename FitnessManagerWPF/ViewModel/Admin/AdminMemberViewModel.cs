@@ -42,7 +42,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set 
             {
                 SetProperty(ref _selectedMember, value);
-                Debug.WriteLine($"Selected Member is: {_selectedMember.Name}");
+                if(SelectedMember != null)
+                {
+                    Debug.WriteLine($"Selected Member is: {_selectedMember.Name}");
+                }
+                
 
             }
         } 
@@ -67,10 +71,34 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             if (SelectedMember == null) return;
             SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
+            SelectedMemberViewModel.MemberChanged += UpdateMemberList;
             var SelectedMemberView = new SelectedMemberView { DataContext = SelectedMemberViewModel };
-            SelectedMemberView.Show();
+            SelectedMemberView.ShowDialog();
+            SelectedMemberViewModel.MemberChanged -= UpdateMemberList;
+
         }
 
-        
+        private void UpdateMemberList()
+        {
+            _userList = _dataService.Users;
+            var updatedUser = _userList.FirstOrDefault(u => u.Id == SelectedMember.Id);
+
+            if (updatedUser != null)
+            {
+                var index = MemberList.ToList().FindIndex(m => m.Id == SelectedMember.Id);
+                if (index >= 0)
+                {
+                    // Remove and insert to force collection change notification
+                    var oldUser = MemberList[index];
+                    MemberList.RemoveAt(index);
+                    MemberList.Insert(index, updatedUser);
+
+                    Debug.WriteLine($"Removed: {oldUser.Name}, Inserted: {updatedUser.Name}");
+                    Debug.WriteLine($"Are they the same object? {ReferenceEquals(oldUser, updatedUser)}");
+                }
+            }
+        }
+
+
     }
 }
