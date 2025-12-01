@@ -33,6 +33,7 @@ namespace FitnessManagerWPF.Services
         public int MaxUserId { get; set; }
 
         public int MaxSubscriptionId { get; set; }
+        public int MaxClassId { get; set; }
 
         public List<User> Users
         {
@@ -68,7 +69,7 @@ namespace FitnessManagerWPF.Services
                 .Select(sub => sub.Id)
                 .DefaultIfEmpty(0)
                 .Max();
-
+                MaxClassId = _activities.Max(c => c.Id);
             }
             catch (Exception ex)
             {

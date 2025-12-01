@@ -6,7 +6,9 @@
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
+    <StackPanel>
+        <Button Content="Add class" Command="{Binding AddClassCommand}" Width="80" HorizontalAlignment="Left" Margin="5"/>
+        <Grid>
         <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -18,4 +20,5 @@
             </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
+    </StackPanel>
 </UserControl>
