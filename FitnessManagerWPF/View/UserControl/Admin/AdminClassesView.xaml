@@ -6,19 +6,30 @@
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <StackPanel>
-        <Button Content="Add class" Command="{Binding AddClassCommand}" Width="80" HorizontalAlignment="Left" Margin="5"/>
-        <Grid>
-        <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ClassInfo}"/>
-                        <TextBlock Text="{Binding ClassSummary}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+    <Grid Margin="16" Background="#FAFAFA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Classes Schedule" FontSize="20" FontWeight="SemiBold" Foreground="#1F2937" VerticalAlignment="Center"/>
+            <Button Content="Add Class" Command="{Binding AddClassCommand}" Width="120" Height="36" Background="#10B981" Foreground="White" FontWeight="Medium" HorizontalAlignment="Right" Padding="16,0" Cursor="Hand"/>
+        </DockPanel>
+
+        <!-- Classes -->
+        <ListView Grid.Row="1" ItemsSource="{Binding Activities}"  SelectedItem="{Binding SelectedActivity, Mode=TwoWay}" Margin="5">
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="50"/>
+                    <GridViewColumn Header="Day" DisplayMemberBinding="{Binding Day}" Width="100"/>
+                    <GridViewColumn Header="Time" DisplayMemberBinding="{Binding Time, StringFormat={}{0:hh}:{0:mm}}" Width="90"/>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="180"/>
+                    <GridViewColumn Header="Trainer" DisplayMemberBinding="{Binding Trainer.Name}" Width="140"/>
+                    <GridViewColumn Header="Capacity" DisplayMemberBinding="{Binding CapacityDisplay}" Width="80"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
-    </StackPanel>
 </UserControl>

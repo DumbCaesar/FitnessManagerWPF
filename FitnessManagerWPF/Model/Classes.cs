@@ -5,71 +5,69 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitnessManagerWPF.ViewModel;
+using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
     public class Classes : ObservableObject
     {
         private bool _isUserEnrolled;
+        private ObservableCollection<int> _registeredMemberIds = new();
         public int Id { get; set; }
         public string Name { get; set; }
         public int MaxParticipants { get; set; }
-        public ObservableCollection<int> RegisteredMemberIdsObservable { get; } = new();
-        public List<int> RegisteredMemberIds
+        [JsonIgnore] public User Trainer { get; set; } // For display and binding
+        public int TrainerId { get; set; } // for serialization
+        public ObservableCollection<int> RegisteredMemberIds
         {
-            get => RegisteredMemberIdsObservable.ToList();
+            get => _registeredMemberIds;
             set
             {
-                RegisteredMemberIdsObservable.Clear();
-                if (value != null)
-                {
-                    foreach (var id in value)
-                    {
-                        RegisteredMemberIdsObservable.Add(id);
-                    }
-                }
+                _registeredMemberIds = value ?? new();
+                _registeredMemberIds.CollectionChanged += (s, e) => OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(RegisteredMemberIds));
+                OnPropertyChanged(nameof(CapacityDisplay));
             }
         }
-        public int TrainerId { get; set; }
-        public string TrainerName { get; set; }
-        [System.Text.Json.Serialization.JsonPropertyName("day")]
+        [JsonPropertyName("day")] public DayOfWeek Day { get; set; }
+        [JsonPropertyName("time")] public TimeSpan Time { get; set; }
 
-        public DayOfWeek Day { get; set; }
-        [System.Text.Json.Serialization.JsonPropertyName("time")]
+        // Ignore the computed properties used for binding
+        [JsonIgnore] public int CurrentParticipants => RegisteredMemberIds.Count;
+        [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
 
-        public TimeSpan Time { get; set; }
-
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string ClassSummary => $"Current Participants: {RegisteredMemberIds.Count}/{MaxParticipants}";
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string Attendance => $"{RegisteredMemberIds.Count}/{MaxParticipants}";
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string ClassInfo => $"{Name} - {TrainerName}";
-
-        [System.Text.Json.Serialization.JsonIgnore]
-        public bool IsUserEnrolled 
-        { 
+        [JsonIgnore]
+        public bool IsUserEnrolled
+        {
             get => _isUserEnrolled;
             set => SetProperty(ref _isUserEnrolled, value);
         }
 
-        public Classes()
-        {
-            RegisteredMemberIdsObservable.CollectionChanged += (_, __) =>
+        public Classes() {
+            RegisteredMemberIds.CollectionChanged += (_, __) =>
             {
-                OnPropertyChanged(nameof(Attendance));
+                OnPropertyChanged(nameof(CurrentParticipants));
+                OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(IsUserEnrolled));
             };
         }
 
         public Classes(int id, string name, int participants, User trainer, DayOfWeek day, TimeSpan time)
         {
             Id = id;
-            Name = name;
+            Name = name ?? throw new ArgumentNullException(nameof(trainer));
             MaxParticipants = participants;
+            Trainer = trainer ?? throw new ArgumentNullException(nameof(trainer));
             TrainerId = trainer.Id;
-            TrainerName = trainer.Name;
             Day = day;
             Time = time;
+
+            RegisteredMemberIds.CollectionChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(CurrentParticipants));
+                OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(IsUserEnrolled));
+            };
         }
     }
 }

@@ -3,10 +3,10 @@
     "Id": 1,
     "Name": "Morning Yoga",
     "MaxParticipants": 5,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 1,
     "time": "07:00:00"
   },
@@ -14,10 +14,10 @@
     "Id": 2,
     "Name": "Strength Training",
     "MaxParticipants": 15,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 2,
     "time": "18:30:00"
   },
@@ -25,10 +25,8 @@
     "Id": 3,
     "Name": "Indoor Cycling",
     "MaxParticipants": 25,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [],
     "day": 3,
     "time": "17:30:00"
   },
@@ -36,10 +34,10 @@
     "Id": 4,
     "Name": "HIIT Blast",
     "MaxParticipants": 18,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 4,
     "time": "19:00:00"
   },
@@ -47,10 +45,10 @@
     "Id": 5,
     "Name": "Weekend Flow Yoga",
     "MaxParticipants": 22,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 6,
     "time": "10:00:00"
   },
@@ -58,10 +56,10 @@
     "Id": 6,
     "Name": "Core Stretch",
     "MaxParticipants": 20,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
     "TrainerId": 3,
-    "TrainerName": "Bobby",
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 5,
     "time": "16:30:00"
   }
