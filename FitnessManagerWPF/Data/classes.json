@@ -6,14 +6,12 @@
     "RegisteredMemberIdsObservable": [
       2,
       3,
-      4,
       5,
       6
     ],
     "RegisteredMemberIds": [
       2,
       3,
-      4,
       5,
       6
     ],
@@ -21,8 +19,8 @@
     "TrainerName": "Bobby",
     "day": 1,
     "time": "07:00:00",
-    "ClassSummary": "Current Participants: 5/5",
-    "Attendance": "5/5",
+    "ClassSummary": "Current Participants: 4/5",
+    "Attendance": "4/5",
     "ClassInfo": "Morning Yoga - Bobby",
     "IsUserEnrolled": false
   },
@@ -45,7 +43,7 @@
     "ClassSummary": "Current Participants: 2/15",
     "Attendance": "2/15",
     "ClassInfo": "Strength Training - Bobby",
-    "IsUserEnrolled": true
+    "IsUserEnrolled": false
   },
   {
     "Id": 3,
@@ -68,7 +66,7 @@
     "ClassSummary": "Current Participants: 3/25",
     "Attendance": "3/25",
     "ClassInfo": "Indoor Cycling - Bobby",
-    "IsUserEnrolled": true
+    "IsUserEnrolled": false
   },
   {
     "Id": 4,
@@ -89,24 +87,30 @@
     "ClassSummary": "Current Participants: 2/18",
     "Attendance": "2/18",
     "ClassInfo": "HIIT Blast - Bobby",
-    "IsUserEnrolled": true
+    "IsUserEnrolled": false
   },
   {
     "Id": 5,
     "Name": "Weekend Flow Yoga",
     "MaxParticipants": 22,
     "RegisteredMemberIdsObservable": [
-      1
+      1,
+      7,
+      8,
+      9
     ],
     "RegisteredMemberIds": [
-      1
+      1,
+      7,
+      8,
+      9
     ],
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 6,
     "time": "10:00:00",
-    "ClassSummary": "Current Participants: 1/22",
-    "Attendance": "1/22",
+    "ClassSummary": "Current Participants: 4/22",
+    "Attendance": "4/22",
     "ClassInfo": "Weekend Flow Yoga - Bobby",
     "IsUserEnrolled": true
   },
@@ -115,17 +119,23 @@
     "Name": "Core \u0026 Stretch",
     "MaxParticipants": 20,
     "RegisteredMemberIdsObservable": [
-      1
+      1,
+      7,
+      8,
+      9
     ],
     "RegisteredMemberIds": [
-      1
+      1,
+      7,
+      8,
+      9
     ],
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 5,
     "time": "16:30:00",
-    "ClassSummary": "Current Participants: 1/20",
-    "Attendance": "1/20",
+    "ClassSummary": "Current Participants: 4/20",
+    "Attendance": "4/20",
     "ClassInfo": "Core \u0026 Stretch - Bobby",
     "IsUserEnrolled": true
   }
