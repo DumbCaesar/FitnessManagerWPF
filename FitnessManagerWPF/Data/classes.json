@@ -52,5 +52,14 @@
     "RegisteredMemberIds": [],
     "day": 5,
     "time": "16:30:00"
+  },
+  {
+    "Id": 7,
+    "Name": "Hot Yoga",
+    "MaxParticipants": 10,
+    "TrainerId": 6,
+    "RegisteredMemberIds": [],
+    "day": 6,
+    "time": "06:30:00"
   }
 ]

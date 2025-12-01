@@ -180,5 +180,29 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Styling for admin classes view -->
+        <Style x:Key="AdminTableItemStyle" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="ItemBorder"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#E5E7EB"
+                        BorderThickness="0,0,0,1">
+                            <ContentPresenter Margin="12,0"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#F1F5F9"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#E0F2FE"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
