@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
@@ -17,8 +18,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private EditMemberViewModel _editMemberViewModel;
         private User _user;
         public event Action MemberChanged;
+        public event Action MemberDeleted;
 
         public ICommand EditMemberCommand { get; set; }
+        public ICommand DeleteMemberCommand { get; set; }
 
         public ObservableCollection<Classes> MemberClasses { get; set; }
         public ObservableCollection<MembershipSubscription> MembershipSubscriptions { get; set; }
@@ -38,6 +41,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             MemberClasses = new ObservableCollection<Classes>();
             MembershipSubscriptions = new ObservableCollection<MembershipSubscription>();
             EditMemberCommand = new RelayCommand(_ => ShowEditMember());
+            DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
             _dataService = dataService;
             SelectedMember = user;
 
@@ -51,14 +55,32 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void ShowEditMember()
         {
+            if(SelectedMember == null) return;
             _editMemberViewModel = new EditMemberViewModel(this, SelectedMember, _dataService);
-            _editMemberViewModel.MemberChanged += UpdateMemberInfo;
+            _editMemberViewModel.MemberChanged += OnUpdateMemberInfo;
             EditMemberView editMemberView = new EditMemberView { DataContext = _editMemberViewModel };
             editMemberView.ShowDialog();
-            _editMemberViewModel.MemberChanged -= UpdateMemberInfo;
+            _editMemberViewModel.MemberChanged -= OnUpdateMemberInfo;
         }
 
-        private void UpdateMemberInfo()
+        private void OnDeleteMember()
+        {
+            if (SelectedMember == null) return;
+            var messageBox = MessageBox.Show($"Are you sure you want to delete {SelectedMember.Name}?", "Permanant Action", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+            if(messageBox == MessageBoxResult.OK)
+            {
+                var messageBoxConfirm = MessageBox.Show($"Are you completely sure? {SelectedMember.Name} will be removed permanently.", "Are you sure?", MessageBoxButton.OKCancel, MessageBoxImage.Warning);
+                if(messageBoxConfirm == MessageBoxResult.OK)
+                {
+                    _dataService.DeleteMember(SelectedMember);
+                    MemberDeleted?.Invoke();
+                }
+                return;
+            }
+            return;
+        }
+
+        private void OnUpdateMemberInfo()
         {
             OnPropertyChanged(nameof(SelectedMember));
             MemberChanged?.Invoke();

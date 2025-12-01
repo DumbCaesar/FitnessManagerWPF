@@ -95,7 +95,7 @@ namespace FitnessManagerWPF.ViewModel.Member
                 _currentUserLogin.Username = Username;
                 _currentUserLogin.Password = Password;
                 _currentUserLogin.MembershipId = MembershipId;
-                _dataService.SaveUser(_currentUser, _currentUserLogin);
+                _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
                 Debug.WriteLine("Saved...");
             }
             return;

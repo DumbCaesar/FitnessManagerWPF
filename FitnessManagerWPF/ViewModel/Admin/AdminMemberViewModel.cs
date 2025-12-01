@@ -72,9 +72,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             if (SelectedMember == null) return;
             SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
             SelectedMemberViewModel.MemberChanged += UpdateMemberList;
+            SelectedMemberViewModel.MemberDeleted += OnMemberDeleted;
             var SelectedMemberView = new SelectedMemberView { DataContext = SelectedMemberViewModel };
             SelectedMemberView.ShowDialog();
             SelectedMemberViewModel.MemberChanged -= UpdateMemberList;
+            SelectedMemberViewModel.MemberDeleted -= OnMemberDeleted;
 
         }
 
@@ -97,6 +99,19 @@ namespace FitnessManagerWPF.ViewModel.Admin
                     Debug.WriteLine($"Are they the same object? {ReferenceEquals(oldUser, updatedUser)}");
                 }
             }
+        }
+
+        private void OnMemberDeleted()
+        {
+            // SelectedUser was deleted, remove from ObservableCollection
+            var userToRemove = MemberList.FirstOrDefault(m => m.Id == SelectedMember.Id);
+            if (userToRemove != null)
+            {
+                MemberList.Remove(userToRemove);
+                Debug.WriteLine($"Removed deleted user: {userToRemove.Name} (ID: {userToRemove.Id})");
+            }
+            // Clear the selection since the user no longer exists
+            SelectedMember = null;
         }
 
 

@@ -224,7 +224,7 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Added {login.Username} to {_loginFile}");
         }
 
-        public void SaveUser(User user, Login login)
+        public void UpdateUserInfo(User user, Login login)
         {
             var options = new JsonSerializerOptions
             {
@@ -299,6 +299,61 @@ namespace FitnessManagerWPF.Services
             string membersJson = JsonSerializer.Serialize(_users, options);
             File.WriteAllText(_membersFile, membersJson);
             Debug.WriteLine($"Updated {_membersFile}");
+        }
+
+        public void SaveLogins()
+        {
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true,
+                WriteIndented = true
+            };
+            string loginsJson = JsonSerializer.Serialize(_logins, options);
+            File.WriteAllText(_loginFile, loginsJson);
+            Debug.WriteLine($"Updated {_loginFile}");
+        }
+
+        public void DeleteMember(User user)
+        {
+            try
+            {
+                var userLogin = _logins.FirstOrDefault(u => u.MembershipId == user.Id);
+                if (userLogin != null)
+                {
+                    // Remove login
+                    _logins.Remove(userLogin);
+                }
+
+                // Remove user
+                _users.Remove(user);
+
+                // Remove user from all activities
+                foreach (var activity in _activities)
+                {
+                    if (activity.RegisteredMemberIds != null)
+                    {
+                        activity.RegisteredMemberIds.RemoveAll(id => id == user.Id);
+                    }
+
+                    // Also remove from Observable, or the user Id won't get deleted from file.
+                    if (activity.RegisteredMemberIdsObservable != null)
+                    {
+                        // Remove all instances of this user ID
+                        while (activity.RegisteredMemberIdsObservable.Contains(user.Id))
+                        {
+                            activity.RegisteredMemberIdsObservable.Remove(user.Id);
+                        }
+                    }
+                }
+
+                SaveClasses();
+                SaveLogins();
+                SaveMembers();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex.ToString());
+            }
         }
     }
 }
