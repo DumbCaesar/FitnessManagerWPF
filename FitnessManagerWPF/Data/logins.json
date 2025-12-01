@@ -18,5 +18,65 @@
     "MembershipId": 3,
     "Username": "bobby",
     "Password": "password123"
+  },
+  {
+    "MembershipId": 4,
+    "Username": "sjohnson",
+    "Password": "SarahFit2024!"
+  },
+  {
+    "MembershipId": 5,
+    "Username": "mchen",
+    "Password": "Chen$ecure99"
+  },
+  {
+    "MembershipId": 6,
+    "Username": "erodriguez",
+    "Password": "TrainerEmily#2024"
+  },
+  {
+    "MembershipId": 7,
+    "Username": "dthompson",
+    "Password": "David@Gym123"
+  },
+  {
+    "MembershipId": 8,
+    "Username": "ohansen",
+    "Password": "Olivia#Strong88"
+  },
+  {
+    "MembershipId": 9,
+    "Username": "jmartinez",
+    "Password": "James*Flex88"
+  },
+  {
+    "MembershipId": 10,
+    "Username": "ataylor",
+    "Password": "AmandaFit#456"
+  },
+  {
+    "MembershipId": 11,
+    "Username": "rgarcia",
+    "Password": "Robert!Train99"
+  },
+  {
+    "MembershipId": 12,
+    "Username": "landerson",
+    "Password": "Lisa&Workout24"
+  },
+  {
+    "MembershipId": 13,
+    "Username": "clee",
+    "Password": "Chris#Premium12"
+  },
+  {
+    "MembershipId": 14,
+    "Username": "ndavis",
+    "Password": "Nicole$Gym555"
+  },
+  {
+    "MembershipId": 15,
+    "Username": "bmoore",
+    "Password": "Brandon@Fit77"
   }
 ]

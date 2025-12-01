@@ -22,9 +22,10 @@ namespace FitnessManagerWPF.Model
             get
             {
                 if (UserRole != UserRole.Member) return UserRole.ToString();
-
                 var activeSub = CurrentMembership();
-                return activeSub?.Membership?.Name ?? "No Active Membership";
+                if (activeSub != null)
+                    return activeSub.Membership.Name;
+                return "No Active Membership";
             }
             set => MembershipTypeDisplay = value;
         }
@@ -48,7 +49,13 @@ namespace FitnessManagerWPF.Model
         {
             if (BillingHistory == null || !BillingHistory.Any())
                 return null;
-            return BillingHistory[^1];
+
+            var now = DateTime.Now;
+
+            return BillingHistory
+                .Where(sub => sub.StartDate <= now && now < sub.EndDate)
+                .OrderByDescending(sub => sub.StartDate)
+                .FirstOrDefault();
         }
     }
 
