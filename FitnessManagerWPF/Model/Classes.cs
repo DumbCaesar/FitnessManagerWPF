@@ -39,10 +39,14 @@ namespace FitnessManagerWPF.Model
 
         public TimeSpan Time { get; set; }
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public string ClassSummary => $"Current Participants: {RegisteredMemberIds.Count}/{MaxParticipants}";
+        [System.Text.Json.Serialization.JsonIgnore]
         public string Attendance => $"{RegisteredMemberIds.Count}/{MaxParticipants}";
+        [System.Text.Json.Serialization.JsonIgnore]
         public string ClassInfo => $"{Name} - {TrainerName}";
 
+        [System.Text.Json.Serialization.JsonIgnore]
         public bool IsUserEnrolled 
         { 
             get => _isUserEnrolled;
@@ -55,6 +59,17 @@ namespace FitnessManagerWPF.Model
             {
                 OnPropertyChanged(nameof(Attendance));
             };
+        }
+
+        public Classes(int id, string name, int participants, User trainer, DayOfWeek day, TimeSpan time)
+        {
+            Id = id;
+            Name = name;
+            MaxParticipants = participants;
+            TrainerId = trainer.Id;
+            TrainerName = trainer.Name;
+            Day = day;
+            Time = time;
         }
     }
 }

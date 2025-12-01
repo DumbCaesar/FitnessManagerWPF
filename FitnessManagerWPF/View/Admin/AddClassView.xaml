@@ -1,0 +1,78 @@
+﻿<Window x:Class="FitnessManagerWPF.View.Admin.AddClassView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
+        mc:Ignorable="d"
+        Title="AddClassView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Black" BorderThickness="1" Margin="2" CornerRadius="12" Grid.RowSpan="2" VerticalAlignment="Top" Height="265" Background="WhiteSmoke">
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
+                    <!-- Activity name -->
+                    <TextBlock Text="Class name:" Margin="2"/>
+                    <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                        <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Name}"/>
+                    </Border>
+
+                <!-- Number of participants -->
+                <TextBlock Text="Number of participants:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding MaxParticipants}"/>
+                </Border>
+
+                <!-- Trainer -->
+                    <TextBlock Text="Trainer:" Margin="2"/>
+                    <Border BorderBrush="Black"
+                            Background="FloralWhite"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Padding="2">
+                    <ComboBox ItemsSource="{Binding TrainerList}" SelectedItem="{Binding Trainer}" DisplayMemberPath="Name" Background="Transparent" BorderThickness="0"/>
+                    </Border>
+
+                    <!-- Day -->
+                    <TextBlock Text="Day:" Margin="2"/>
+                    <Border BorderBrush="Black"
+                                Background="FloralWhite"
+                                BorderThickness="1"
+                                CornerRadius="8"
+                                Width="200"
+                                HorizontalAlignment="Left"
+                                Padding="2">
+                        <ComboBox ItemsSource="{Binding DaysOfWeek}" SelectedItem="{Binding Day}" Background="Transparent" BorderThickness="0"/>
+                    </Border>
+
+                    <!-- Time -->
+                    <TextBlock Text="Time:" Margin="2"/>
+                <Border BorderBrush="Black"
+                            Background="FloralWhite"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Width="200"
+                            HorizontalAlignment="Left"
+                            Padding="2">
+                    <ComboBox ItemsSource="{Binding TimeSlots}"
+                                SelectedItem="{Binding Time}"
+                                ItemStringFormat="{}{0:hh}:{0:mm}"
+                                Background="Transparent"
+                                BorderThickness="0"/>
+                </Border>
+
+                <!-- Save button -->
+                    <Border Grid.Column="0" Width="100" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#63bf3c" HorizontalAlignment="Left" Margin="0 5 5 5">
+                        <Button Height="20" Width="100" Content="Create class" BorderThickness="0" Background="Transparent" Command="{Binding SaveClassCommand}" Style="{StaticResource FlatButton}"/>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+</Window>

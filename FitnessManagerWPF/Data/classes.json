@@ -18,11 +18,7 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 1,
-    "time": "07:00:00",
-    "ClassSummary": "Current Participants: 4/5",
-    "Attendance": "4/5",
-    "ClassInfo": "Morning Yoga - Bobby",
-    "IsUserEnrolled": false
+    "time": "07:00:00"
   },
   {
     "Id": 2,
@@ -39,11 +35,7 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 2,
-    "time": "18:30:00",
-    "ClassSummary": "Current Participants: 2/15",
-    "Attendance": "2/15",
-    "ClassInfo": "Strength Training - Bobby",
-    "IsUserEnrolled": false
+    "time": "18:30:00"
   },
   {
     "Id": 3,
@@ -62,11 +54,7 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 3,
-    "time": "17:45:00",
-    "ClassSummary": "Current Participants: 3/25",
-    "Attendance": "3/25",
-    "ClassInfo": "Indoor Cycling - Bobby",
-    "IsUserEnrolled": false
+    "time": "17:45:00"
   },
   {
     "Id": 4,
@@ -83,11 +71,7 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 4,
-    "time": "19:00:00",
-    "ClassSummary": "Current Participants: 2/18",
-    "Attendance": "2/18",
-    "ClassInfo": "HIIT Blast - Bobby",
-    "IsUserEnrolled": false
+    "time": "19:00:00"
   },
   {
     "Id": 5,
@@ -108,11 +92,7 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 6,
-    "time": "10:00:00",
-    "ClassSummary": "Current Participants: 4/22",
-    "Attendance": "4/22",
-    "ClassInfo": "Weekend Flow Yoga - Bobby",
-    "IsUserEnrolled": true
+    "time": "10:00:00"
   },
   {
     "Id": 6,
@@ -133,10 +113,17 @@
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 5,
-    "time": "16:30:00",
-    "ClassSummary": "Current Participants: 4/20",
-    "Attendance": "4/20",
-    "ClassInfo": "Core \u0026 Stretch - Bobby",
-    "IsUserEnrolled": true
+    "time": "16:30:00"
+  },
+  {
+    "Id": 7,
+    "Name": "Hot Yoga",
+    "MaxParticipants": 10,
+    "RegisteredMemberIdsObservable": [],
+    "RegisteredMemberIds": [],
+    "TrainerId": 3,
+    "TrainerName": "Bobby",
+    "day": 0,
+    "time": "09:00:00"
   }
 ]
