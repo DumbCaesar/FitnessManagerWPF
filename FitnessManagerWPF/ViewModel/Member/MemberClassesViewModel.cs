@@ -37,17 +37,17 @@ namespace FitnessManagerWPF.ViewModel.Member
             if (param is not Classes selectedClass) return;
 
             Debug.WriteLine($"Sign up/cancel click: {selectedClass.Name}");
-            User currentUser = _parentViewModel.CurrentUser;
-            if (selectedClass.RegisteredMemberIds.Contains(currentUser.Id))
+            if (selectedClass.RegisteredMemberIds.Contains(_currentUser.Id))
             {
-                selectedClass.RegisteredMemberIds.Remove(currentUser.Id);
-                Debug.WriteLine($"Removed {currentUser.Name} from {selectedClass.Name}");
+                selectedClass.RegisteredMemberIds.Remove(_currentUser.Id);
+                Debug.WriteLine($"Removed {_currentUser.Name} from {selectedClass.Name}");
             }
             else
             {
-                selectedClass.RegisteredMemberIds.Add(currentUser.Id);
-                Debug.WriteLine($"Added {currentUser.Name} to {selectedClass.Name}");
+                selectedClass.RegisteredMemberIds.Add(_currentUser.Id);
+                Debug.WriteLine($"Added {_currentUser.Name} to {selectedClass.Name}");
             }
+            selectedClass.IsUserEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
             _dataService.SaveClasses();
             CommandManager.InvalidateRequerySuggested();
         }

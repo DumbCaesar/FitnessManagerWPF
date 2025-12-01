@@ -104,8 +104,8 @@
       {
         "Id": 6,
         "MembershipId": 2,
-        "StartDate": "2025-07-05T16:45:00",
-        "EndDate": "2026-07-05T16:45:00",
+        "StartDate": "2024-07-05T16:45:00",
+        "EndDate": "2025-07-05T16:45:00",
         "Membership": { "Id": 2, "Name": "Basic - Yearly", "Price": 799.00, "DurationInMonths": 12 }
       }
     ]

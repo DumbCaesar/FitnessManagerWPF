@@ -23,14 +23,23 @@ namespace FitnessManagerWPF.Model
 
         // Ignore the computed properties used for binding
         [JsonIgnore] public int CurrentParticipants => RegisteredMemberIds.Count;
-        [JsonIgnore] public int FreeSpots => MaxParticipants - CurrentParticipants;
-        [JsonIgnore] public double OccupancyPercent => MaxParticipants > 0 ? (double)CurrentParticipants / MaxParticipants * 100 : 0;
-        [JsonIgnore] public string DayTimeDisplay => $"{Day} {Time}";
         [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
-        [JsonIgnore] public string ClassInfoLine => $"{Name} • {Trainer.Name}";
-        [JsonIgnore] public string ScheduleLine => $"{Day} {Time} • {Trainer.Name}";
 
-        public Classes() { }
+        [JsonIgnore]
+        public bool IsUserEnrolled
+        {
+            get => _isUserEnrolled;
+            set => SetProperty(ref _isUserEnrolled, value);
+        }
+
+        public Classes() {
+            RegisteredMemberIds.CollectionChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(CurrentParticipants));
+                OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(IsUserEnrolled));
+            };
+        }
 
         public Classes(int id, string name, int participants, User trainer, DayOfWeek day, TimeSpan time)
         {
@@ -45,12 +54,9 @@ namespace FitnessManagerWPF.Model
             RegisteredMemberIds.CollectionChanged += (_, __) =>
             {
                 OnPropertyChanged(nameof(CurrentParticipants));
-                OnPropertyChanged(nameof(FreeSpots));
-                OnPropertyChanged(nameof(OccupancyPercent));
                 OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(IsUserEnrolled));
             };
         }
-
-        public bool IsUserEnrolled(int userId) => RegisteredMemberIds.Contains(userId);
     }
 }
