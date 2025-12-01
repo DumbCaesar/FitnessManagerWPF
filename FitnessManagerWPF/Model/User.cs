@@ -24,7 +24,7 @@ namespace FitnessManagerWPF.Model
                 if (UserRole != UserRole.Member) return UserRole.ToString();
                 var activeSub = CurrentMembership();
                 if (activeSub != null)
-                    return activeSub.Membership.Name;
+                    return activeSub.Membership.Name.Split()[0]; // Remove duration from string
                 return "No Active Membership";
             }
             set => MembershipTypeDisplay = value;

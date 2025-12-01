@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using FitnessManagerWPF.ViewModel.Admin;
 
 namespace FitnessManagerWPF.View.Admin
 {
@@ -22,6 +23,16 @@ namespace FitnessManagerWPF.View.Admin
         public AddClassView()
         {
             InitializeComponent();
+
+            Loaded += (s, e) =>
+            {
+                if (DataContext is AddClassViewModel vm)
+                    vm.CloseRequest += () =>
+                    {
+                        DialogResult = true;
+                        Close();
+                    };
+            };
         }
     }
 }
