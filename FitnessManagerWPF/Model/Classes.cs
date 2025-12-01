@@ -12,12 +12,23 @@ namespace FitnessManagerWPF.Model
     public class Classes : ObservableObject
     {
         private bool _isUserEnrolled;
+        private ObservableCollection<int> _registeredMemberIds = new();
         public int Id { get; set; }
         public string Name { get; set; }
         public int MaxParticipants { get; set; }
         [JsonIgnore] public User Trainer { get; set; } // For display and binding
         public int TrainerId { get; set; } // for serialization
-        public ObservableCollection<int> RegisteredMemberIds { get; } = new();
+        public ObservableCollection<int> RegisteredMemberIds
+        {
+            get => _registeredMemberIds;
+            set
+            {
+                _registeredMemberIds = value ?? new();
+                _registeredMemberIds.CollectionChanged += (s, e) => OnPropertyChanged(nameof(CapacityDisplay));
+                OnPropertyChanged(nameof(RegisteredMemberIds));
+                OnPropertyChanged(nameof(CapacityDisplay));
+            }
+        }
         [JsonPropertyName("day")] public DayOfWeek Day { get; set; }
         [JsonPropertyName("time")] public TimeSpan Time { get; set; }
 
