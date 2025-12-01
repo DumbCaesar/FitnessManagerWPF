@@ -43,7 +43,6 @@
                     <Border Grid.Column="1" Margin="2 0 0 0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#DC143C">
                         <Button Height="20" Width="50" Content="Discard" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding DiscardCommand}" HorizontalAlignment="Center"/>
                     </Border>
-
                 </Grid>
             </StackPanel>
         </Border>
