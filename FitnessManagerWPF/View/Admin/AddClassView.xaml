@@ -5,74 +5,59 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
         mc:Ignorable="d"
-        Title="AddClassView" Height="450" Width="800">
-    <Grid>
+        ResizeMode="NoResize"
+        Title="Class Creation" Height="300" Width="420">
+
+    <Grid Margin="16">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="130"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Border BorderBrush="Black" BorderThickness="1" Margin="2" CornerRadius="12" Grid.RowSpan="2" VerticalAlignment="Top" Height="265" Background="WhiteSmoke">
-                <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
-                    <!-- Activity name -->
-                    <TextBlock Text="Class name:" Margin="2"/>
-                    <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                        <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Name}"/>
-                    </Border>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-                <!-- Number of participants -->
-                <TextBlock Text="Number of participants:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding MaxParticipants}"/>
-                </Border>
+        <!-- Class name -->
+        <TextBlock Text="Class name:" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="0,4,0,8" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-                <!-- Trainer -->
-                    <TextBlock Text="Trainer:" Margin="2"/>
-                    <Border BorderBrush="Black"
-                            Background="FloralWhite"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Width="200"
-                            HorizontalAlignment="Left"
-                            Padding="2">
-                    <ComboBox ItemsSource="{Binding TrainerList}" SelectedItem="{Binding Trainer}" DisplayMemberPath="Name" Background="Transparent" BorderThickness="0"/>
-                    </Border>
+        <!-- Max pariticpants -->
+        <TextBlock Text="Max participants:" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Margin="0,4,0,8" Text="{Binding MaxParticipants, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <!-- Day -->
-                    <TextBlock Text="Day:" Margin="2"/>
-                    <Border BorderBrush="Black"
-                                Background="FloralWhite"
-                                BorderThickness="1"
-                                CornerRadius="8"
-                                Width="200"
-                                HorizontalAlignment="Left"
-                                Padding="2">
-                        <ComboBox ItemsSource="{Binding DaysOfWeek}" SelectedItem="{Binding Day}" Background="Transparent" BorderThickness="0"/>
-                    </Border>
+        <!-- Trainer -->
+        <TextBlock Text="Trainer:" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <ComboBox Grid.Row="2" Grid.Column="1" Margin="0,4,0,8" ItemsSource="{Binding TrainerList}" SelectedItem="{Binding Trainer}" DisplayMemberPath="Name"/>
 
-                    <!-- Time -->
-                    <TextBlock Text="Time:" Margin="2"/>
-                <Border BorderBrush="Black"
-                            Background="FloralWhite"
-                            BorderThickness="1"
-                            CornerRadius="8"
-                            Width="200"
-                            HorizontalAlignment="Left"
-                            Padding="2">
-                    <ComboBox ItemsSource="{Binding TimeSlots}"
-                                SelectedItem="{Binding Time}"
-                                ItemStringFormat="{}{0:hh}:{0:mm}"
-                                Background="Transparent"
-                                BorderThickness="0"/>
-                </Border>
+        <!-- Day -->
+        <TextBlock Text="Day:" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <ComboBox Grid.Row="3" Grid.Column="1" Margin="0,4,0,8" ItemsSource="{Binding DaysOfWeek}" SelectedItem="{Binding Day}"/>
 
-                <!-- Save button -->
-                    <Border Grid.Column="0" Width="100" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#63bf3c" HorizontalAlignment="Left" Margin="0 5 5 5">
-                        <Button Height="20" Width="100" Content="Create class" BorderThickness="0" Background="Transparent" Command="{Binding SaveClassCommand}" Style="{StaticResource FlatButton}"/>
-                    </Border>
-                </StackPanel>
-            </Border>
-        </Grid>
+        <!-- Time -->
+        <TextBlock Text="Time:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
+        <ComboBox Grid.Row="4" Grid.Column="1" Margin="0,4,0,8" ItemsSource="{Binding TimeSlots}" SelectedItem="{Binding Time}" ItemStringFormat="{}{0:hh}:{0:mm}"/>
+
+        <!-- Buttons -->
+        <StackPanel Grid.Row="5" Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    Margin="0,16,0,0">
+            <Button Content="Cancel" 
+                    Width="80" Height="28" 
+                    Margin="0,0,8,0"
+                    Command="{Binding CancelCommand}"
+                    IsCancel="True"/>
+            <Button Content="Create Class" 
+                    Width="100" Height="28"
+                    Background="#5CB85C" Foreground="White"
+                    Command="{Binding SaveClassCommand}"
+                    IsDefault="True"/>
+        </StackPanel>
+    </Grid>
 </Window>

@@ -66,12 +66,15 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
         public ICommand SaveClassCommand { get; set; }
+        public event Action? CloseRequest;
+        public ICommand CancelCommand { get; set; }
         public event Action<Classes> ClassCreated;
         public AddClassViewModel(DataService dataService) 
         {
             _dataService = dataService;
             TrainerList = new ObservableCollection<User>(_dataService.Users.Where(u => u.UserRole == UserRole.Trainer));
             SaveClassCommand = new RelayCommand(_ => SaveClass());
+            CancelCommand = new RelayCommand(_ => CloseRequest?.Invoke());
         }
 
         private void SaveClass()
@@ -91,6 +94,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
             
             ClassCreated?.Invoke(newClass);
             MessageBox.Show($"Successfully created class: {Name}");
+
+            CloseRequest?.Invoke();
         }
     }
 }

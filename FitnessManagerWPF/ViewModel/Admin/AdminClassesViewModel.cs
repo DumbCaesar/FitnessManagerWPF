@@ -64,8 +64,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             AddClassViewModel addClassViewModel = new AddClassViewModel(_dataService);
             addClassViewModel.ClassCreated += OnClassCreated;
 
-            var addClassView = new AddClassView { DataContext = addClassViewModel };
-            addClassView.Show();
+            var view = new AddClassView { DataContext = addClassViewModel };
+            bool? result = view.ShowDialog();
+
+            addClassViewModel.ClassCreated -= OnClassCreated;
         }
 
         private void OnClassCreated(Classes newClass) => Activities.Add(newClass);
