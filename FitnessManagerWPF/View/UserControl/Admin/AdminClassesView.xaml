@@ -6,19 +6,62 @@
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <StackPanel>
-        <Button Content="Add class" Command="{Binding AddClassCommand}" Width="80" HorizontalAlignment="Left" Margin="5"/>
-        <Grid>
-        <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ClassInfo}"/>
-                        <TextBlock Text="{Binding ClassSummary}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+    <Grid Margin="16" Background="#FAFAFA">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <DockPanel Grid.Row="0" Margin="0,0,0,16">
+            <TextBlock Text="Classes Schedule" FontSize="20" FontWeight="SemiBold" Foreground="#1F2937" VerticalAlignment="Center"/>
+            <Button Content="Add Class" Command="{Binding AddClassCommand}" Width="120" Height="36" Background="#10B981" Foreground="White" FontWeight="Medium" HorizontalAlignment="Right" Padding="16,0" Cursor="Hand"/>
+        </DockPanel>
+
+        <!-- Classes -->
+        <Border Grid.Row="1" Background="White" BorderBrush="#E5E7EB" BorderThickness="1" CornerRadius="8">
+            <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}" BorderThickness="0" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Height="32" Margin="8,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Grid.Column="0" Text="{Binding Day}" FontWeight="SemiBold"  FontSize="14" Foreground="#1F2937" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="1" Text="{Binding Time}" FontWeight="SemiBold"  FontSize="14" Foreground="#1F2937" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="2" Text="{Binding Name}" FontWeight="Medium" FontSize="14" Foreground="#111827" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="3" Text="{Binding Trainer.Name}" Foreground="#6B7280" VerticalAlignment="Center"/>
+                            <TextBlock Grid.Column="4" Text="{Binding CapacityDisplay}" FontWeight="SemiBold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListBoxItem">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="#E5E7EB"
+                                            BorderThickness="0,0,0,1">
+                                        <ContentPresenter Margin="12,0"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter Property="Background" Value="#F0FDF4"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+        </Border>
     </Grid>
-    </StackPanel>
 </UserControl>

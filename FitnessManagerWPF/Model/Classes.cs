@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FitnessManagerWPF.ViewModel;
+using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
@@ -14,62 +15,42 @@ namespace FitnessManagerWPF.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public int MaxParticipants { get; set; }
-        public ObservableCollection<int> RegisteredMemberIdsObservable { get; } = new();
-        public List<int> RegisteredMemberIds
-        {
-            get => RegisteredMemberIdsObservable.ToList();
-            set
-            {
-                RegisteredMemberIdsObservable.Clear();
-                if (value != null)
-                {
-                    foreach (var id in value)
-                    {
-                        RegisteredMemberIdsObservable.Add(id);
-                    }
-                }
-            }
-        }
-        public int TrainerId { get; set; }
-        public string TrainerName { get; set; }
-        [System.Text.Json.Serialization.JsonPropertyName("day")]
+        [JsonIgnore] public User Trainer { get; set; } // For display and binding
+        public int TrainerId { get; set; } // for serialization
+        public ObservableCollection<int> RegisteredMemberIds { get; } = new();
+        [JsonPropertyName("day")] public DayOfWeek Day { get; set; }
+        [JsonPropertyName("time")] public TimeSpan Time { get; set; }
 
-        public DayOfWeek Day { get; set; }
-        [System.Text.Json.Serialization.JsonPropertyName("time")]
+        // Ignore the computed properties used for binding
+        [JsonIgnore] public int CurrentParticipants => RegisteredMemberIds.Count;
+        [JsonIgnore] public int FreeSpots => MaxParticipants - CurrentParticipants;
+        [JsonIgnore] public double OccupancyPercent => MaxParticipants > 0 ? (double)CurrentParticipants / MaxParticipants * 100 : 0;
+        [JsonIgnore] public string DayTimeDisplay => $"{Day} {Time}";
+        [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
+        [JsonIgnore] public string ClassInfoLine => $"{Name} • {Trainer.Name}";
+        [JsonIgnore] public string ScheduleLine => $"{Day} {Time} • {Trainer.Name}";
 
-        public TimeSpan Time { get; set; }
-
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string ClassSummary => $"Current Participants: {RegisteredMemberIds.Count}/{MaxParticipants}";
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string Attendance => $"{RegisteredMemberIds.Count}/{MaxParticipants}";
-        [System.Text.Json.Serialization.JsonIgnore]
-        public string ClassInfo => $"{Name} - {TrainerName}";
-
-        [System.Text.Json.Serialization.JsonIgnore]
-        public bool IsUserEnrolled 
-        { 
-            get => _isUserEnrolled;
-            set => SetProperty(ref _isUserEnrolled, value);
-        }
-
-        public Classes()
-        {
-            RegisteredMemberIdsObservable.CollectionChanged += (_, __) =>
-            {
-                OnPropertyChanged(nameof(Attendance));
-            };
-        }
+        public Classes() { }
 
         public Classes(int id, string name, int participants, User trainer, DayOfWeek day, TimeSpan time)
         {
             Id = id;
-            Name = name;
+            Name = name ?? throw new ArgumentNullException(nameof(trainer));
             MaxParticipants = participants;
+            Trainer = trainer ?? throw new ArgumentNullException(nameof(trainer));
             TrainerId = trainer.Id;
-            TrainerName = trainer.Name;
             Day = day;
             Time = time;
+
+            RegisteredMemberIds.CollectionChanged += (_, __) =>
+            {
+                OnPropertyChanged(nameof(CurrentParticipants));
+                OnPropertyChanged(nameof(FreeSpots));
+                OnPropertyChanged(nameof(OccupancyPercent));
+                OnPropertyChanged(nameof(CapacityDisplay));
+            };
         }
+
+        public bool IsUserEnrolled(int userId) => RegisteredMemberIds.Contains(userId);
     }
 }

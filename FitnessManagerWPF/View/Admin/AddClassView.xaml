@@ -44,18 +44,11 @@
         <ComboBox Grid.Row="4" Grid.Column="1" Margin="0,4,0,8" ItemsSource="{Binding TimeSlots}" SelectedItem="{Binding Time}" ItemStringFormat="{}{0:hh}:{0:mm}"/>
 
         <!-- Buttons -->
-        <StackPanel Grid.Row="5" Grid.Column="1"
-                    HorizontalAlignment="Right"
-                    Orientation="Horizontal"
-                    Margin="0,16,0,0">
-            <Button Content="Cancel" 
-                    Width="80" Height="28" 
-                    Margin="0,0,8,0"
+        <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,16,0,0">
+            <Button Content="Cancel" Width="80" Height="28" Margin="0,0,8,0"
                     Command="{Binding CancelCommand}"
                     IsCancel="True"/>
-            <Button Content="Create Class" 
-                    Width="100" Height="28"
-                    Background="#5CB85C" Foreground="White"
+            <Button Content="Create Class" Width="100" Height="28" Background="#5CB85C" Foreground="White"
                     Command="{Binding SaveClassCommand}"
                     IsDefault="True"/>
         </StackPanel>
