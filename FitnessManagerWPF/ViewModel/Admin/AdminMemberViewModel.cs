@@ -71,16 +71,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             if (SelectedMember == null) return;
             SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
-            SelectedMemberViewModel.MemberChanged += UpdateMemberList;
+            SelectedMemberViewModel.MemberChanged += OnMemberUpdated;
             SelectedMemberViewModel.MemberDeleted += OnMemberDeleted;
             var SelectedMemberView = new SelectedMemberView { DataContext = SelectedMemberViewModel };
             SelectedMemberView.ShowDialog();
-            SelectedMemberViewModel.MemberChanged -= UpdateMemberList;
+            SelectedMemberViewModel.MemberChanged -= OnMemberUpdated;
             SelectedMemberViewModel.MemberDeleted -= OnMemberDeleted;
 
         }
 
-        private void UpdateMemberList()
+        private void OnMemberUpdated()
         {
             _userList = _dataService.Users;
             var updatedUser = _userList.FirstOrDefault(u => u.Id == SelectedMember.Id);

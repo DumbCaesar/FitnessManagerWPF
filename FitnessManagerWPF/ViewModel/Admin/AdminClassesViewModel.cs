@@ -25,6 +25,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private List<Classes> _activityList;
         private ObservableCollection<Classes> _activities;
         public ICommand AddClassCommand { get; set; }
+        public ICommand ShowSelectedClassCommand { get; set; }
 
         public Classes? SelectedActivity
         {
@@ -32,7 +33,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set
             {
                 SetProperty(ref _selectedActivity, value);
-                Debug.WriteLine($"Selected Activity is: {_selectedActivity.Name}");
+                if (SelectedActivity != null)
+                {
+                    Debug.WriteLine($"Selected Activity is: {_selectedActivity.Name}");
+                }
             }
         }
 
@@ -56,6 +60,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _activityList = _dataService._activities.ToList();
             _activities = new ObservableCollection<Classes>(_activityList);
             AddClassCommand = new RelayCommand(_ => AddClass());
+            ShowSelectedClassCommand = new RelayCommand(_ => ShowSelectedClass());
         }
 
         private void AddClass()
@@ -68,6 +73,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             bool? result = view.ShowDialog();
 
             addClassViewModel.ClassCreated -= OnClassCreated;
+        }
+
+        private void ShowSelectedClass()
+        {
+            if (SelectedActivity == null) return;
+            SelectedClassViewModel selectedClassViewModel = new SelectedClassViewModel(_dataService, SelectedActivity);
+            SelectedClassView selectedClassView = new SelectedClassView { DataContext = selectedClassViewModel };
+            selectedClassView.ShowDialog();
         }
 
         private void OnClassCreated(Classes newClass) => Activities.Add(newClass);
