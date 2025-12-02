@@ -277,5 +277,34 @@
     "MembershipExpiresAt": "2026-01-20T11:30:00",
     "ActiveMembershipId": 5,
     "role": 0
+  },
+  {
+    "Id": 16,
+    "Name": "test",
+    "Email": "test@gmail.com",
+    "BillingHistory": [
+      {
+        "Id": 18,
+        "MembershipId": 6,
+        "AmountPaid": 2999.00,
+        "PurchasedAt": "2025-12-02T16:46:40.5326919+01:00"
+      },
+      {
+        "Id": 19,
+        "MembershipId": 6,
+        "AmountPaid": 2999.00,
+        "PurchasedAt": "2025-12-02T16:46:47.5512242+01:00"
+      },
+      {
+        "Id": 20,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-12-02T16:52:27.5507806+01:00"
+      }
+    ],
+    "DateJoined": "2025-12-02T16:43:36.4775333+01:00",
+    "MembershipExpiresAt": "2026-01-02T16:52:27.5507806+01:00",
+    "ActiveMembershipId": 5,
+    "role": 0
   }
 ]
