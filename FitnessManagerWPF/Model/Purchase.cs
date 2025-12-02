@@ -21,11 +21,5 @@ namespace FitnessManagerWPF.Model
         [JsonIgnore] public string AmountDisplay => AmountPaid.ToString("C2");
 
         public Purchase() { }
-        public Purchase(Membership membership, int id) 
-        {
-            Id = id;
-            Membership = membership;
-            MembershipId = membership.Id;
-        }
     }
 }

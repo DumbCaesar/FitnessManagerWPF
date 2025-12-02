@@ -31,10 +31,16 @@
         "MembershipId": 5,
         "AmountPaid": 299.99,
         "PurchasedAt": "2025-12-02T15:47:23.2152992+01:00"
+      },
+      {
+        "Id": 17,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-12-02T16:25:43.5613719+01:00"
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
-    "MembershipExpiresAt": "2026-01-02T15:47:23.2152992+01:00",
+    "MembershipExpiresAt": "2026-02-02T15:47:23.2152992+01:00",
     "ActiveMembershipId": 5,
     "role": 0
   },
