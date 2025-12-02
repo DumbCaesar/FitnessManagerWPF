@@ -55,7 +55,7 @@
                     <DataTemplate>
                         <StackPanel Margin="5">
                             <TextBlock Text="{Binding Id, StringFormat='Transaction Id: {0}'}" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding Membership.Price, StringFormat='Paid Amount: {0}'}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Membership.Price, StringFormat='Paid Amount: {0} kr.'}" FontWeight="SemiBold"/>
                             <TextBlock Text="{Binding DurationLeftFormatted, StringFormat='Status: {0}'}" FontWeight="SemiBold"/>
                             <TextBlock Text="{Binding StartDate, StringFormat='Start Date: {0:dd/MM/yyyy}'}"/>
                             <TextBlock Text="{Binding EndDate, StringFormat='End Date: {0:dd/MM/yyyy}'}"/>
