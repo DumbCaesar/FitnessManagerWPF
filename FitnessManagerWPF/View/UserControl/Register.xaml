@@ -4,8 +4,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl"
+             xmlns:helper="clr-namespace:FitnessManagerWPF.Helpers"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="400">
+             d:DesignHeight="500" d:DesignWidth="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
@@ -16,6 +17,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
@@ -39,21 +42,25 @@
         
         <!-- Password -->
         <Border Grid.Row="5" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
-            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Password" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="Password" helper:PasswordBoxHelper.ActualPassword="{Binding Password, UpdateSourceTrigger=PropertyChanged}" helper:PasswordBoxHelper.PasswordChar="True" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
+        </Border>
+        <Border Grid.Row="7" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
+            <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" helper:PasswordBoxHelper.PasswordChar="True" Tag="Password" helper:PasswordBoxHelper.ActualPassword="{Binding PasswordCompare, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
         <TextBlock Grid.Row="6" Grid.Column="1" Text="{Binding PasswordValidationError}" Foreground="Red" Width="280"/>
+        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding PasswordValidationCompareError}" Foreground="Red" Width="280"/>
         
         <!-- Email -->
-        <Border Grid.Row="7" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
+        <Border Grid.Row="9" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="300">
             <TextBox Style="{StaticResource PlaceholderTextBoxStyle}" Tag="E-mail" Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Grid.Row="3" Grid.Column="1" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" BorderThickness="0" Width="280" Margin="5" FontSize="16"/>
         </Border>
-        <TextBlock Grid.Row="8" Grid.Column="1" Text="{Binding EmailValidationError}" Foreground="Red" Width="280"/>
+        <TextBlock Grid.Row="10" Grid.Column="1" Text="{Binding EmailValidationError}" Foreground="Red" Width="280"/>
         
         <!-- Buttons -->
-        <Border Grid.Row="9" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="LightSlateGray" Margin="0 0 110 0">
+        <Border Grid.Row="11" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="LightSlateGray" Margin="0 0 110 0">
             <Button Command="{Binding CreateUserCommand}" Content="Create User" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>
         </Border>
-        <Border Grid.Row="9" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="DimGray" Margin="110 0 0 0">
+        <Border Grid.Row="11" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="DimGray" Margin="110 0 0 0">
             <Button Command="{Binding ShowLoginCommand}" Content="Return" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>
         </Border>
     </Grid>
