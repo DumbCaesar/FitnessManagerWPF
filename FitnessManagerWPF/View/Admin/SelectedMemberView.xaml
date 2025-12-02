@@ -22,8 +22,12 @@
                 <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.MembershipTypeDisplay, StringFormat='Status: {0}'}" FontSize="16"/>
                 <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" FontSize="16"/>
-                <Button Content="Edit" Width="40" Height="25" HorizontalAlignment="Left" Command="{Binding EditMemberCommand}"/>
-                <Button Content="Delete" Width="40" Height="25" HorizontalAlignment="Left" Command="{Binding DeleteMemberCommand}"/>
+                <Border BorderBrush="Black" BorderThickness="1" Width="40" HorizontalAlignment="Left" Height="20" Margin="0 5 0 5" CornerRadius="5" Background="Yellow">
+                    <Button Content="Edit" Command="{Binding EditMemberCommand}" Style="{StaticResource FlatButton}" BorderThickness="0" Background="Transparent"/>
+                </Border>
+                <Border BorderBrush="Black" BorderThickness="1" Width="40" HorizontalAlignment="Left" Height="20" CornerRadius="5" Background="Red">
+                    <Button Content="Delete" Command="{Binding DeleteMemberCommand}" Style="{StaticResource FlatButton}" BorderThickness="0" Background="Transparent"/>
+                </Border>
             </StackPanel>
         </Border>
         <Border Grid.Row="1" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
@@ -51,6 +55,7 @@
                     <DataTemplate>
                         <StackPanel Margin="5">
                             <TextBlock Text="{Binding Id, StringFormat='Transaction Id: {0}'}" FontWeight="SemiBold"/>
+                            <TextBlock Text="{Binding Membership.Price, StringFormat='Paid Amount: {0}'}" FontWeight="SemiBold"/>
                             <TextBlock Text="{Binding DurationLeftFormatted, StringFormat='Status: {0}'}" FontWeight="SemiBold"/>
                             <TextBlock Text="{Binding StartDate, StringFormat='Start Date: {0:dd/MM/yyyy}'}"/>
                             <TextBlock Text="{Binding EndDate, StringFormat='End Date: {0:dd/MM/yyyy}'}"/>
