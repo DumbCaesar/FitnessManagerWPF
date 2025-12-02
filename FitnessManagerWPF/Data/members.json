@@ -13,11 +13,16 @@
     "Email": "bo@dania.dk",
     "BillingHistory": [
       {
-        "Id": 1,
-        "MembershipId": 1,
         "StartDate": "2025-11-27T12:37:38",
         "EndDate": "2025-12-27T12:37:38",
-        "Membership": { "Id": 1, "Name": "Basic - Monthly", "Price": 79.99, "DurationInMonths": 1 }
+        "Id": 1,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 79.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic - 1 Month"
+        }
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
@@ -29,11 +34,16 @@
     "Email": "bob@dania.dk",
     "BillingHistory": [
       {
-        "Id": 2,
-        "MembershipId": 6,
         "StartDate": "2025-06-01T00:00:00",
         "EndDate": "2026-06-01T00:00:00",
-        "Membership": { "Id": 6, "Name": "VIP - Yearly", "Price": 2999.00, "DurationInMonths": 12 }
+        "Id": 2,
+        "MembershipId": 6,
+        "Membership": {
+          "Price": 2999.00,
+          "DurationInMonths": 12,
+          "Id": 6,
+          "Name": "VIP - 1 Year"
+        }
       }
     ],
     "DateJoined": "2025-06-01T00:00:00",
@@ -51,55 +61,68 @@
     "Id": 4,
     "Name": "Sarah Johnson",
     "Email": "sarah.johnson@email.com",
-    "DateJoined": "2024-01-15T09:30:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 3,
-        "MembershipId": 4,
         "StartDate": "2025-01-15T09:30:00",
         "EndDate": "2026-01-15T09:30:00",
-        "Membership": { "Id": 4, "Name": "Premium - Yearly", "Price": 1499.00, "DurationInMonths": 12 }
+        "Id": 3,
+        "MembershipId": 4,
+        "Membership": {
+          "Price": 1499.00,
+          "DurationInMonths": 12,
+          "Id": 4,
+          "Name": "Premium - 1 Year"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2024-01-15T09:30:00",
+    "role": 0
   },
   {
     "Id": 5,
     "Name": "Michael Chen",
     "Email": "michael.chen@email.com",
-    "DateJoined": "2024-03-22T14:15:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 4,
-        "MembershipId": 3,
         "StartDate": "2025-11-01T00:00:00",
         "EndDate": "2025-12-01T00:00:00",
-        "Membership": { "Id": 3, "Name": "Premium - Monthly", "Price": 149.99, "DurationInMonths": 1 }
+        "Id": 4,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 149.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "Premium - 1 Month"
+        }
       },
       {
-        "Id": 5,
-        "MembershipId": 3,
         "StartDate": "2025-12-01T00:00:00",
         "EndDate": "2026-01-01T00:00:00",
-        "Membership": { "Id": 3, "Name": "Premium - Monthly", "Price": 149.99, "DurationInMonths": 1 }
+        "Id": 5,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 149.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "Premium - 1 Month"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2024-03-22T14:15:00",
+    "role": 0
   },
   {
     "Id": 6,
     "Name": "Emily Rodriguez",
     "Email": "emily.rodriguez@email.com",
+    "BillingHistory": [],
     "DateJoined": "2024-06-10T11:00:00",
-    "role": 1,
-    "BillingHistory": []
+    "role": 1
   },
   {
     "Id": 7,
     "Name": "David Thompson",
     "Email": "david.thompson@email.com",
-    "DateJoined": "2024-07-05T16:45:00",
-    "role": 0,
     "BillingHistory": [
       {
         "Id": 6,
@@ -108,147 +131,220 @@
         "EndDate": "2025-07-05T16:45:00",
         "Membership": { "Id": 2, "Name": "Basic - Yearly", "Price": 799.00, "DurationInMonths": 12 }
       }
-    ]
+    ],
+    "DateJoined": "2024-07-05T16:45:00",
+    "role": 0
   },
   {
     "Id": 8,
     "Name": "Olivia Hansen",
     "Email": "olivia.hansen@email.com",
-    "DateJoined": "2025-08-15T10:00:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 7,
-        "MembershipId": 5,
         "StartDate": "2025-11-15T00:00:00",
         "EndDate": "2025-12-15T00:00:00",
-        "Membership": { "Id": 5, "Name": "VIP - Monthly", "Price": 299.99, "DurationInMonths": 1 }
+        "Id": 7,
+        "MembershipId": 5,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 5,
+          "Name": "VIP - 1 Month"
+        }
       },
       {
-        "Id": 8,
-        "MembershipId": 5,
         "StartDate": "2025-12-15T00:00:00",
         "EndDate": "2026-01-15T00:00:00",
-        "Membership": { "Id": 5, "Name": "VIP - Monthly", "Price": 299.99, "DurationInMonths": 1 }
+        "Id": 8,
+        "MembershipId": 5,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 5,
+          "Name": "VIP - 1 Month"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-08-15T10:00:00",
+    "role": 0
   },
   {
     "Id": 9,
     "Name": "James Martinez",
     "Email": "james.martinez@email.com",
-    "DateJoined": "2024-08-12T13:20:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 9,
-        "MembershipId": 1,
         "StartDate": "2025-11-15T08:30:00",
         "EndDate": "2025-12-15T08:30:00",
-        "Membership": { "Id": 1, "Name": "Basic - Monthly", "Price": 79.99, "DurationInMonths": 1 }
+        "Id": 9,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 79.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic - 1 Month"
+        }
       },
       {
-        "Id": 10,
-        "MembershipId": 1,
         "StartDate": "2025-12-15T08:30:00",
         "EndDate": "2026-01-15T08:30:00",
-        "Membership": { "Id": 1, "Name": "Basic - Monthly", "Price": 79.99, "DurationInMonths": 1 }
+        "Id": 10,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 79.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic - 1 Month"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2024-08-12T13:20:00",
+    "role": 0
   },
   {
     "Id": 10,
     "Name": "Amanda Taylor",
     "Email": "amanda.taylor@email.com",
-    "DateJoined": "2025-05-01T00:00:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 11,
-        "MembershipId": 4,
         "StartDate": "2025-05-01T00:00:00",
         "EndDate": "2026-05-01T00:00:00",
-        "Membership": { "Id": 4, "Name": "Premium - Yearly", "Price": 1499.00, "DurationInMonths": 12 }
+        "Id": 11,
+        "MembershipId": 4,
+        "Membership": {
+          "Price": 1499.00,
+          "DurationInMonths": 12,
+          "Id": 4,
+          "Name": "Premium - 1 Year"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-05-01T00:00:00",
+    "role": 0
   },
   {
     "Id": 11,
     "Name": "Robert Garcia",
     "Email": "robert.garcia@email.com",
+    "BillingHistory": [],
     "DateJoined": "2024-02-28T15:00:00",
-    "role": 1,
-    "BillingHistory": []
+    "role": 1
   },
   {
     "Id": 12,
     "Name": "Lisa Anderson",
     "Email": "lisa.anderson@email.com",
-    "DateJoined": "2025-09-01T12:30:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 12,
-        "MembershipId": 6,
         "StartDate": "2025-09-01T12:30:00",
         "EndDate": "2026-09-01T12:30:00",
-        "Membership": { "Id": 6, "Name": "VIP - Yearly", "Price": 2999.00, "DurationInMonths": 12 }
+        "Id": 12,
+        "MembershipId": 6,
+        "Membership": {
+          "Price": 2999.00,
+          "DurationInMonths": 12,
+          "Id": 6,
+          "Name": "VIP - 1 Year"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-09-01T12:30:00",
+    "role": 0
   },
   {
     "Id": 13,
     "Name": "Christopher Lee",
     "Email": "christopher.lee@email.com",
-    "DateJoined": "2025-01-10T09:45:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 13,
-        "MembershipId": 2,
         "StartDate": "2025-01-10T09:45:00",
         "EndDate": "2026-01-10T09:45:00",
-        "Membership": { "Id": 2, "Name": "Basic - Yearly", "Price": 799.00, "DurationInMonths": 12 }
+        "Id": 13,
+        "MembershipId": 2,
+        "Membership": {
+          "Price": 799.00,
+          "DurationInMonths": 12,
+          "Id": 2,
+          "Name": "Basic - 1 Year"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-01-10T09:45:00",
+    "role": 0
   },
   {
     "Id": 14,
     "Name": "Nicole Davis",
     "Email": "nicole.davis@email.com",
-    "DateJoined": "2025-04-01T14:00:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 14,
-        "MembershipId": 3,
         "StartDate": "2025-12-01T14:00:00",
         "EndDate": "2026-01-01T14:00:00",
-        "Membership": { "Id": 3, "Name": "Premium - Monthly", "Price": 149.99, "DurationInMonths": 1 }
+        "Id": 14,
+        "MembershipId": 3,
+        "Membership": {
+          "Price": 149.99,
+          "DurationInMonths": 1,
+          "Id": 3,
+          "Name": "Premium - 1 Month"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-04-01T14:00:00",
+    "role": 0
   },
   {
     "Id": 15,
     "Name": "Brandon Moore",
     "Email": "brandon.moore@email.com",
-    "DateJoined": "2025-10-20T11:30:00",
-    "role": 0,
     "BillingHistory": [
       {
-        "Id": 15,
-        "MembershipId": 5,
         "StartDate": "2025-11-20T11:30:00",
         "EndDate": "2025-12-20T11:30:00",
-        "Membership": { "Id": 5, "Name": "VIP - Monthly", "Price": 299.99, "DurationInMonths": 1 }
+        "Id": 15,
+        "MembershipId": 5,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 5,
+          "Name": "VIP - 1 Month"
+        }
       },
       {
-        "Id": 16,
-        "MembershipId": 5,
         "StartDate": "2025-12-20T11:30:00",
         "EndDate": "2026-01-20T11:30:00",
-        "Membership": { "Id": 5, "Name": "VIP - Monthly", "Price": 299.99, "DurationInMonths": 1 }
+        "Id": 16,
+        "MembershipId": 5,
+        "Membership": {
+          "Price": 299.99,
+          "DurationInMonths": 1,
+          "Id": 5,
+          "Name": "VIP - 1 Month"
+        }
       }
-    ]
+    ],
+    "DateJoined": "2025-10-20T11:30:00",
+    "role": 0
+  },
+  {
+    "Id": 16,
+    "Name": "temp",
+    "Email": "temp@gmail.com",
+    "BillingHistory": [
+      {
+        "StartDate": "2025-12-02T09:11:46.6269987+01:00",
+        "EndDate": "2026-12-02T09:11:46.6270247+01:00",
+        "Id": 17,
+        "MembershipId": 2,
+        "Membership": {
+          "Price": 799.00,
+          "DurationInMonths": 12,
+          "Id": 2,
+          "Name": "Basic - 1 Year"
+        }
+      }
+    ],
+    "DateJoined": "2025-12-02T09:11:27.2395486+01:00",
+    "role": 0
   }
 ]

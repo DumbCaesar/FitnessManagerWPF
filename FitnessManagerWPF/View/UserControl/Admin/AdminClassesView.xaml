@@ -3,9 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
+    <StackPanel>
+        <Button Content="Add class" Command="{Binding AddClassCommand}" Width="80" HorizontalAlignment="Left" Margin="5"/>
+        <Grid>
+            <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseDoubleClick">
+                        <i:InvokeCommandAction Command="{Binding ShowSelectedClassCommand}" CommandParameter="{Binding SelectedActivity}"/>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding ClassInfo}"/>
+                        <TextBlock Text="{Binding ClassSummary}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     <Grid Margin="16" Background="#FAFAFA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
