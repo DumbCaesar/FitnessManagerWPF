@@ -34,6 +34,7 @@ namespace FitnessManagerWPF.Model
 
         // Ignore the computed properties used for binding
         [JsonIgnore] public int CurrentParticipants => RegisteredMemberIds.Count;
+        [JsonIgnore] public string ClassInfo => $"{Name} - {Trainer.Name}";
         [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
 
         [JsonIgnore]
