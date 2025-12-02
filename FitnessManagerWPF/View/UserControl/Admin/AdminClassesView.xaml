@@ -21,7 +21,10 @@
 
         <!-- Classes -->
         <ListView Grid.Row="1" ItemsSource="{Binding Activities}"  SelectedItem="{Binding SelectedActivity, Mode=TwoWay}" Margin="5">
-                    <i:Interaction.Triggers>
+            <ListView.Resources>
+                <Style TargetType="ScrollBar" BasedOn="{StaticResource HorizontalCleanScrollBar}" />
+            </ListView.Resources>
+            <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ShowSelectedClassCommand}" CommandParameter="{Binding SelectedActivity}"/>
                         </i:EventTrigger>
