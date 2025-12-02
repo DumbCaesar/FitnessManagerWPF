@@ -102,6 +102,7 @@ namespace FitnessManagerWPF.Services
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
 
                 LinkMemberships();
+                LinkTrainers();
             }
             catch (FileNotFoundException ex)
             {
@@ -140,6 +141,14 @@ namespace FitnessManagerWPF.Services
                         sub.Membership = _memberships.FirstOrDefault(m => m.Id == sub.MembershipId);
                     }
                 }
+            }
+        }
+
+        private void LinkTrainers()
+        {
+            foreach (Classes c in _activities)
+            {
+                c.Trainer = _users.FirstOrDefault(u => u.Id == c.TrainerId) ?? new User { Id = c.TrainerId, Name = "Deleted Trainer" };
             }
         }
 
@@ -337,19 +346,9 @@ namespace FitnessManagerWPF.Services
                 // Remove user from all activities
                 foreach (var activity in _activities)
                 {
-                    if (activity.RegisteredMemberIds != null)
+                    while (activity.RegisteredMemberIds.Contains(user.Id))
                     {
-                        activity.RegisteredMemberIds.RemoveAll(id => id == user.Id);
-                    }
-
-                    // Also remove from Observable, or the user Id won't get deleted from file.
-                    if (activity.RegisteredMemberIdsObservable != null)
-                    {
-                        // Remove all instances of this user ID
-                        while (activity.RegisteredMemberIdsObservable.Contains(user.Id))
-                        {
-                            activity.RegisteredMemberIdsObservable.Remove(user.Id);
-                        }
+                        activity.RegisteredMemberIds.Remove(user.Id);
                     }
                 }
 

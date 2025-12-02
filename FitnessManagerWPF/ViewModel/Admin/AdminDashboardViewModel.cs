@@ -20,7 +20,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public int InactiveMemberCount { get; set; }
         public int ClassesToday { get; set; }
         public int ClassesWeek { get; set; }
-        public string Attendance { get; set; }
+        public double CapacityPercentage { get; set; }
         public int MonthlySignups { get; set; }
         public int ExpiringMemberships { get; set; }
         public decimal MRR { get; set; }
@@ -52,10 +52,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             ClassesWeek = _dataService._activities.Count();
             int MaxAttendance = _dataService._activities.Sum(a => a.MaxParticipants);
             Debug.WriteLine($"Max attendance this week: {MaxAttendance}");
-            int CurrentAttendance = _dataService._activities.Sum(a => a.RegisteredMemberIds.Count());
+            int CurrentAttendance = _dataService._activities.Sum(a => a.CurrentParticipants);
             Debug.WriteLine($"Current attendance this week: {CurrentAttendance}");
-            Attendance = $"{CurrentAttendance}/{MaxAttendance}";
-            Debug.WriteLine($"Attendance: {CurrentAttendance}/{MaxAttendance}");
+            CapacityPercentage = (double)CurrentAttendance/MaxAttendance;
+            Debug.WriteLine($"Attendance: {CapacityPercentage}");
         }
 
         private void UpdateKPIs()

@@ -12,6 +12,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <!-- Left card -->
         <Border Grid.Column="0" Margin="5" Background="WhiteSmoke" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Height="220" VerticalAlignment="Top">
             <StackPanel>
                 <TextBlock Text="Total members" FontSize="14" FontWeight="SemiBold"/>
@@ -22,7 +23,8 @@
                 <TextBlock Text="{Binding InactiveMemberCount}" FontSize="32" FontWeight="Bold"/>
             </StackPanel>
         </Border>
-
+        
+        <!-- Middle card -->
         <Border Grid.Column="1" Margin="5" Background="WhiteSmoke" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Height="220" VerticalAlignment="Top">
             <StackPanel>
                 <TextBlock Text="Classes today" FontSize="14" FontWeight="SemiBold"/>
@@ -30,9 +32,11 @@
                 <TextBlock Text="Classes this week" FontSize="14" FontWeight="SemiBold"/>
                 <TextBlock Text="{Binding ClassesWeek}" FontSize="32" FontWeight="Bold"/>
                 <TextBlock Text="Weekly attendance" FontSize="14" FontWeight="SemiBold"/>
-                <TextBlock Text="{Binding Attendance}" FontSize="32" FontWeight="Bold"/>
+                <TextBlock Text="{Binding CapacityPercentage, StringFormat={}{0:P0}}" FontSize="32" FontWeight="Bold"/>
             </StackPanel>
         </Border>
+        
+        <!-- Right card -->
         <Border Grid.Column="2" Margin="5" Background="WhiteSmoke" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="5" Height="220" VerticalAlignment="Top">
             <StackPanel>
                 <TextBlock Text="MRR" FontSize="14" FontWeight="SemiBold"/>

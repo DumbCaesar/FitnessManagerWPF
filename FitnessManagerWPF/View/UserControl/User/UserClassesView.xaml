@@ -20,9 +20,9 @@
                             <StackPanel>
                                 <TextBlock Text="{Binding Name}" FontSize="28" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
                                 <TextBlock Text="Trainer" FontSize="14" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding TrainerName}" FontSize="28" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Trainer.Name}" FontSize="28" FontWeight="Bold"/>
                                 <TextBlock Text="Participants" FontSize="14" FontWeight="SemiBold"/>
-                                <TextBlock Text="{Binding Attendance}" FontSize="28" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding CapacityDisplay}" FontSize="28" FontWeight="Bold"/>
                                 <Button FontSize="14" Command="{Binding DataContext.SignUpCommand, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Height="30">
                                     <Button.Style>
                                         <Style TargetType="Button">

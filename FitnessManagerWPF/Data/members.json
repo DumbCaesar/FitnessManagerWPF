@@ -125,16 +125,11 @@
     "Email": "david.thompson@email.com",
     "BillingHistory": [
       {
-        "StartDate": "2025-07-05T16:45:00",
-        "EndDate": "2026-07-05T16:45:00",
         "Id": 6,
         "MembershipId": 2,
-        "Membership": {
-          "Price": 799.00,
-          "DurationInMonths": 12,
-          "Id": 2,
-          "Name": "Basic - 1 Year"
-        }
+        "StartDate": "2024-07-05T16:45:00",
+        "EndDate": "2025-07-05T16:45:00",
+        "Membership": { "Id": 2, "Name": "Basic - Yearly", "Price": 799.00, "DurationInMonths": 12 }
       }
     ],
     "DateJoined": "2024-07-05T16:45:00",
