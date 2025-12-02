@@ -14,9 +14,9 @@ namespace FitnessManagerWPF.Model
     {
         public int Id { get; set; }
         public int MembershipId { get; set; }
-        public Membership Membership { get; set; }
         public decimal AmountPaid { get; set; }
         public DateTime PurchasedAt { get; set; } = DateTime.Now;
+        [JsonIgnore] public Membership Membership { get; set; }
         [JsonIgnore] public string DateDisplay => PurchasedAt.ToString("dd MMM yyyy HH:mm");
         [JsonIgnore] public string AmountDisplay => AmountPaid.ToString("C2");
 

@@ -17,31 +17,25 @@
       {
         "Id": 14,
         "MembershipId": 1,
-        "Membership": {
-          "Price": 79.99,
-          "DurationInMonths": 1,
-          "Id": 1,
-          "Name": "Basic - 1 Month"
-        },
         "AmountPaid": 79.99,
         "PurchasedAt": "2025-12-02T15:26:09.6384033+01:00"
       },
       {
         "Id": 15,
         "MembershipId": 1,
-        "Membership": {
-          "Price": 79.99,
-          "DurationInMonths": 1,
-          "Id": 1,
-          "Name": "Basic - 1 Month"
-        },
         "AmountPaid": 79.99,
         "PurchasedAt": "2025-12-02T15:26:10.4558812+01:00"
+      },
+      {
+        "Id": 16,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-12-02T15:47:23.2152992+01:00"
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
-    "MembershipExpiresAt": "2026-02-02T15:26:09.6384033+01:00",
-    "ActiveMembershipId": 1,
+    "MembershipExpiresAt": "2026-01-02T15:47:23.2152992+01:00",
+    "ActiveMembershipId": 5,
     "role": 0
   },
   {
@@ -72,12 +66,6 @@
       {
         "Id": 1,
         "MembershipId": 4,
-        "Membership": {
-          "Price": 1499.00,
-          "DurationInMonths": 12,
-          "Id": 4,
-          "Name": "Premium - 1 Year"
-        },
         "AmountPaid": 1499.00,
         "PurchasedAt": "2025-01-15T09:30:00"
       }
@@ -95,24 +83,12 @@
       {
         "Id": 2,
         "MembershipId": 3,
-        "Membership": {
-          "Price": 149.99,
-          "DurationInMonths": 1,
-          "Id": 3,
-          "Name": "Premium - 1 Month"
-        },
         "AmountPaid": 149.99,
         "PurchasedAt": "2025-11-01T00:00:00"
       },
       {
         "Id": 3,
         "MembershipId": 3,
-        "Membership": {
-          "Price": 149.99,
-          "DurationInMonths": 1,
-          "Id": 3,
-          "Name": "Premium - 1 Month"
-        },
         "AmountPaid": 149.99,
         "PurchasedAt": "2025-12-01T00:00:00"
       }
@@ -140,12 +116,6 @@
       {
         "Id": 4,
         "MembershipId": 2,
-        "Membership": {
-          "Price": 799.00,
-          "DurationInMonths": 12,
-          "Id": 2,
-          "Name": "Basic - 1 Year"
-        },
         "AmountPaid": 799.00,
         "PurchasedAt": "2024-07-05T16:45:00"
       }
@@ -163,24 +133,12 @@
       {
         "Id": 5,
         "MembershipId": 5,
-        "Membership": {
-          "Price": 299.99,
-          "DurationInMonths": 1,
-          "Id": 5,
-          "Name": "VIP - 1 Month"
-        },
         "AmountPaid": 299.99,
         "PurchasedAt": "2025-11-15T00:00:00"
       },
       {
         "Id": 6,
         "MembershipId": 5,
-        "Membership": {
-          "Price": 299.99,
-          "DurationInMonths": 1,
-          "Id": 5,
-          "Name": "VIP - 1 Month"
-        },
         "AmountPaid": 299.99,
         "PurchasedAt": "2025-12-15T00:00:00"
       }
@@ -198,24 +156,12 @@
       {
         "Id": 7,
         "MembershipId": 1,
-        "Membership": {
-          "Price": 79.99,
-          "DurationInMonths": 1,
-          "Id": 1,
-          "Name": "Basic - 1 Month"
-        },
         "AmountPaid": 79.99,
         "PurchasedAt": "2025-11-15T08:30:00"
       },
       {
         "Id": 8,
         "MembershipId": 1,
-        "Membership": {
-          "Price": 79.99,
-          "DurationInMonths": 1,
-          "Id": 1,
-          "Name": "Basic - 1 Month"
-        },
         "AmountPaid": 79.99,
         "PurchasedAt": "2025-12-15T08:30:00"
       }
@@ -233,12 +179,6 @@
       {
         "Id": 9,
         "MembershipId": 4,
-        "Membership": {
-          "Price": 1499.00,
-          "DurationInMonths": 12,
-          "Id": 4,
-          "Name": "Premium - 1 Year"
-        },
         "AmountPaid": 1499.00,
         "PurchasedAt": "2025-05-01T00:00:00"
       }
@@ -266,12 +206,6 @@
       {
         "Id": 10,
         "MembershipId": 6,
-        "Membership": {
-          "Price": 2999.00,
-          "DurationInMonths": 12,
-          "Id": 6,
-          "Name": "VIP - 1 Year"
-        },
         "AmountPaid": 2999.00,
         "PurchasedAt": "2025-09-01T12:30:00"
       }
@@ -289,12 +223,6 @@
       {
         "Id": 11,
         "MembershipId": 2,
-        "Membership": {
-          "Price": 799.00,
-          "DurationInMonths": 12,
-          "Id": 2,
-          "Name": "Basic - 1 Year"
-        },
         "AmountPaid": 799.00,
         "PurchasedAt": "2025-01-10T09:45:00"
       }
@@ -312,12 +240,6 @@
       {
         "Id": 12,
         "MembershipId": 3,
-        "Membership": {
-          "Price": 149.99,
-          "DurationInMonths": 1,
-          "Id": 3,
-          "Name": "Premium - 1 Month"
-        },
         "AmountPaid": 149.99,
         "PurchasedAt": "2025-12-01T14:00:00"
       }
@@ -335,24 +257,12 @@
       {
         "Id": 13,
         "MembershipId": 5,
-        "Membership": {
-          "Price": 299.99,
-          "DurationInMonths": 1,
-          "Id": 5,
-          "Name": "VIP - 1 Month"
-        },
         "AmountPaid": 299.99,
         "PurchasedAt": "2025-11-20T11:30:00"
       },
       {
         "Id": 2,
         "MembershipId": 5,
-        "Membership": {
-          "Price": 299.99,
-          "DurationInMonths": 1,
-          "Id": 5,
-          "Name": "VIP - 1 Month"
-        },
         "AmountPaid": 299.99,
         "PurchasedAt": "2025-12-20T11:30:00"
       }

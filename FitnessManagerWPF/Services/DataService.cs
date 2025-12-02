@@ -137,11 +137,14 @@ namespace FitnessManagerWPF.Services
             foreach(User u in _users)
             {
                 if (u.ActiveMembershipId == null)
-                {
                     u.ActiveMembership = null;
-                    continue;
+                else
+                    u.ActiveMembership = _memberships.Where(m => m.Id == u.ActiveMembershipId).FirstOrDefault();
+
+                foreach (Purchase p in u.BillingHistory)
+                {
+                    p.Membership = _memberships.Where(m => m.Id == p.MembershipId).FirstOrDefault();
                 }
-                u.ActiveMembership = _memberships.Where(m => m.Id == u.ActiveMembershipId).FirstOrDefault();
             }
         }
 
