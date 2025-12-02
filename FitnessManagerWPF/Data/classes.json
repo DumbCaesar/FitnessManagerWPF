@@ -3,8 +3,12 @@
     "Id": 1,
     "Name": "Morning Yoga",
     "MaxParticipants": 5,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIdsObservable": [
+      16
+    ],
+    "RegisteredMemberIds": [
+      16
+    ],
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 1,
@@ -58,8 +62,12 @@
     "Id": 6,
     "Name": "Core Stretch",
     "MaxParticipants": 20,
-    "RegisteredMemberIdsObservable": [],
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIdsObservable": [
+      16
+    ],
+    "RegisteredMemberIds": [
+      16
+    ],
     "TrainerId": 3,
     "TrainerName": "Bobby",
     "day": 5,

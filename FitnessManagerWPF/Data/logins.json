@@ -62,7 +62,7 @@
   {
     "MembershipId": 12,
     "Username": "landerson",
-    "Password": "Lisa&Workout24"
+    "Password": "Lisa\u0026Workout24"
   },
   {
     "MembershipId": 13,
@@ -78,5 +78,10 @@
     "MembershipId": 15,
     "Username": "bmoore",
     "Password": "Brandon@Fit77"
+  },
+  {
+    "MembershipId": 16,
+    "Username": "temp",
+    "Password": "Password123"
   }
 ]

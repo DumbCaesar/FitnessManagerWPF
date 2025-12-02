@@ -312,7 +312,14 @@ namespace FitnessManagerWPF.Services
             File.WriteAllText(_loginFile, loginsJson);
             Debug.WriteLine($"Updated {_loginFile}");
         }
+        public ObservableCollection<User> GetSelectedClass(Classes classes)
+        {
+            if (classes == null) return null;
+            var users = _users.FindAll(u => classes.RegisteredMemberIds.Contains(u.Id));
+            ObservableCollection<User> temp = new ObservableCollection<User>(users);
+            return temp;
 
+        }
         public void DeleteMember(User user)
         {
             try
