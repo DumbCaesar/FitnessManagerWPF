@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.DirectoryServices;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,7 @@ namespace FitnessManagerWPF.ViewModel.Member
         private Membership _selectedMembership;
         private User _currentUser;
         private List<Membership> _listOfMemberships;
-        private ObservableCollection<MembershipSubscription> _userSubscriptions;
+        private ObservableCollection<Purchase> _userSubscriptions;
 
         public event Action UpdateMembershipEvent;
 
@@ -41,7 +42,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             }
         }
 
-        public ObservableCollection<MembershipSubscription> UserSubscriptions
+        public ObservableCollection<Purchase> UserSubscriptions
         {
             get => _userSubscriptions;
             set => SetProperty(ref _userSubscriptions, value);
@@ -59,26 +60,39 @@ namespace FitnessManagerWPF.ViewModel.Member
             _parentViewModel = parentViewModel;
             _currentUser = user;
             _listOfMemberships = new List<Membership>(_dataService.Memberships);
-            UserSubscriptions = new ObservableCollection<MembershipSubscription>(CurrentUser.BillingHistory);
+            UserSubscriptions = new ObservableCollection<Purchase>(CurrentUser.BillingHistory);
             BuyMembershipCommand = new RelayCommand(_ => BuyMembership());
         }
 
         private void BuyMembership()
         {
-            if(SelectedMembership == null)
+            var now = DateTime.Now;
+
+            DateTime newExpiry;
+            if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Id == SelectedMembership.Id && CurrentUser.HasActiveMembership)
             {
-                MessageBox.Show("A membership needs to be selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
+                newExpiry = CurrentUser.MembershipExpiresAt.AddMonths(SelectedMembership.DurationInMonths);
             }
-            if (CurrentUser.IsActiveMember && SelectedMembership.Id != CurrentUser.CurrentMembership().MembershipId)
+            else
             {
-                CurrentUser.CurrentMembership().EndDate = DateTime.Now;
+                newExpiry = now.AddMonths(SelectedMembership.DurationInMonths);
             }
-            var subscription = new MembershipSubscription(SelectedMembership, ++_dataService.MaxSubscriptionId);
-            CurrentUser.BillingHistory.Add(subscription);
-            UserSubscriptions = new ObservableCollection<MembershipSubscription>(CurrentUser.BillingHistory);
-            Debug.WriteLine($"Sucess! {SelectedMembership.Name} bought.");
-            Debug.WriteLine($"{CurrentUser.Name} is now {CurrentUser.MembershipTypeDisplay}");
+
+            CurrentUser.MembershipExpiresAt = newExpiry;
+            CurrentUser.ActiveMembership = SelectedMembership;
+            CurrentUser.ActiveMembershipId = SelectedMembership.Id;
+            CurrentUser.ActiveMembership = SelectedMembership;
+
+            var purchase = new Purchase
+            {
+                Id = ++_dataService.MaxSubscriptionId,
+                Membership = SelectedMembership,
+                MembershipId = SelectedMembership.Id,
+                AmountPaid = SelectedMembership.Price,
+                PurchasedAt = now
+            };
+
+            CurrentUser.BillingHistory.Add(purchase);
             _dataService.SaveMembers();
             UpdateMembershipEvent?.Invoke();
         }

@@ -42,7 +42,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private void UpdateMemberCounts()
         {
             TotalMemberCount = _dataService.Users.Where(u => u.UserRole == Model.UserRole.Member).Count();
-            ActiveMemberCount = _dataService.Users.Where(u => u.IsActiveMember).Count();
+            ActiveMemberCount = _dataService.Users.Where(u => u.HasActiveMembership).Count();
             InactiveMemberCount = TotalMemberCount - ActiveMemberCount;
         }
 
@@ -62,12 +62,26 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             MonthlySignups = _dataService.Users.Where(u => u.DateJoined.Month == DateTime.Today.Month).Count();
             ExpiringMemberships = _dataService.Users
-                .Where(u => u.IsActiveMember)
-                .Count(u => u.CurrentMembership().EndDate >= DateTime.Today &&
-                u.CurrentMembership().EndDate <= DateTime.Today.AddDays(7));
-            MRR = _dataService.Users
-                .Where(u => u.IsActiveMember)
-                .Sum(u => u.MonthlyContribution);
+                .Where(u => u.HasActiveMembership)
+                .Count(u => u.MembershipExpiresAt >= DateTime.Today &&
+                u.MembershipExpiresAt <= DateTime.Today.AddDays(7));
+            MRR = CalculateMRR();
+        }
+
+        private decimal CalculateMRR()
+        {
+            decimal total = 0m;
+            var now = DateTime.Now;
+
+            foreach(var user in _dataService.Users)
+            {
+                if (user.MembershipExpiresAt > now && user.ActiveMembership != null)
+                {
+                    decimal monthlyPrice = user.ActiveMembership.Price / user.ActiveMembership.DurationInMonths;
+                    total += monthlyPrice;
+                }
+            }
+            return total;
         }
     }
 }

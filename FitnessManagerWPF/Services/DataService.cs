@@ -136,7 +136,7 @@ namespace FitnessManagerWPF.Services
             {
                 if (u.BillingHistory != null)
                 {
-                    foreach(MembershipSubscription sub in u.BillingHistory)
+                    foreach(Purchase sub in u.BillingHistory)
                     {
                         sub.Membership = _memberships.FirstOrDefault(m => m.Id == sub.MembershipId);
                     }
@@ -154,7 +154,7 @@ namespace FitnessManagerWPF.Services
 
         public void GetMemberDetails(int memberId,
         ObservableCollection<Classes> MemberClasses,
-        ObservableCollection<MembershipSubscription> MemberSubscriptions)
+        ObservableCollection<Purchase> MemberSubscriptions)
         {
             MemberClasses.Clear();
             MemberSubscriptions.Clear();

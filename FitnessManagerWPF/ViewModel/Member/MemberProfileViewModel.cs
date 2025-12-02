@@ -54,7 +54,7 @@ namespace FitnessManagerWPF.ViewModel.Member
 
         public string MembershipTypeDisplay
         {
-            get => _currentUser?.MembershipTypeDisplay ?? "No Active Membership";
+            get => _currentUser?.MembershipStatusDisplay ?? "No Active Membership";
         }
 
         public int MembershipId
