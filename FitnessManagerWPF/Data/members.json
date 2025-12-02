@@ -125,11 +125,16 @@
     "Email": "david.thompson@email.com",
     "BillingHistory": [
       {
-        "Id": 6,
-        "MembershipId": 2,
         "StartDate": "2024-07-05T16:45:00",
         "EndDate": "2025-07-05T16:45:00",
-        "Membership": { "Id": 2, "Name": "Basic - Yearly", "Price": 799.00, "DurationInMonths": 12 }
+        "Id": 6,
+        "MembershipId": 2,
+        "Membership": {
+          "Price": 799.00,
+          "DurationInMonths": 12,
+          "Id": 2,
+          "Name": "Basic - 1 Year"
+        }
       }
     ],
     "DateJoined": "2024-07-05T16:45:00",
@@ -324,27 +329,6 @@
       }
     ],
     "DateJoined": "2025-10-20T11:30:00",
-    "role": 0
-  },
-  {
-    "Id": 16,
-    "Name": "temp",
-    "Email": "temp@gmail.com",
-    "BillingHistory": [
-      {
-        "StartDate": "2025-12-02T09:11:46.6269987+01:00",
-        "EndDate": "2026-12-02T09:11:46.6270247+01:00",
-        "Id": 17,
-        "MembershipId": 2,
-        "Membership": {
-          "Price": 799.00,
-          "DurationInMonths": 12,
-          "Id": 2,
-          "Name": "Basic - 1 Year"
-        }
-      }
-    ],
-    "DateJoined": "2025-12-02T09:11:27.2395486+01:00",
     "role": 0
   }
 ]

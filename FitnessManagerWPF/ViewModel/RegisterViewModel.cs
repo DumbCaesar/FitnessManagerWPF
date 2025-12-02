@@ -17,6 +17,7 @@ namespace FitnessManagerWPF.ViewModel
     {
         private string _username;
         private string _password;
+        private string _passwordCompare;
         private string _email;
         private string _fullname;
         private object _currentView;
@@ -47,6 +48,15 @@ namespace FitnessManagerWPF.ViewModel
             }
         }
 
+        public string PasswordValidationCompareError
+        {
+            get
+            {
+                if (_password != PasswordCompare) return "Password is not identical";
+                return ""; 
+            }
+        }
+
         public ICommand CreateUserCommand { get; }
         public ICommand ShowLoginCommand { get; }
 
@@ -73,6 +83,17 @@ namespace FitnessManagerWPF.ViewModel
             {
                 if (SetProperty(ref _password, value))
                     OnPropertyChanged(nameof(PasswordValidationError));
+            }
+        }
+
+        public string PasswordCompare
+        {
+            get => _passwordCompare;
+            set
+            {
+                if (SetProperty(ref _passwordCompare, value))
+                    OnPropertyChanged(nameof(PasswordValidationCompareError));
+
             }
         }
         public string Email
