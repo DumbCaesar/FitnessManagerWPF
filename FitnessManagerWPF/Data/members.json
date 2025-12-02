@@ -7,18 +7,41 @@
     "DateJoined": "2020-01-01T00:00:00",
     "MembershipExpiresAt": "0001-01-01T00:00:00",
     "ActiveMembershipId": null,
-    "ActiveMembership": null,
     "role": 2
   },
   {
     "Id": 1,
     "Name": "Bo",
     "Email": "bo@dania.dk",
-    "BillingHistory": [],
+    "BillingHistory": [
+      {
+        "Id": 14,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 79.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic - 1 Month"
+        },
+        "AmountPaid": 79.99,
+        "PurchasedAt": "2025-12-02T15:26:09.6384033+01:00"
+      },
+      {
+        "Id": 15,
+        "MembershipId": 1,
+        "Membership": {
+          "Price": 79.99,
+          "DurationInMonths": 1,
+          "Id": 1,
+          "Name": "Basic - 1 Month"
+        },
+        "AmountPaid": 79.99,
+        "PurchasedAt": "2025-12-02T15:26:10.4558812+01:00"
+      }
+    ],
     "DateJoined": "2023-09-15T00:00:00",
-    "MembershipExpiresAt": "2026-01-02T14:46:12.0418648+01:00",
-    "ActiveMembershipId": null,
-    "ActiveMembership": null,
+    "MembershipExpiresAt": "2026-02-02T15:26:09.6384033+01:00",
+    "ActiveMembershipId": 1,
     "role": 0
   },
   {
@@ -27,9 +50,8 @@
     "Email": "bob@dania.dk",
     "BillingHistory": [],
     "DateJoined": "2025-06-01T00:00:00",
-    "MembershipExpiresAt": "0001-01-01T00:00:00",
+    "MembershipExpiresAt": null,
     "ActiveMembershipId": null,
-    "ActiveMembership": null,
     "role": 0
   },
   {
@@ -38,9 +60,8 @@
     "Email": "bobby@dania.dk",
     "BillingHistory": [],
     "DateJoined": "2021-03-20T00:00:00",
-    "MembershipExpiresAt": "0001-01-01T00:00:00",
+    "MembershipExpiresAt": null,
     "ActiveMembershipId": null,
-    "ActiveMembership": null,
     "role": 1
   },
   {
@@ -64,12 +85,6 @@
     "DateJoined": "2024-01-15T09:30:00",
     "MembershipExpiresAt": "2026-01-15T09:30:00",
     "ActiveMembershipId": 4,
-    "ActiveMembership": {
-      "Price": 1499.00,
-      "DurationInMonths": 12,
-      "Id": 4,
-      "Name": "Premium - 1 Year"
-    },
     "role": 0
   },
   {
@@ -105,12 +120,6 @@
     "DateJoined": "2024-03-22T14:15:00",
     "MembershipExpiresAt": "2026-01-01T00:00:00",
     "ActiveMembershipId": 3,
-    "ActiveMembership": {
-      "Price": 149.99,
-      "DurationInMonths": 1,
-      "Id": 3,
-      "Name": "Premium - 1 Month"
-    },
     "role": 0
   },
   {
@@ -121,7 +130,6 @@
     "DateJoined": "2024-06-10T11:00:00",
     "MembershipExpiresAt": "0001-01-01T00:00:00",
     "ActiveMembershipId": null,
-    "ActiveMembership": null,
     "role": 1
   },
   {
@@ -145,12 +153,6 @@
     "DateJoined": "2024-07-05T16:45:00",
     "MembershipExpiresAt": "2025-07-05T16:45:00",
     "ActiveMembershipId": 2,
-    "ActiveMembership": {
-      "Price": 799.00,
-      "DurationInMonths": 12,
-      "Id": 2,
-      "Name": "Basic - 1 Year"
-    },
     "role": 0
   },
   {
@@ -186,12 +188,6 @@
     "DateJoined": "2025-08-15T10:00:00",
     "MembershipExpiresAt": "2026-01-15T00:00:00",
     "ActiveMembershipId": 5,
-    "ActiveMembership": {
-      "Price": 299.99,
-      "DurationInMonths": 1,
-      "Id": 5,
-      "Name": "VIP - 1 Month"
-    },
     "role": 0
   },
   {
@@ -227,12 +223,6 @@
     "DateJoined": "2024-08-12T13:20:00",
     "MembershipExpiresAt": "2026-01-15T08:30:00",
     "ActiveMembershipId": 1,
-    "ActiveMembership": {
-      "Price": 79.99,
-      "DurationInMonths": 1,
-      "Id": 1,
-      "Name": "Basic - 1 Month"
-    },
     "role": 0
   },
   {
@@ -256,12 +246,6 @@
     "DateJoined": "2025-05-01T00:00:00",
     "MembershipExpiresAt": "2026-05-01T00:00:00",
     "ActiveMembershipId": 4,
-    "ActiveMembership": {
-      "Price": 1499.00,
-      "DurationInMonths": 12,
-      "Id": 4,
-      "Name": "Premium - 1 Year"
-    },
     "role": 0
   },
   {
@@ -272,7 +256,6 @@
     "DateJoined": "2024-02-28T15:00:00",
     "MembershipExpiresAt": "0001-01-01T00:00:00",
     "ActiveMembershipId": null,
-    "ActiveMembership": null,
     "role": 1
   },
   {
@@ -296,12 +279,6 @@
     "DateJoined": "2025-09-01T12:30:00",
     "MembershipExpiresAt": "2026-09-01T12:30:00",
     "ActiveMembershipId": 6,
-    "ActiveMembership": {
-      "Price": 2999.00,
-      "DurationInMonths": 12,
-      "Id": 6,
-      "Name": "VIP - 1 Year"
-    },
     "role": 0
   },
   {
@@ -325,12 +302,6 @@
     "DateJoined": "2025-01-10T09:45:00",
     "MembershipExpiresAt": "2026-01-10T09:45:00",
     "ActiveMembershipId": 2,
-    "ActiveMembership": {
-      "Price": 799.00,
-      "DurationInMonths": 12,
-      "Id": 2,
-      "Name": "Basic - 1 Year"
-    },
     "role": 0
   },
   {
@@ -354,12 +325,6 @@
     "DateJoined": "2025-04-01T14:00:00",
     "MembershipExpiresAt": "2026-01-01T14:00:00",
     "ActiveMembershipId": 3,
-    "ActiveMembership": {
-      "Price": 149.99,
-      "DurationInMonths": 1,
-      "Id": 3,
-      "Name": "Premium - 1 Month"
-    },
     "role": 0
   },
   {
@@ -395,12 +360,6 @@
     "DateJoined": "2025-10-20T11:30:00",
     "MembershipExpiresAt": "2026-01-20T11:30:00",
     "ActiveMembershipId": 5,
-    "ActiveMembership": {
-      "Price": 299.99,
-      "DurationInMonths": 1,
-      "Id": 5,
-      "Name": "VIP - 1 Month"
-    },
     "role": 0
   }
 ]

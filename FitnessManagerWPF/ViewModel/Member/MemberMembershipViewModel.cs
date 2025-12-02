@@ -71,7 +71,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             DateTime newExpiry;
             if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Id == SelectedMembership.Id && CurrentUser.HasActiveMembership)
             {
-                newExpiry = CurrentUser.MembershipExpiresAt.AddMonths(SelectedMembership.DurationInMonths);
+                newExpiry = CurrentUser.MembershipExpiresAt.Value.AddMonths(SelectedMembership.DurationInMonths);
             }
             else
             {

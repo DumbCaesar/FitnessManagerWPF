@@ -15,16 +15,16 @@ namespace FitnessManagerWPF.Model
         public string Email { get; set; }
         public List<Purchase> BillingHistory { get; set; } // list of all subscriptions the user has purchased
         public DateTime DateJoined { get; set; } // Date the user signed up
-        public DateTime MembershipExpiresAt { get; set; } = DateTime.MinValue;
+        public DateTime? MembershipExpiresAt { get; set; } = null;
         public int? ActiveMembershipId { get; set; }
-        public Membership? ActiveMembership { get; set; }
+        [JsonIgnore] public Membership? ActiveMembership { get; set; }
         [JsonPropertyName("role")] public UserRole UserRole { get; set; }
         [JsonIgnore] public bool HasActiveMembership => DateTime.Now < MembershipExpiresAt;
         [JsonIgnore] public string MembershipStatusDisplay
         {
             get
             {
-                if (MembershipExpiresAt == DateTime.MinValue) return "No membership";
+                if (MembershipExpiresAt == DateTime.MinValue || ActiveMembership == null) return "No membership";
                 if (DateTime.Now >= MembershipExpiresAt) return "Expired";
 
                 return ActiveMembership?.Name.Split(" - ").FirstOrDefault() ?? "Unknown";
@@ -35,7 +35,11 @@ namespace FitnessManagerWPF.Model
         {
             get
             {
-                int daysLeft = (MembershipExpiresAt - DateTime.Now).Days;
+                int daysLeft = -1;
+                if (MembershipExpiresAt.HasValue)
+                {
+                    daysLeft = (MembershipExpiresAt.Value - DateTime.Now).Days;
+                }
                 return daysLeft switch
                 {
                     < 0 => "",
