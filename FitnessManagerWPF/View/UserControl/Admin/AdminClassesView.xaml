@@ -24,7 +24,6 @@
             <ListView.Resources>
                 <Style TargetType="ScrollBar" BasedOn="{StaticResource HorizontalCleanScrollBar}" />
             </ListView.Resources>
-            <ListView.View>
             <i:Interaction.Triggers>
                         <i:EventTrigger EventName="MouseDoubleClick">
                             <i:InvokeCommandAction Command="{Binding ShowSelectedClassCommand}" CommandParameter="{Binding SelectedActivity}"/>
