@@ -5,64 +5,153 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
         mc:Ignorable="d"
-        Title="{Binding SelectedMember.Name, StringFormat='Member information: {0}'}" Height="450" Width="800">
-    <Grid Background="GhostWhite">
+        Title="{Binding SelectedMember.Name, StringFormat='Member Information: {0}'}" 
+        Height="520" Width="900"
+        ResizeMode="NoResize"
+        Background="#FAFAFA">
+    <Grid Margin="16">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Border Grid.Row="0" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2" Grid.ColumnSpan="2">
-            <StackPanel Margin="2">
-                <TextBlock Text="{Binding SelectedMember.Id, StringFormat='ID: {0}'}" FontSize="16"/>
-                <TextBlock Text="{Binding SelectedMember.Name, StringFormat='Name: {0}'}" FontSize="16"/>
-                <TextBlock Text="{Binding SelectedMember.Email, StringFormat='Email: {0}'}" FontSize="16"/>
-                <TextBlock Text="{Binding SelectedMember.MembershipTypeDisplay, StringFormat='Status: {0}'}" FontSize="16"/>
-                <TextBlock Text="{Binding SelectedMember.DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" FontSize="16"/>
-                <Border BorderBrush="Black" BorderThickness="1" Width="40" HorizontalAlignment="Left" Height="20" Margin="0 5 0 5" CornerRadius="5" Background="Yellow">
-                    <Button Content="Edit" Command="{Binding EditMemberCommand}" Style="{StaticResource FlatButton}" BorderThickness="0" Background="Transparent"/>
-                </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Width="40" HorizontalAlignment="Left" Height="20" CornerRadius="5" Background="Red">
-                    <Button Content="Delete" Command="{Binding DeleteMemberCommand}" Style="{StaticResource FlatButton}" BorderThickness="0" Background="Transparent"/>
-                </Border>
-            </StackPanel>
+
+        <!-- Header -->
+        <TextBlock Grid.Row="0" Text="Member Details" FontSize="20" FontWeight="SemiBold" Foreground="#1F2937" Margin="0,0,0,16"/>
+
+        <!-- Top row -->
+        <Border Grid.Row="1" Background="White" CornerRadius="4" Padding="20" Margin="0,0,0,16">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- ID -->
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="ID:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding SelectedMember.Id}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Name -->
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Name:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding SelectedMember.Name}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Email -->
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Email:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding SelectedMember.Email}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Membership Type -->
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="Membership:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding SelectedMember.MembershipStatusDisplay}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Membership Expiry -->
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="Days left:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding SelectedMember.MembershipExpiresDisplay}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Member Since -->
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="Member Since:" FontWeight="SemiBold" Foreground="#6B7280" Margin="0,0,0,12"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="{Binding SelectedMember.DateJoined, StringFormat='{}{0:dd/MM/yyyy}'}" Foreground="#1F2937" Margin="0,0,0,12"/>
+
+                <!-- Buttons -->
+                <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,8,0,0">
+                    <Button Content="Edit Member" Width="110" Height="36" Background="#10B981" Foreground="White" FontWeight="Medium" Cursor="Hand" Margin="0,0,8,0" Command="{Binding EditMemberCommand}"/>
+                    <Button Content="Delete Member" Width="120" Height="36" Background="#EF4444" Foreground="White" FontWeight="Medium" Cursor="Hand" Command="{Binding DeleteMemberCommand}"/>
+                </StackPanel>
+            </Grid>
         </Border>
-        <Border Grid.Row="1" Grid.Column="0" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
-            <ListBox ItemsSource="{Binding MemberClasses}" Grid.Row="1" Grid.Column="0" Padding="5" Margin="5" BorderThickness="0" Background="GhostWhite">
-                <ListBox.Resources>
-                    <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
-                </ListBox.Resources>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding ClassSummary}" VerticalAlignment="Center"/>
-                            <TextBlock Text="{Binding TrainerName, StringFormat='Trainer: {0}'}" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
-        <Border Grid.Row="1" Grid.Column="1" BorderThickness="1.5" BorderBrush="Gray" CornerRadius="8" Margin="2">
-            <ListBox ItemsSource="{Binding MembershipSubscriptions}" Grid.Row="1" Grid.Column="1" Padding="5" Margin="5" BorderThickness="0" Background="GhostWhite">
-                <ListBox.Resources>
-                    <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
-                </ListBox.Resources>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="5">
-                            <TextBlock Text="{Binding Id, StringFormat='Transaction Id: {0}'}" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding Membership.Price, StringFormat='Paid Amount: {0} kr.'}" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding DurationLeftFormatted, StringFormat='Status: {0}'}" FontWeight="SemiBold"/>
-                            <TextBlock Text="{Binding StartDate, StringFormat='Start Date: {0:dd/MM/yyyy}'}"/>
-                            <TextBlock Text="{Binding EndDate, StringFormat='End Date: {0:dd/MM/yyyy}'}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </Border>
+
+        <!-- Bottom row -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <!-- Classes -->
+            <Border Grid.Column="0" Background="White" CornerRadius="4" Margin="0,0,8,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" Margin="20,20,20,12">
+                        <TextBlock Text="Enrolled Classes" FontSize="16" FontWeight="SemiBold" Foreground="#1F2937" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding MemberClasses.Count, StringFormat='({0})'}" FontSize="14" Foreground="#6B7280" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                    </DockPanel>
+
+                    <ListView Grid.Row="1" ItemsSource="{Binding MemberClasses}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="12,0,12,12">
+                        <ListView.Resources>
+                            <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridViewColumn Header="Class" Width="140">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" FontWeight="SemiBold" Foreground="#1F2937" TextTrimming="CharacterEllipsis"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Schedule" Width="110">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="#6B7280" FontSize="12">
+                                                <Run Text="{Binding Day, Mode=OneWay}"/>
+                                                <Run Text="{Binding Time, StringFormat=' {0:hh\\:mm}', Mode=OneWay}"/>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Trainer" Width="120">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Trainer.Name}" Foreground="#6B7280" FontSize="12" TextTrimming="CharacterEllipsis"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Border>
+
+            <!-- Billing History -->
+            <Border Grid.Column="1" Background="White" CornerRadius="4" Margin="8,0,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="0" Margin="20,20,20,12">
+                        <TextBlock Text="Billing History" FontSize="16" FontWeight="SemiBold" Foreground="#1F2937" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding MembershipSubscriptions.Count, StringFormat='({0})'}" FontSize="14" Foreground="#6B7280" VerticalAlignment="Center" Margin="8,0,0,0"/>
+                    </DockPanel>
+
+                    <ListView Grid.Row="1" ItemsSource="{Binding MembershipSubscriptions}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="12,0,12,12">
+                        <ListView.Resources>
+                            <Style TargetType="ScrollBar" BasedOn="{StaticResource VerticalCleanScrollBar}" />
+                        </ListView.Resources>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridViewColumn Header="ID" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Date" Width="120" DisplayMemberBinding="{Binding DateDisplay}"/>
+                                <GridViewColumn Header="Purchase" Width="120" DisplayMemberBinding="{Binding Membership.Name}"/>
+                                <GridViewColumn Header="Paid" Width="90" DisplayMemberBinding="{Binding AmountDisplay}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Grid>
+            </Border>
+        </Grid>
     </Grid>
 </Window>

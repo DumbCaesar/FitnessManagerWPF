@@ -24,7 +24,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public ICommand DeleteMemberCommand { get; set; }
 
         public ObservableCollection<Classes> MemberClasses { get; set; }
-        public ObservableCollection<MembershipSubscription> MembershipSubscriptions { get; set; }
+        public ObservableCollection<Purchase> MembershipSubscriptions { get; set; }
 
         public User SelectedMember
         {
@@ -39,7 +39,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public SelectedMemberViewModel(User user, DataService dataService)
         {
             MemberClasses = new ObservableCollection<Classes>();
-            MembershipSubscriptions = new ObservableCollection<MembershipSubscription>();
+            MembershipSubscriptions = new ObservableCollection<Purchase>();
             EditMemberCommand = new RelayCommand(_ => ShowEditMember());
             DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
             _dataService = dataService;

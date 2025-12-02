@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -134,13 +136,12 @@ namespace FitnessManagerWPF.Services
         {
             foreach(User u in _users)
             {
-                if (u.BillingHistory != null)
+                if (u.ActiveMembershipId == null)
                 {
-                    foreach(MembershipSubscription sub in u.BillingHistory)
-                    {
-                        sub.Membership = _memberships.FirstOrDefault(m => m.Id == sub.MembershipId);
-                    }
+                    u.ActiveMembership = null;
+                    continue;
                 }
+                u.ActiveMembership = _memberships.Where(m => m.Id == u.ActiveMembershipId).FirstOrDefault();
             }
         }
 
@@ -154,7 +155,7 @@ namespace FitnessManagerWPF.Services
 
         public void GetMemberDetails(int memberId,
         ObservableCollection<Classes> MemberClasses,
-        ObservableCollection<MembershipSubscription> MemberSubscriptions)
+        ObservableCollection<Purchase> MemberSubscriptions)
         {
             MemberClasses.Clear();
             MemberSubscriptions.Clear();

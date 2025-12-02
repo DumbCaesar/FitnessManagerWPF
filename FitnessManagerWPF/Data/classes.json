@@ -4,9 +4,7 @@
     "Name": "Morning Yoga",
     "MaxParticipants": 5,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 1,
     "time": "07:00:00"
   },
@@ -15,9 +13,7 @@
     "Name": "Strength Training",
     "MaxParticipants": 15,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 2,
     "time": "18:30:00"
   },
