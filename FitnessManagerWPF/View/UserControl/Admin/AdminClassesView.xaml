@@ -7,24 +7,6 @@
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.Admin"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <StackPanel>
-        <Button Content="Add class" Command="{Binding AddClassCommand}" Width="80" HorizontalAlignment="Left" Margin="5"/>
-        <Grid>
-            <ListBox ItemsSource="{Binding Activities}" SelectedItem="{Binding SelectedActivity, Mode=TwoWay}">
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseDoubleClick">
-                        <i:InvokeCommandAction Command="{Binding ShowSelectedClassCommand}" CommandParameter="{Binding SelectedActivity}"/>
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding ClassInfo}"/>
-                        <TextBlock Text="{Binding ClassSummary}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
     <Grid Margin="16" Background="#FAFAFA">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -39,7 +21,12 @@
 
         <!-- Classes -->
         <ListView Grid.Row="1" ItemsSource="{Binding Activities}"  SelectedItem="{Binding SelectedActivity, Mode=TwoWay}" Margin="5">
-            <ListView.View>
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="MouseDoubleClick">
+                            <i:InvokeCommandAction Command="{Binding ShowSelectedClassCommand}" CommandParameter="{Binding SelectedActivity}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="50"/>
                     <GridViewColumn Header="Day" DisplayMemberBinding="{Binding Day}" Width="100"/>
