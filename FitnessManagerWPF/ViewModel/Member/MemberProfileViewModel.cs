@@ -99,30 +99,24 @@ namespace FitnessManagerWPF.ViewModel.Member
 
         private void Save()
         {
-            Debug.WriteLine("Save clicked");
             var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
             if (messageBox != MessageBoxResult.OK) return;
-                if(Password == _currentUserLogin.Password && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare))
-                {
-                    _currentUser.Name = Name;
-                    _currentUser.Email = Email;
-                    _currentUserLogin.Username = Username;
-                    _currentUserLogin.Password = Password;
-                    _currentUserLogin.MembershipId = MembershipId;
-                    Debug.WriteLine("Saved...");
-                }
-                if (string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare)) return;
-                if(Password == _currentUserLogin.Password && NewPassword == NewPasswordCompare)
-                {
-                    _currentUser.Name = Name;
-                    _currentUser.Email = Email;
-                    _currentUserLogin.Username = Username;
-                    _currentUserLogin.Password = NewPassword;
-                    _currentUserLogin.MembershipId = MembershipId;
-                    Debug.WriteLine("Saved...");
-                }
-                _dataService.SaveUsers();
-                _dataService.SaveLogins();
+
+            if (Password != _currentUserLogin.Password) return; // validate password
+
+            if (!string.IsNullOrEmpty(NewPassword) || !string.IsNullOrEmpty(NewPasswordCompare))
+            {
+                if (NewPassword != NewPasswordCompare) return; // validate new password
+                _currentUserLogin.Password = NewPassword;
+            }
+
+            _currentUser.Name = Name;
+            _currentUser.Email = Email;
+            _currentUserLogin.Username = Username;
+
+            _dataService.SaveUsers();
+            _dataService.SaveLogins();
+            Debug.WriteLine("Saved...");
         }
 
         private void Discard()
