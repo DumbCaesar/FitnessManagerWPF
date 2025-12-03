@@ -48,8 +48,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 {
                     Debug.WriteLine($"Selected Member is: {_selectedMember.Name}");
                 }
-                
-
             }
         } 
 
@@ -124,6 +122,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
             // Clear the selection since the user no longer exists
             SelectedMember = null;
+            _parentViewModel.NotifyDataChanged();
         }
 
         private void OnMemberCreated(User user)
@@ -135,6 +134,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 MemberList.Add(user);
                 UserCreated?.Invoke();
             }
+            _parentViewModel.NotifyDataChanged();
         }
     }
 }

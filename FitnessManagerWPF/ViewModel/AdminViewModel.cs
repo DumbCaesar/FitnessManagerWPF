@@ -20,7 +20,7 @@ namespace FitnessManagerWPF.ViewModel
         private AdminClassesViewModel _adminClassesViewModel;
         private AdminMemberViewModel _adminMemberViewModel;
         private AdminTrainerViewModel _adminTrainerViewModel;
-        public event Action DashboardUpdate;
+        public event Action DataChanged;
         public ICommand DashboardCommand { get; set; }
         public ICommand MemberCommand { get; set; }
         public ICommand TrainerCommand { get; set; }
@@ -41,10 +41,8 @@ namespace FitnessManagerWPF.ViewModel
             _currentUser = user;
             _dataService = dataService;
             _adminClassesViewModel = new AdminClassesViewModel(this, _dataService);
-            _adminClassesViewModel.ClassCreated += OnUpdatedInfo;
             _adminDashboardViewModel = new AdminDashboardViewModel(this, _dataService);
             _adminMemberViewModel = new AdminMemberViewModel(this, _dataService);
-            _adminMemberViewModel.UserCreated += OnUpdatedInfo;
             _adminTrainerViewModel = new AdminTrainerViewModel(this, _dataService);
             DashboardCommand = new RelayCommand(_ => ShowDashboard());
             MemberCommand = new RelayCommand(_ => ShowMembers());
@@ -79,9 +77,9 @@ namespace FitnessManagerWPF.ViewModel
             CurrentView = _adminClassesViewModel;
         }
 
-        private void OnUpdatedInfo()
+        public void NotifyDataChanged()
         {
-            DashboardUpdate?.Invoke();
+            DataChanged?.Invoke();
         }
     }
 }
