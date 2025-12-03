@@ -109,10 +109,12 @@ namespace FitnessManagerWPF.ViewModel.Member
                 if (NewPassword != NewPasswordCompare) return; // validate new password
                 _currentUserLogin.Password = NewPassword;
             }
-
+            Debug.WriteLine($"Username before: {_currentUserLogin.Username}");
             _currentUser.Name = Name;
             _currentUser.Email = Email;
             _currentUserLogin.Username = Username;
+            Debug.WriteLine($"Username after: {_currentUserLogin.Username}");
+
 
             _dataService.SaveUsers();
             _dataService.SaveLogins();
@@ -122,21 +124,13 @@ namespace FitnessManagerWPF.ViewModel.Member
         private void Discard()
         {
             Debug.WriteLine("Discard clicked - reloading data");
-
-            // Reload from data service
-            var tempUser = new User { Id = _currentUser.Id, UserRole = _currentUser.UserRole };
-            var restoredLogin = _dataService.LoadUserInfo(tempUser);
-
-            Debug.WriteLine($"Restored Name: {tempUser.Name}, Email: {tempUser.Email}");
-            Debug.WriteLine($"Restored Username: {restoredLogin?.Username}");
-
             // Force property updates
-            Name = tempUser.Name ?? "";
-            Email = tempUser.Email ?? "";
-            Username = restoredLogin?.Username ?? "";
-            Password = restoredLogin?.Password ?? "";
-
-            Debug.WriteLine("Discard complete");
+            Name = _currentUser.Name ?? "";
+            Email = _currentUser.Email ?? "";
+            Username = _currentUserLogin.Username ?? "";
+            Password = _currentUserLogin.Password ?? "";
+            Debug.WriteLine($"Restored Name: {_currentUser.Name}, Email: {_currentUser.Email}");
+            Debug.WriteLine($"Restored Username: {_currentUserLogin?.Username}");
         }
 
         public void UpdateMemberRole()
