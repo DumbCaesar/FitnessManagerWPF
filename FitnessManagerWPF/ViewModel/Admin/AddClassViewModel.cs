@@ -55,7 +55,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 int endHour = 22; // gym closing time
                 int intervalMinutes = 30; // time between slots
 
-                for (int hour = startHour; hour <= endHour; hour++)
+                for (int hour = startHour; hour < endHour; hour++)
                 {
                     for (int minute = 0; minute < 60; minute += intervalMinutes)
                     {
