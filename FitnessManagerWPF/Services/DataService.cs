@@ -166,10 +166,7 @@ namespace FitnessManagerWPF.Services
 
         public Login? LoadUserInfo(User user)
         {
-            var _user = _users.FirstOrDefault(u => u.Id == user.Id);
-            var _login = _user != null ? _logins.FirstOrDefault(l => l.MembershipId == _user.Id) : null;
-
-            if (_user == null ||  _login == null)
+            if (user == null)
             {
                 Debug.WriteLine("User or Login null");
                 return null;
@@ -177,15 +174,7 @@ namespace FitnessManagerWPF.Services
 
             try
             {
-                user.Name = _user.Name;
-                user.Email = _user.Email;
-
-                return new Login
-                {
-                    MembershipId = _login.MembershipId,
-                    Username = _login.Username,
-                    Password = _login.Password
-                };
+                return _logins.Where(l => l.MembershipId == user.Id).FirstOrDefault();
             }
             catch (Exception ex)
             {
