@@ -21,6 +21,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private ObservableCollection<User> _listOfMembers;
         private List<User> _userList;
         private DataService _dataService;
+        public event Action UserCreated;
 
         public ICommand MemberDoubleClickCommand { get; set; }
         public ICommand NewUserCommand { get; set; }
@@ -132,6 +133,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             if (user.UserRole == UserRole.Member)
             {
                 MemberList.Add(user);
+                UserCreated?.Invoke();
             }
         }
     }
