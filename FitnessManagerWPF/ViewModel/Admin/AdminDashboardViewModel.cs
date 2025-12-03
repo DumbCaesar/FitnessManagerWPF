@@ -35,6 +35,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _parentViewModel = parentViewModel;
             _dataService = dataService;
+            _parentViewModel.DashboardUpdate += UpdateClasses;
+            _parentViewModel.DashboardUpdate += UpdateMemberCounts;
             UpdateMemberCounts();
             UpdateClasses();
             UpdateKPIs();
@@ -47,7 +49,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         }
 
         private void UpdateClasses()
-        {
+        {   
             ClassesToday = _dataService._activities.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
             ClassesWeek = _dataService._activities.Count();
             int MaxAttendance = _dataService._activities.Sum(a => a.MaxParticipants);

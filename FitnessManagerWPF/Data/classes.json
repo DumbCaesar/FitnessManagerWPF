@@ -67,5 +67,23 @@
     "RegisteredMemberIds": [],
     "day": 4,
     "time": "06:30:00"
+  },
+  {
+    "Id": 8,
+    "Name": "Boksning",
+    "MaxParticipants": 5,
+    "TrainerId": 0,
+    "RegisteredMemberIds": [],
+    "day": 4,
+    "time": "05:00:00"
+  },
+  {
+    "Id": 9,
+    "Name": "UFC",
+    "MaxParticipants": 8,
+    "TrainerId": 0,
+    "RegisteredMemberIds": [],
+    "day": 2,
+    "time": "06:30:00"
   }
 ]

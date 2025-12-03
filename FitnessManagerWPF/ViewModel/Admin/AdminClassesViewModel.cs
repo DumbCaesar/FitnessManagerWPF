@@ -24,6 +24,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private Classes? _selectedActivity;
         private List<Classes> _activityList;
         private ObservableCollection<Classes> _activities;
+        public event Action ClassCreated;
         public ICommand AddClassCommand { get; set; }
         public ICommand ShowSelectedClassCommand { get; set; }
 
@@ -83,6 +84,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             selectedClassView.ShowDialog();
         }
 
-        private void OnClassCreated(Classes newClass) => Activities.Add(newClass);
+        private void OnClassCreated(Classes newClass)
+        {
+            Activities.Add(newClass);
+            ClassCreated?.Invoke();
+        }
     }
 }
