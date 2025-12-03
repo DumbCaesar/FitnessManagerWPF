@@ -87,6 +87,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private void OnClassCreated(Classes newClass)
         {
             Activities.Add(newClass);
+            _parentViewModel.NotifyDataChanged();
             ClassCreated?.Invoke();
         }
     }

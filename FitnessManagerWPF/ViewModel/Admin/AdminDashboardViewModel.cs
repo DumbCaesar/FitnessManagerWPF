@@ -35,8 +35,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _parentViewModel = parentViewModel;
             _dataService = dataService;
-            _parentViewModel.DashboardUpdate += UpdateClasses;
-            _parentViewModel.DashboardUpdate += UpdateMemberCounts;
+            _parentViewModel.DataChanged += RefreshAll;
             UpdateMemberCounts();
             UpdateClasses();
             UpdateKPIs();
@@ -85,5 +84,19 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
             return total;
         }
-    }
+
+        public void RefreshAll()
+        {
+            UpdateClasses();
+            UpdateMemberCounts();
+
+            OnPropertyChanged(nameof(TotalMemberCount));
+            OnPropertyChanged(nameof(ActiveMemberCount));
+            OnPropertyChanged(nameof(InactiveMemberCount));
+
+            OnPropertyChanged(nameof(ClassesToday));
+            OnPropertyChanged(nameof(ClassesWeek));
+            OnPropertyChanged(nameof(CapacityPercentage));
+        }
+    } 
 }
