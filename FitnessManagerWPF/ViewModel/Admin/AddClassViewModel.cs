@@ -33,8 +33,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 if (string.IsNullOrEmpty(value) || 
                     (int.TryParse(value, out int num) && num >= 1 && num <= 100)) // max 100 in a class
                 {
-                    _maxParticipants = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _maxParticipants, value);
                 }
             }
         }

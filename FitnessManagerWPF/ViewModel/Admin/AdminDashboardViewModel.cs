@@ -89,14 +89,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             UpdateClasses();
             UpdateMemberCounts();
-
-            OnPropertyChanged(nameof(TotalMemberCount));
-            OnPropertyChanged(nameof(ActiveMemberCount));
-            OnPropertyChanged(nameof(InactiveMemberCount));
-
-            OnPropertyChanged(nameof(ClassesToday));
-            OnPropertyChanged(nameof(ClassesWeek));
-            OnPropertyChanged(nameof(CapacityPercentage));
+            UpdateKPIs();
         }
     } 
 }

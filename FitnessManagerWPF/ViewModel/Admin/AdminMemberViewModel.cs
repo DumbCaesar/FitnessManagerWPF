@@ -127,13 +127,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void OnMemberCreated(User user)
         {
-            _userList.Add(user);
-
-            if (user.UserRole == UserRole.Member)
-            {
-                MemberList.Add(user);
-                UserCreated?.Invoke();
-            }
+            MemberList.Add(user);
+            UserCreated?.Invoke();
             _parentViewModel.NotifyDataChanged();
         }
     }
