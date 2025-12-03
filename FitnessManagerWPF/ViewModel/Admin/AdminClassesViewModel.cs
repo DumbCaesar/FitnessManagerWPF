@@ -70,7 +70,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             addClassViewModel.ClassCreated += OnClassCreated;
 
             var view = new AddClassView { DataContext = addClassViewModel };
-            bool? result = view.ShowDialog();
+            view.ShowDialog();
 
             addClassViewModel.ClassCreated -= OnClassCreated;
         }
