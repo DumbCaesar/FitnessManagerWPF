@@ -306,5 +306,65 @@
     "MembershipExpiresAt": "2026-01-02T16:52:27.5507806+01:00",
     "ActiveMembershipId": 5,
     "role": 0
+  },
+  {
+    "Id": 17,
+    "Name": "Jens Tester",
+    "Email": "jtester@gmail.com",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T09:31:29.4685929+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 18,
+    "Name": "Peter Tester",
+    "Email": "ptester@gmail.com",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T09:38:15.2238505+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 19,
+    "Name": "Jakob Tester",
+    "Email": "jtester@gmail.com",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T09:42:17.5761137+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 20,
+    "Name": "Nicolai Tester",
+    "Email": "ntester@gmail.com",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T10:01:44.4618317+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 21,
+    "Name": "Jakub Tester",
+    "Email": "jtester",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T10:06:23.3668502+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 22,
+    "Name": "Phillip Tester",
+    "Email": "ptester@gmail.com",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-03T10:18:05.9308579+01:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
   }
 ]

@@ -129,7 +129,7 @@ namespace FitnessManagerWPF.ViewModel
         {
             Debug.WriteLine("Creating new user...");
             int newUserId = ++_dataService.MaxUserId;
-            User newUser = new User(newUserId, FullName, Email, UserRole.Member);
+            User newUser = new User(newUserId, FullName, Email);
             Login newLogin = new Login(newUserId, Username, Password);
 
             Debug.WriteLine("New user created:");
