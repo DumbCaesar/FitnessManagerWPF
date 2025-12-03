@@ -88,7 +88,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Debug.WriteLine($"ID: {newClassId}");
             Debug.WriteLine($"Participants: {maxNumberOfParticipants}");
             Debug.WriteLine($"Trainer: {Trainer.Name}");
-            Classes newClass = new Classes(newClassId, Name, maxNumberOfParticipants, Trainer, Day, Time);
+            Classes newClass = new Classes
+            {
+                Id = newClassId,
+                Name = Name,
+                MaxParticipants = maxNumberOfParticipants,
+                Trainer = Trainer,
+                Day = Day,
+                Time = Time
+            };
+
             _dataService._activities.Add(newClass);
             _dataService.SaveClasses();
             

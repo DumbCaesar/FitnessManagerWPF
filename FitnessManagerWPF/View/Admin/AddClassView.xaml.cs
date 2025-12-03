@@ -29,7 +29,6 @@ namespace FitnessManagerWPF.View.Admin
                 if (DataContext is AddClassViewModel vm)
                     vm.CloseRequest += () =>
                     {
-                        DialogResult = true;
                         Close();
                     };
             };

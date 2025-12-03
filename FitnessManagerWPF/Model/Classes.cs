@@ -52,23 +52,5 @@ namespace FitnessManagerWPF.Model
                 OnPropertyChanged(nameof(IsUserEnrolled));
             };
         }
-
-        public Classes(int id, string name, int participants, User trainer, DayOfWeek day, TimeSpan time)
-        {
-            Id = id;
-            Name = name ?? throw new ArgumentNullException(nameof(trainer));
-            MaxParticipants = participants;
-            Trainer = trainer ?? throw new ArgumentNullException(nameof(trainer));
-            TrainerId = trainer.Id;
-            Day = day;
-            Time = time;
-
-            RegisteredMemberIds.CollectionChanged += (_, __) =>
-            {
-                OnPropertyChanged(nameof(CurrentParticipants));
-                OnPropertyChanged(nameof(CapacityDisplay));
-                OnPropertyChanged(nameof(IsUserEnrolled));
-            };
-        }
     }
 }

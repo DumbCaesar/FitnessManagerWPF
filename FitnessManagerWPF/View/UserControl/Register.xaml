@@ -58,10 +58,10 @@
         
         <!-- Buttons -->
         <Border Grid.Row="11" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="LightSlateGray" Margin="0 0 110 0">
-            <Button Command="{Binding CreateUserCommand}" Content="Create User" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>
+            <Button Command="{Binding CreateUserCommand}" Content="Create User" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14" IsDefault="True"/>
         </Border>
         <Border Grid.Row="11" Grid.Column="1" CornerRadius="8" BorderThickness="1" BorderBrush="Black" Width="100" Background="DimGray" Margin="110 0 0 0">
-            <Button Command="{Binding ShowLoginCommand}" Content="Return" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14"/>
+            <Button Command="{Binding ShowLoginCommand}" Content="Return" Grid.Row="5" Grid.Column="1" Style="{StaticResource FlatButton}" BorderThickness="0" Width="100" Background="Transparent" FontWeight="SemiBold" FontSize="14" IsCancel="True"/>
         </Border>
     </Grid>
 </UserControl>
