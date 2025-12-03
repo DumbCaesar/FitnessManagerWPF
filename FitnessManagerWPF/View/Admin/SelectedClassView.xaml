@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FitnessManagerWPF.View.Admin"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="SelectedClassView" Height="450" Width="590">
     <Grid>
@@ -12,11 +13,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <ComboBox Grid.Row="0" ItemsSource="{Binding ListOfClasses}" SelectedItem="{Binding SelectedClass}" DisplayMemberPath="ClassInfo"/>
-        <ListView Grid.Row="1" ItemsSource="{Binding ListOfUsers}" SelectedItem="{Binding SelectedUser}">
+        <ListView Grid.Row="1" ItemsSource="{Binding ListOfUsers}" SelectedItem="{Binding SelectedMember}">
             <ListView.Resources>
                 <Style TargetType="ScrollBar" BasedOn="{StaticResource HorizontalCleanScrollBar}" />
             </ListView.Resources>
-                <ListView.View>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <i:InvokeCommandAction Command="{Binding MemberDoubleClickCommand}" CommandParameter="{Binding SelectedMember}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="70"/>
                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="180"/>

@@ -1,11 +1,14 @@
 ﻿using FitnessManagerWPF.Model;
 using FitnessManagerWPF.Services;
+using FitnessManagerWPF.View.Admin;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
@@ -15,9 +18,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private ObservableCollection<User> _listOfUsers;
         private List<Classes> _classes;
         private Classes _selectedClass;
-        private User _selectedUser;
+        private User _selectedMember;
         private AdminClassesViewModel _parentViewModel;
         private DataService _dataService;
+
+        public ICommand MemberDoubleClickCommand { get; set; }
 
         public Classes SelectedClass
         {
@@ -31,10 +36,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
 
-        public User SelectedUser
+        public User SelectedMember
         {
-            get => _selectedUser;
-            set => SetProperty(ref _selectedUser, value);
+            get => _selectedMember;
+            set
+            {
+                SetProperty(ref _selectedMember, value);
+                Debug.WriteLine($"Selcted Member is: {SelectedMember.Name}");
+            }
         }
 
         public ObservableCollection<Classes> ListOfClasses
@@ -56,12 +65,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _classes = _dataService._activities;
             _listOfClasses = new ObservableCollection<Classes>(_classes);
             _listOfUsers = _dataService.GetSelectedClass(classes);
+            MemberDoubleClickCommand = new RelayCommand(_ => ShowSelectedMember());
 
         }
 
-        public SelectedClassViewModel()
+        private void ShowSelectedMember()
         {
-            
+            if (SelectedMember == null) return;
+            SelectedMemberViewModel selectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
+            SelectedMemberView selectedMemberView = new SelectedMemberView { DataContext = selectedMemberViewModel };
+            selectedMemberView.ShowDialog();
         }
     }
 }
