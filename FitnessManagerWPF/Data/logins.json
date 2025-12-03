@@ -78,10 +78,5 @@
     "MembershipId": 15,
     "Username": "bmoore",
     "Password": "Brandon@Fit77"
-  },
-  {
-    "MembershipId": 16,
-    "Username": "test",
-    "Password": "password123"
   }
 ]
