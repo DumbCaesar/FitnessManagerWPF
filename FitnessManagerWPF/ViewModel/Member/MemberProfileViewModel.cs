@@ -101,8 +101,7 @@ namespace FitnessManagerWPF.ViewModel.Member
         {
             Debug.WriteLine("Save clicked");
             var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
-            if (messageBox == MessageBoxResult.OK)
-            {
+            if (messageBox != MessageBoxResult.OK) return;
                 if(Password == _currentUserLogin.Password && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare))
                 {
                     _currentUser.Name = Name;
@@ -110,7 +109,6 @@ namespace FitnessManagerWPF.ViewModel.Member
                     _currentUserLogin.Username = Username;
                     _currentUserLogin.Password = Password;
                     _currentUserLogin.MembershipId = MembershipId;
-                    _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
                     Debug.WriteLine("Saved...");
                 }
                 if (string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare)) return;
@@ -121,12 +119,10 @@ namespace FitnessManagerWPF.ViewModel.Member
                     _currentUserLogin.Username = Username;
                     _currentUserLogin.Password = NewPassword;
                     _currentUserLogin.MembershipId = MembershipId;
-                    _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
                     Debug.WriteLine("Saved...");
                 }
-                
-            }
-            return;
+                _dataService.SaveUsers();
+                _dataService.SaveLogins();
         }
 
         private void Discard()

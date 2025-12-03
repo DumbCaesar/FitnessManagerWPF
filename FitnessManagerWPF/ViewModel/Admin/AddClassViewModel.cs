@@ -97,7 +97,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 Time = Time
             };
 
-            _dataService._activities.Add(newClass);
+            _dataService.Activities.Add(newClass);
             _dataService.SaveClasses();
             
             ClassCreated?.Invoke(newClass);

@@ -90,7 +90,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 _user.Email = Email;
                 _userLogin.Username = Username;
                 _userLogin.Password = Password;
-                _dataService.UpdateUserInfo(_user, _userLogin);
+
+                _dataService.SaveUsers();
+                _dataService.SaveLogins();
+
                 MemberChanged?.Invoke();
                 Debug.WriteLine("Saved...");
             }

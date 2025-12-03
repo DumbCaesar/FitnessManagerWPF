@@ -22,8 +22,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private DataService _dataService;
         private AdminViewModel _parentViewModel;
         private Classes? _selectedActivity;
-        private List<Classes> _activityList;
         private ObservableCollection<Classes> _activities;
+
         public event Action ClassCreated;
         public ICommand AddClassCommand { get; set; }
         public ICommand ShowSelectedClassCommand { get; set; }
@@ -56,10 +56,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public AdminClassesViewModel(AdminViewModel parentViewModel, DataService dataService)
         {
             _parentViewModel = parentViewModel;
-            _activityList = new List<Classes>();
             _dataService = dataService;
-            _activityList = _dataService._activities.ToList();
-            _activities = new ObservableCollection<Classes>(_activityList);
+            _activities = new ObservableCollection<Classes>(_dataService.Activities);
             AddClassCommand = new RelayCommand(_ => AddClass());
             ShowSelectedClassCommand = new RelayCommand(_ => ShowSelectedClass());
         }

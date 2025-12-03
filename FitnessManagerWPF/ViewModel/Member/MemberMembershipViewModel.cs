@@ -94,7 +94,7 @@ namespace FitnessManagerWPF.ViewModel.Member
 
             CurrentUser.BillingHistory.Add(purchase);
             UserSubscriptions.Add(purchase);
-            _dataService.SaveMembers();
+            _dataService.SaveUsers();
             UpdateMembershipEvent?.Invoke();
         }
     }

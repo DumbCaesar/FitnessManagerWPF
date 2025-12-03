@@ -62,7 +62,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _dataService = dataService;
             SelectedClass = classes;
-            _classes = _dataService._activities;
+            _classes = _dataService.Activities;
             _listOfClasses = new ObservableCollection<Classes>(_classes);
             _listOfUsers = _dataService.GetSelectedClass(classes);
             MemberDoubleClickCommand = new RelayCommand(_ => ShowSelectedMember());

@@ -25,7 +25,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = parentViewModel.CurrentUser;
 
-            Classes = new ObservableCollection<Classes>(_dataService._activities);
+            Classes = new ObservableCollection<Classes>(_dataService.Activities);
 
             SignUpCommand = new RelayCommand(
                 param => ClassSignUp(param),
