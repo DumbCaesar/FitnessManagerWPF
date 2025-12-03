@@ -17,26 +17,25 @@ namespace FitnessManagerWPF.Services
 {
     public class DataService
     {
+        // file paths
         private readonly string _basePath;
-        private readonly string _membersFile;
+        private readonly string _usersFile;
         private readonly string _loginFile;
-        private readonly string _classesFile;
+        private readonly string _gymClassesFile;
+        private readonly string _membershipsFile;
+
+        //  lists
         private List<User> _users;
         private List<Login> _logins;
-        private readonly string _membershipsFile;
         private List<Membership> _memberships;
-        public List<Classes> _activities;
+        private List<GymClass> _gymClasses;
+
         public User CurrentUser { get; private set; }
         public List<Membership> Memberships
         {
             get => _memberships;
             set => _memberships = value;
         }
-        public int MaxUserId { get; set; }
-
-        public int MaxSubscriptionId { get; set; }
-        public int MaxClassId { get; set; }
-
         public List<User> Users
         {
             get => _users;
@@ -47,18 +46,27 @@ namespace FitnessManagerWPF.Services
             get => _logins;
             private set => _logins = value;
         }
+        public List<GymClass> GymClasses
+        {
+            get => _gymClasses;
+            private set => _gymClasses = value;
+        }
+        public int MaxUserId { get; set; }
+
+        public int MaxSubscriptionId { get; set; }
+        public int MaxClassId { get; set; }
 
         public DataService()
         {
             _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
-            _membersFile = Path.Combine(_basePath, "Data/members.json");
+            _usersFile = Path.Combine(_basePath, "Data/users.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
-            _classesFile = Path.Combine(_basePath, "Data/classes.json");
+            _gymClassesFile = Path.Combine(_basePath, "Data/gymclasses.json");
             _membershipsFile = Path.Combine(_basePath, "Data/memberships.json");
 
             _users = new List<User>();
             _logins = new List<Login>();
-            _activities = new List<Classes>();
+            _gymClasses = new List<GymClass>();
             _memberships = new List<Membership>();
 
             try
@@ -71,7 +79,7 @@ namespace FitnessManagerWPF.Services
                 .Select(sub => sub.Id)
                 .DefaultIfEmpty(0)
                 .Max();
-                MaxClassId = _activities.Max(c => c.Id);
+                MaxClassId = _gymClasses.Max(c => c.Id);
             }
             catch (Exception ex)
             {
@@ -91,14 +99,14 @@ namespace FitnessManagerWPF.Services
 
                 options.Converters.Add(new JsonStringEnumConverter());
 
-                _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_membersFile), options);
-                Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_membersFile}");
+                _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_usersFile), options);
+                Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_usersFile}");
 
                 _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
                 Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
 
-                _activities = JsonSerializer.Deserialize<List<Classes>>(File.ReadAllText(_classesFile), options);
-                Debug.WriteLine($"Loaded {_activities?.Count ?? 0} entries from {_classesFile}");
+                _gymClasses = JsonSerializer.Deserialize<List<GymClass>>(File.ReadAllText(_gymClassesFile), options);
+                Debug.WriteLine($"Loaded {_gymClasses?.Count ?? 0} entries from {_gymClasses}");
 
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
@@ -150,39 +158,9 @@ namespace FitnessManagerWPF.Services
 
         private void LinkTrainers()
         {
-            foreach (Classes c in _activities)
+            foreach (GymClass c in _gymClasses)
             {
                 c.Trainer = _users.FirstOrDefault(u => u.Id == c.TrainerId) ?? new User { Id = c.TrainerId, Name = "Deleted Trainer" };
-            }
-        }
-
-        public void GetMemberDetails(int memberId,
-        ObservableCollection<Classes> MemberClasses,
-        ObservableCollection<Purchase> MemberSubscriptions)
-        {
-            MemberClasses.Clear();
-            MemberSubscriptions.Clear();
-
-            // Find all classes where the member is registered
-            var memberClasses = _activities
-                .Where(c => c.RegisteredMemberIds != null && c.RegisteredMemberIds.Contains(memberId))
-                .ToList();
-
-            // ADD the classes to the collection
-            foreach (var cls in memberClasses)
-            {
-                MemberClasses.Add(cls);
-            }
-
-            // Get the member's billing history
-            var member = _users.FirstOrDefault(u => u.Id == memberId);
-            if (member?.BillingHistory != null)
-            {
-                // ADD the billing records to the collection
-                foreach (var billing in member.BillingHistory)
-                {
-                    MemberSubscriptions.Add(billing);
-                }
             }
         }
 
@@ -230,79 +208,26 @@ namespace FitnessManagerWPF.Services
             string userJson = JsonSerializer.Serialize(_users, options);
             string loginJson = JsonSerializer.Serialize(_logins, options); 
 
-            File.WriteAllText(_membersFile, userJson);
+            File.WriteAllText(_usersFile, userJson);
             File.WriteAllText(_loginFile, loginJson);
 
-            Debug.WriteLine($"Added {user.Name} to {_membersFile}");
+            Debug.WriteLine($"Added {user.Name} to {_usersFile}");
             Debug.WriteLine($"Added {login.Username} to {_loginFile}");
         }
 
-        public void UpdateUserInfo(User user, Login login)
+        public void SaveGymClasses()
         {
             var options = new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true,
                 WriteIndented = true
             };
-
-            var _user = _users.FirstOrDefault(u => u.Id == user.Id);
-            var _userLogin = _logins.FirstOrDefault(l => l.MembershipId == _user.Id);
-
-            if (_user == null || _userLogin == null)
-            {
-                Debug.WriteLine("User or login not found, nothing to update.");
-                return;
-            }
-
-            try
-            {
-
-                _user.Name = user.Name;
-                _user.Email = user.Email;
-                _userLogin.Username = login.Username;
-                _userLogin.Password = login.Password;
-
-                int userIndex = _users.IndexOf(_user);
-                int loginIndex = _logins.IndexOf(_userLogin);
-
-                _users[userIndex] = _user;
-                _logins[loginIndex] = _userLogin;
-
-                string userJson = JsonSerializer.Serialize(_users, options);
-                string loginJson = JsonSerializer.Serialize(_logins, options);
-                File.WriteAllText(_membersFile, userJson);
-                File.WriteAllText(_loginFile, loginJson);
-
-                Debug.WriteLine($"Saved {user.Name} to {_membersFile}");
-                Debug.WriteLine($"Saved {login.Username} to {_loginFile}");
-            }
-            catch (FileNotFoundException ex)
-            {
-                Debug.WriteLine($"Data file not found: {ex.Message}");
-            }
-            catch (JsonException ex)
-            {
-                Debug.WriteLine($"Invalid JSON format: {ex.Message}");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"Exception occured: {ex.Message}");
-            }
+            string gymClassesJson = JsonSerializer.Serialize(_gymClasses, options);
+            File.WriteAllText(_gymClassesFile, gymClassesJson);
+            Debug.WriteLine($"Updated {_gymClassesFile}");
         }
 
-        public void SaveClasses()
-        {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                WriteIndented = true
-            };
-            string classesJson = JsonSerializer.Serialize(_activities, options);
-            File.WriteAllText(_classesFile, classesJson);
-            Debug.WriteLine($"Updated {_classesFile}");
-        }
-
-        public void SaveMembers()
+        public void SaveUsers()
         {
             var options = new JsonSerializerOptions
             {
@@ -310,8 +235,8 @@ namespace FitnessManagerWPF.Services
                 WriteIndented = true
             };
             string membersJson = JsonSerializer.Serialize(_users, options);
-            File.WriteAllText(_membersFile, membersJson);
-            Debug.WriteLine($"Updated {_membersFile}");
+            File.WriteAllText(_usersFile, membersJson);
+            Debug.WriteLine($"Updated {_usersFile}");
         }
 
         public void SaveLogins()
@@ -325,10 +250,10 @@ namespace FitnessManagerWPF.Services
             File.WriteAllText(_loginFile, loginsJson);
             Debug.WriteLine($"Updated {_loginFile}");
         }
-        public ObservableCollection<User> GetSelectedClass(Classes classes)
+        public ObservableCollection<User> GetSelectedClass(GymClass cls)
         {
-            if (classes == null) return null;
-            var users = _users.FindAll(u => classes.RegisteredMemberIds.Contains(u.Id));
+            if (cls == null) return null;
+            var users = _users.FindAll(u => cls.RegisteredMemberIds.Contains(u.Id));
             ObservableCollection<User> temp = new ObservableCollection<User>(users);
             return temp;
 
@@ -347,18 +272,18 @@ namespace FitnessManagerWPF.Services
                 // Remove user
                 _users.Remove(user);
 
-                // Remove user from all activities
-                foreach (var activity in _activities)
+                // Remove user from all classes
+                foreach (var cls in _gymClasses)
                 {
-                    while (activity.RegisteredMemberIds.Contains(user.Id))
+                    while (cls.RegisteredMemberIds.Contains(user.Id))
                     {
-                        activity.RegisteredMemberIds.Remove(user.Id);
+                        cls.RegisteredMemberIds.Remove(user.Id);
                     }
                 }
 
-                SaveClasses();
+                SaveGymClasses();
                 SaveLogins();
-                SaveMembers();
+                SaveUsers();
             }
             catch (Exception ex)
             {

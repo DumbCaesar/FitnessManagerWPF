@@ -33,8 +33,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 if (string.IsNullOrEmpty(value) || 
                     (int.TryParse(value, out int num) && num >= 1 && num <= 100)) // max 100 in a class
                 {
-                    _maxParticipants = value;
-                    OnPropertyChanged();
+                    SetProperty(ref _maxParticipants, value);
                 }
             }
         }
@@ -68,7 +67,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public ICommand SaveClassCommand { get; set; }
         public event Action? CloseRequest;
         public ICommand CancelCommand { get; set; }
-        public event Action<Classes> ClassCreated;
+        public event Action<GymClass> ClassCreated;
         public AddClassViewModel(DataService dataService) 
         {
             _dataService = dataService;
@@ -88,7 +87,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Debug.WriteLine($"ID: {newClassId}");
             Debug.WriteLine($"Participants: {maxNumberOfParticipants}");
             Debug.WriteLine($"Trainer: {Trainer.Name}");
-            Classes newClass = new Classes
+            GymClass newClass = new GymClass
             {
                 Id = newClassId,
                 Name = Name,
@@ -98,8 +97,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
                 Time = Time
             };
 
-            _dataService._activities.Add(newClass);
-            _dataService.SaveClasses();
+            _dataService.GymClasses.Add(newClass);
+            _dataService.SaveGymClasses();
             
             ClassCreated?.Invoke(newClass);
             MessageBox.Show($"Successfully created class: {Name}");

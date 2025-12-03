@@ -15,15 +15,15 @@ namespace FitnessManagerWPF.ViewModel.Admin
     public class SelectedMemberViewModel : ObservableObject
     {
         private readonly DataService _dataService;
-        private EditMemberViewModel _editMemberViewModel;
         private User _user;
+
         public event Action MemberChanged;
         public event Action MemberDeleted;
 
         public ICommand EditMemberCommand { get; set; }
         public ICommand DeleteMemberCommand { get; set; }
 
-        public ObservableCollection<Classes> MemberClasses { get; set; }
+        public ObservableCollection<GymClass> MemberClasses { get; set; }
         public ObservableCollection<Purchase> MembershipSubscriptions { get; set; }
 
         public User SelectedMember
@@ -32,31 +32,26 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set
             {
                 SetProperty(ref _user, value);
-                LoadMemberDetails();
             }
         }
 
         public SelectedMemberViewModel(User user, DataService dataService)
         {
-            MemberClasses = new ObservableCollection<Classes>();
-            MembershipSubscriptions = new ObservableCollection<Purchase>();
-            EditMemberCommand = new RelayCommand(_ => ShowEditMember());
-            DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
             _dataService = dataService;
             SelectedMember = user;
 
-        }
+            var memberClasses = _dataService.GymClasses
+                .Where(c => c.RegisteredMemberIds != null && c.RegisteredMemberIds.Contains(user.Id));
+            MemberClasses = new ObservableCollection<GymClass>(memberClasses);
+            MembershipSubscriptions = new ObservableCollection<Purchase>(user.BillingHistory);
 
-        private void LoadMemberDetails()
-        {
-            if (SelectedMember == null) return;
-            _dataService.GetMemberDetails(SelectedMember.Id, MemberClasses, MembershipSubscriptions);
+            EditMemberCommand = new RelayCommand(_ => ShowEditMember());
+            DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
         }
-
         private void ShowEditMember()
         {
             if(SelectedMember == null) return;
-            _editMemberViewModel = new EditMemberViewModel(this, SelectedMember, _dataService);
+            var _editMemberViewModel = new EditMemberViewModel(this, SelectedMember, _dataService);
             _editMemberViewModel.MemberChanged += OnUpdateMemberInfo;
             EditMemberView editMemberView = new EditMemberView { DataContext = _editMemberViewModel };
             editMemberView.ShowDialog();

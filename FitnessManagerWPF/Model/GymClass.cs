@@ -9,7 +9,7 @@ using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
-    public class Classes : ObservableObject
+    public class GymClass : ObservableObject
     {
         private bool _isUserEnrolled;
         private ObservableCollection<int> _registeredMemberIds = new();
@@ -44,7 +44,7 @@ namespace FitnessManagerWPF.Model
             set => SetProperty(ref _isUserEnrolled, value);
         }
 
-        public Classes() {
+        public GymClass() {
             RegisteredMemberIds.CollectionChanged += (_, __) =>
             {
                 OnPropertyChanged(nameof(CurrentParticipants));

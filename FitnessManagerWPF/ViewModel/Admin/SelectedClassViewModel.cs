@@ -14,17 +14,17 @@ namespace FitnessManagerWPF.ViewModel.Admin
 {
     public class SelectedClassViewModel : ObservableObject
     {
-        private ObservableCollection<Classes> _listOfClasses;
+        private ObservableCollection<GymClass> _listOfClasses;
         private ObservableCollection<User> _listOfUsers;
-        private List<Classes> _classes;
-        private Classes _selectedClass;
+        private List<GymClass> _gymClasses;
+        private GymClass _selectedClass;
         private User _selectedMember;
         private AdminClassesViewModel _parentViewModel;
         private DataService _dataService;
 
         public ICommand MemberDoubleClickCommand { get; set; }
 
-        public Classes SelectedClass
+        public GymClass SelectedClass
         {
             get => _selectedClass;
             set
@@ -46,7 +46,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
 
-        public ObservableCollection<Classes> ListOfClasses
+        public ObservableCollection<GymClass> ListOfClasses
         {
             get => _listOfClasses;
             set => SetProperty(ref _listOfClasses, value);
@@ -58,12 +58,12 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set => SetProperty(ref _listOfUsers, value);
         }
 
-        public SelectedClassViewModel(DataService dataService, Classes classes)
+        public SelectedClassViewModel(DataService dataService, GymClass classes)
         {
             _dataService = dataService;
             SelectedClass = classes;
-            _classes = _dataService._activities;
-            _listOfClasses = new ObservableCollection<Classes>(_classes);
+            _gymClasses = _dataService.GymClasses;
+            _listOfClasses = new ObservableCollection<GymClass>(_gymClasses);
             _listOfUsers = _dataService.GetSelectedClass(classes);
             MemberDoubleClickCommand = new RelayCommand(_ => ShowSelectedMember());
 

@@ -49,11 +49,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void UpdateClasses()
         {   
-            ClassesToday = _dataService._activities.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
-            ClassesWeek = _dataService._activities.Count();
-            int MaxAttendance = _dataService._activities.Sum(a => a.MaxParticipants);
+            ClassesToday = _dataService.GymClasses.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
+            ClassesWeek = _dataService.GymClasses.Count();
+            int MaxAttendance = _dataService.GymClasses.Sum(a => a.MaxParticipants);
             Debug.WriteLine($"Max attendance this week: {MaxAttendance}");
-            int CurrentAttendance = _dataService._activities.Sum(a => a.CurrentParticipants);
+            int CurrentAttendance = _dataService.GymClasses.Sum(a => a.CurrentParticipants);
             Debug.WriteLine($"Current attendance this week: {CurrentAttendance}");
             CapacityPercentage = (double)CurrentAttendance/MaxAttendance;
             Debug.WriteLine($"Attendance: {CapacityPercentage}");
@@ -89,14 +89,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             UpdateClasses();
             UpdateMemberCounts();
-
-            OnPropertyChanged(nameof(TotalMemberCount));
-            OnPropertyChanged(nameof(ActiveMemberCount));
-            OnPropertyChanged(nameof(InactiveMemberCount));
-
-            OnPropertyChanged(nameof(ClassesToday));
-            OnPropertyChanged(nameof(ClassesWeek));
-            OnPropertyChanged(nameof(CapacityPercentage));
+            UpdateKPIs();
         }
     } 
 }
