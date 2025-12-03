@@ -23,6 +23,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private DataService _dataService;
 
         public ICommand MemberDoubleClickCommand { get; set; }
+        public ICommand NewUserCommand { get; set; }
 
         public SelectedMemberViewModel SelectedMemberViewModel
         {
@@ -60,11 +61,21 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public AdminMemberViewModel(AdminViewModel parentViewModel, DataService dataService)
         {
             MemberDoubleClickCommand = new RelayCommand(_ => OnMemberDoubleClick());
+            NewUserCommand = new RelayCommand(_ => ShowNewUserView());
             _parentViewModel = parentViewModel;
             _userList = new List<User>();
             _dataService = dataService;
             _userList = _dataService.Users;
             _listOfMembers = new ObservableCollection<User>(_userList.Where(u => u.UserRole == UserRole.Member));
+        }
+
+        private void ShowNewUserView()
+        {
+            AddMemberViewModel addMemberViewModel = new AddMemberViewModel(_dataService);
+            addMemberViewModel.NewMemberCreated += OnMemberCreated;
+            AddMemberView addMemberView = new AddMemberView { DataContext = addMemberViewModel };
+            addMemberView.ShowDialog();
+            addMemberViewModel.NewMemberCreated -= OnMemberCreated;
         }
 
         private void OnMemberDoubleClick()
@@ -114,6 +125,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             SelectedMember = null;
         }
 
+        private void OnMemberCreated(User user)
+        {
+            _userList.Add(user);
 
+            if (user.UserRole == UserRole.Member)
+            {
+                MemberList.Add(user);
+            }
+        }
     }
 }

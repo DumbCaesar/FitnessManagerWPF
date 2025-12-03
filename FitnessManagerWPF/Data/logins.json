@@ -83,5 +83,35 @@
     "MembershipId": 16,
     "Username": "test",
     "Password": "Password123"
+  },
+  {
+    "MembershipId": 17,
+    "Username": "jtester",
+    "Password": "Password123"
+  },
+  {
+    "MembershipId": 18,
+    "Username": "ptester",
+    "Password": "Password123"
+  },
+  {
+    "MembershipId": 19,
+    "Username": "jtester",
+    "Password": "Password123"
+  },
+  {
+    "MembershipId": 20,
+    "Username": "ntester",
+    "Password": "Password123"
+  },
+  {
+    "MembershipId": 21,
+    "Username": "jtester",
+    "Password": "Password123"
+  },
+  {
+    "MembershipId": 22,
+    "Username": "ptester",
+    "Password": "Password123"
   }
 ]
