@@ -23,7 +23,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public ICommand EditMemberCommand { get; set; }
         public ICommand DeleteMemberCommand { get; set; }
 
-        public ObservableCollection<Classes> MemberClasses { get; set; }
+        public ObservableCollection<GymClass> MemberClasses { get; set; }
         public ObservableCollection<Purchase> MembershipSubscriptions { get; set; }
 
         public User SelectedMember
@@ -40,15 +40,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _dataService = dataService;
             SelectedMember = user;
 
-            var memberClasses = _dataService.Activities
+            var memberClasses = _dataService.GymClasses
                 .Where(c => c.RegisteredMemberIds != null && c.RegisteredMemberIds.Contains(user.Id));
-            MemberClasses = new ObservableCollection<Classes>(memberClasses);
+            MemberClasses = new ObservableCollection<GymClass>(memberClasses);
             MembershipSubscriptions = new ObservableCollection<Purchase>(user.BillingHistory);
 
             EditMemberCommand = new RelayCommand(_ => ShowEditMember());
             DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
         }
-
         private void ShowEditMember()
         {
             if(SelectedMember == null) return;

@@ -21,30 +21,30 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private string _activityStats;
         private DataService _dataService;
         private AdminViewModel _parentViewModel;
-        private Classes? _selectedActivity;
-        private ObservableCollection<Classes> _activities;
+        private GymClass? _selectedClass;
+        private ObservableCollection<GymClass> _gymClasses;
 
         public event Action ClassCreated;
         public ICommand AddClassCommand { get; set; }
         public ICommand ShowSelectedClassCommand { get; set; }
 
-        public Classes? SelectedActivity
+        public GymClass? SelectedClass
         {
-            get => _selectedActivity;
+            get => _selectedClass;
             set
             {
-                SetProperty(ref _selectedActivity, value);
-                if (SelectedActivity != null)
+                SetProperty(ref _selectedClass, value);
+                if (SelectedClass != null)
                 {
-                    Debug.WriteLine($"Selected Activity is: {_selectedActivity.Name}");
+                    Debug.WriteLine($"Selected class is: {_selectedClass.Name}");
                 }
             }
         }
 
-        public ObservableCollection<Classes> Activities
+        public ObservableCollection<GymClass> GymClasses
         {
-            get => _activities;
-            set => SetProperty(ref _activities, value);
+            get => _gymClasses;
+            set => SetProperty(ref _gymClasses, value);
         }
 
         public object CurrentView
@@ -57,7 +57,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _parentViewModel = parentViewModel;
             _dataService = dataService;
-            _activities = new ObservableCollection<Classes>(_dataService.Activities);
+            _gymClasses = new ObservableCollection<GymClass>(_dataService.GymClasses);
             AddClassCommand = new RelayCommand(_ => AddClass());
             ShowSelectedClassCommand = new RelayCommand(_ => ShowSelectedClass());
         }
@@ -76,15 +76,15 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void ShowSelectedClass()
         {
-            if (SelectedActivity == null) return;
-            SelectedClassViewModel selectedClassViewModel = new SelectedClassViewModel(_dataService, SelectedActivity);
+            if (SelectedClass == null) return;
+            SelectedClassViewModel selectedClassViewModel = new SelectedClassViewModel(_dataService, SelectedClass);
             SelectedClassView selectedClassView = new SelectedClassView { DataContext = selectedClassViewModel };
             selectedClassView.ShowDialog();
         }
 
-        private void OnClassCreated(Classes newClass)
+        private void OnClassCreated(GymClass newClass)
         {
-            Activities.Add(newClass);
+            GymClasses.Add(newClass);
             _parentViewModel.NotifyDataChanged();
             ClassCreated?.Invoke();
         }

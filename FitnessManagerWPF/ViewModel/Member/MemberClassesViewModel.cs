@@ -16,7 +16,7 @@ namespace FitnessManagerWPF.ViewModel.Member
         private DataService _dataService;
         private MemberViewModel _parentViewModel;
         private User _currentUser;
-        public ObservableCollection<Classes> Classes { get; set; }
+        public ObservableCollection<GymClass> Classes { get; set; }
         public ICommand SignUpCommand { get; }
 
         public MemberClassesViewModel(MemberViewModel parentViewModel, DataService dataService)
@@ -25,7 +25,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = parentViewModel.CurrentUser;
 
-            Classes = new ObservableCollection<Classes>(_dataService.Activities);
+            Classes = new ObservableCollection<GymClass>(_dataService.GymClasses);
 
             SignUpCommand = new RelayCommand(
                 param => ClassSignUp(param),
@@ -34,7 +34,7 @@ namespace FitnessManagerWPF.ViewModel.Member
 
         private void ClassSignUp(object? param)
         {
-            if (param is not Classes selectedClass) return;
+            if (param is not GymClass selectedClass) return;
 
             Debug.WriteLine($"Sign up/cancel click: {selectedClass.Name}");
             if (selectedClass.RegisteredMemberIds.Contains(_currentUser.Id))
@@ -48,13 +48,13 @@ namespace FitnessManagerWPF.ViewModel.Member
                 Debug.WriteLine($"Added {_currentUser.Name} to {selectedClass.Name}");
             }
             selectedClass.IsUserEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
-            _dataService.SaveClasses();
+            _dataService.SaveGymClasses();
             CommandManager.InvalidateRequerySuggested();
         }
 
         private bool CanSignUp(object? param)
         {
-            if (param is not Classes selectedClass) return false;
+            if (param is not GymClass selectedClass) return false;
             // Only disable if class is full and currentUser is not enrolled
             bool isEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
             bool isFull = selectedClass.CurrentParticipants >= selectedClass.MaxParticipants;
