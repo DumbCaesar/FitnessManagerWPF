@@ -17,6 +17,8 @@ namespace FitnessManagerWPF.ViewModel.Member
         private string _email;
         private string _username;
         private string _password;
+        private string _newPassword;
+        private string _newPasswordCompare;
         private DateTime _dateJoined;
         private int _membershipId;
 
@@ -45,6 +47,18 @@ namespace FitnessManagerWPF.ViewModel.Member
         {
             get => _password;
             set => SetProperty(ref _password, value);
+        }
+
+        public string NewPassword
+        {
+            get => _newPassword;
+            set => SetProperty(ref _newPassword, value);
+        }
+
+        public string NewPasswordCompare
+        {
+            get => _newPasswordCompare;
+            set => SetProperty(ref _newPasswordCompare, value);
         }
 
         public DateTime DateJoined
@@ -81,7 +95,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             Name = _currentUser.Name ?? "";
             Email = _currentUser.Email ?? "";
             Username = _currentUserLogin?.Username ?? "";
-            Password = _currentUserLogin?.Password ?? "";
         }
 
         private void Save()
@@ -90,13 +103,28 @@ namespace FitnessManagerWPF.ViewModel.Member
             var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
             if (messageBox == MessageBoxResult.OK)
             {
-                _currentUser.Name = Name;
-                _currentUser.Email = Email;
-                _currentUserLogin.Username = Username;
-                _currentUserLogin.Password = Password;
-                _currentUserLogin.MembershipId = MembershipId;
-                _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
-                Debug.WriteLine("Saved...");
+                if(Password == _currentUserLogin.Password && string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare))
+                {
+                    _currentUser.Name = Name;
+                    _currentUser.Email = Email;
+                    _currentUserLogin.Username = Username;
+                    _currentUserLogin.Password = Password;
+                    _currentUserLogin.MembershipId = MembershipId;
+                    _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
+                    Debug.WriteLine("Saved...");
+                }
+                if (string.IsNullOrEmpty(NewPassword) && string.IsNullOrEmpty(NewPasswordCompare)) return;
+                if(Password == _currentUserLogin.Password && NewPassword == NewPasswordCompare)
+                {
+                    _currentUser.Name = Name;
+                    _currentUser.Email = Email;
+                    _currentUserLogin.Username = Username;
+                    _currentUserLogin.Password = NewPassword;
+                    _currentUserLogin.MembershipId = MembershipId;
+                    _dataService.UpdateUserInfo(_currentUser, _currentUserLogin);
+                    Debug.WriteLine("Saved...");
+                }
+                
             }
             return;
         }

@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.User"
+             xmlns:helper="clr-namespace:FitnessManagerWPF.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
@@ -15,8 +16,8 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Margin="2" CornerRadius="12" Grid.RowSpan="2" VerticalAlignment="Top" Height="245" Background="WhiteSmoke">
-            <StackPanel Grid.Row="0" Grid.Column="0" Margin="2" Grid.RowSpan="2">
+        <Border BorderBrush="Black" Grid.RowSpan="2" BorderThickness="1" Margin="2" CornerRadius="12" VerticalAlignment="Top" Height="340" Background="WhiteSmoke">
+            <StackPanel Grid.Column="0" Margin="2">
                 <TextBlock Text="{Binding DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" Margin="2 0 0 0"/>
                 <TextBlock Text="{Binding MembershipTypeDisplay, StringFormat='Status: {0}'}" Margin="2 2 0 0"/>
                 <Separator Margin="2 2 0 0" Width="195" HorizontalAlignment="Left" Background="Black"/>
@@ -32,9 +33,17 @@
                 <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
                     <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Username}"/>
                 </Border>
-                <TextBlock Text="Password:" Margin="2"/>
+                <TextBlock Text="Current Password:" Margin="2"/>
                 <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Password}"/>
+                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding Password}" Background="Transparent"/>
+                </Border>
+                <TextBlock Text="New Password:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPassword}" Background="Transparent"/>
+                </Border>
+                <TextBlock Text="New Password:" Margin="2"/>
+                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
+                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPasswordCompare}" Background="Transparent"/>
                 </Border>
                 <Grid Margin="2 5 0 0">
                     <Grid.ColumnDefinitions>
