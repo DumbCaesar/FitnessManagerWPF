@@ -118,6 +118,11 @@ namespace FitnessManagerWPF.ViewModel.Member
 
             _dataService.SaveUsers();
             _dataService.SaveLogins();
+
+            Password = "";
+            NewPassword = "";
+            NewPasswordCompare = "";
+
             Debug.WriteLine("Saved...");
         }
 
@@ -128,7 +133,10 @@ namespace FitnessManagerWPF.ViewModel.Member
             Name = _currentUser.Name ?? "";
             Email = _currentUser.Email ?? "";
             Username = _currentUserLogin.Username ?? "";
-            Password = _currentUserLogin.Password ?? "";
+
+            Password = "";
+            NewPassword = "";
+            NewPasswordCompare = "";
             Debug.WriteLine($"Restored Name: {_currentUser.Name}, Email: {_currentUser.Email}");
             Debug.WriteLine($"Restored Username: {_currentUserLogin?.Username}");
         }
