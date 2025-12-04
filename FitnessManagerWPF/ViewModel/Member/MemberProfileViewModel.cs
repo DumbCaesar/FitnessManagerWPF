@@ -118,6 +118,11 @@ namespace FitnessManagerWPF.ViewModel.Member
 
             _dataService.SaveUsers();
             _dataService.SaveLogins();
+
+            Password = "";
+            NewPassword = "";
+            NewPasswordCompare = "";
+
             Debug.WriteLine("Saved...");
         }
 

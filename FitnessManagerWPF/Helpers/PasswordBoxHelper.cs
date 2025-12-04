@@ -18,7 +18,9 @@ namespace FitnessManagerWPF.Helpers
         public static readonly DependencyProperty ActualPasswordProperty =
             DependencyProperty.RegisterAttached("ActualPassword", typeof(string),
                 typeof(PasswordBoxHelper),
-                new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault));
+                new FrameworkPropertyMetadata(string.Empty,
+                    FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
+                    OnActualPasswordPropertyChanged));
 
         public static bool GetPasswordChar(DependencyObject obj)
         {
@@ -38,6 +40,26 @@ namespace FitnessManagerWPF.Helpers
         public static void SetActualPassword(DependencyObject obj, string value)
         {
             obj.SetValue(ActualPasswordProperty, value);
+        }
+
+        // NEW: Handle changes from ViewModel to TextBox
+        private static void OnActualPasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TextBox textBox)
+            {
+                if (_isUpdating.ContainsKey(textBox) && _isUpdating[textBox])
+                    return;
+
+                _isUpdating[textBox] = true;
+
+                string newPassword = e.NewValue as string ?? string.Empty;
+
+                // Update the masked display
+                textBox.Text = new string('●', newPassword.Length);
+                textBox.CaretIndex = textBox.Text.Length;
+
+                _isUpdating[textBox] = false;
+            }
         }
 
         private static void OnPasswordCharChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -69,7 +91,6 @@ namespace FitnessManagerWPF.Helpers
                 {
                     int diff = currentPassword.Length - currentText.Length;
                     int removeIndex = Math.Min(caretIndex, currentPassword.Length - diff);
-
                     if (removeIndex >= 0 && diff > 0 && removeIndex + diff <= currentPassword.Length)
                     {
                         currentPassword = currentPassword.Remove(removeIndex, diff);
@@ -80,7 +101,6 @@ namespace FitnessManagerWPF.Helpers
                 {
                     string newChars = currentText.Replace("●", "");
                     int insertIndex = Math.Max(0, caretIndex - newChars.Length);
-
                     if (insertIndex >= 0 && insertIndex <= currentPassword.Length && newChars.Length > 0)
                     {
                         currentPassword = currentPassword.Insert(insertIndex, newChars);
