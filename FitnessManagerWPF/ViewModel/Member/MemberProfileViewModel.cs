@@ -6,13 +6,17 @@ using System.Windows;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
+    /// <summary>
+    /// ViewModel for managing member profile information, including personal details and password updates.
+    /// </summary>
     public class MemberProfileViewModel : ObservableObject
     {
-        private DataService _dataService;
+        private DataService _dataService; // Access to users and logins
         private MemberViewModel _parentViewModel;
-        private MemberMembershipViewModel _memberMembershipViewModel;
-        private User _currentUser;
-        private Login _currentUserLogin;
+        private User _currentUser; // Logged-in user
+        private Login _currentUserLogin; // Login credentials for the user
+
+        // Backing fields for UI-bound properties
         private string _name;
         private string _email;
         private string _username;
@@ -22,9 +26,11 @@ namespace FitnessManagerWPF.ViewModel.Member
         private DateTime _dateJoined;
         private int _membershipId;
 
+        // Commands bound to Save and Discard buttons
         public ICommand SaveCommand { get; }
         public ICommand DiscardCommand { get; }
 
+        // Properties bound to UI fields
         public string Name
         {
             get => _name;
@@ -119,6 +125,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService.SaveUsers();
             _dataService.SaveLogins();
 
+            // Clear password fields after save
             Password = "";
             NewPassword = "";
             NewPasswordCompare = "";
@@ -134,6 +141,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             Email = _currentUser.Email ?? "";
             Username = _currentUserLogin.Username ?? "";
 
+            // Clear password fields after discard
             Password = "";
             NewPassword = "";
             NewPasswordCompare = "";
@@ -141,7 +149,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             Debug.WriteLine($"Restored Username: {_currentUserLogin?.Username}");
         }
 
-        public void UpdateMemberRole()
+        public void UpdateMemberRole() 
         {
             OnPropertyChanged(nameof(MembershipTypeDisplay));
         }
