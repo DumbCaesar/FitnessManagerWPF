@@ -11,13 +11,16 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
+    /// <summary>
+    /// ViewModel for managing class sign-ups for a member.
+    /// </summary>
     public class MemberClassesViewModel
     {
-        private DataService _dataService;
+        private DataService _dataService; // Access to stored gym classes
         private MemberViewModel _parentViewModel;
-        private User _currentUser;
-        public ObservableCollection<GymClass> Classes { get; set; }
-        public ICommand SignUpCommand { get; }
+        private User _currentUser; // The member currently using the system
+        public ObservableCollection<GymClass> Classes { get; set; } // Classes displayed in UI
+        public ICommand SignUpCommand { get; } // Sign up/cancel command for each class
 
         public MemberClassesViewModel(MemberViewModel parentViewModel, DataService dataService)
         {
@@ -27,24 +30,26 @@ namespace FitnessManagerWPF.ViewModel.Member
 
             Classes = new ObservableCollection<GymClass>(_dataService.GymClasses);
 
+            // Initialize command with execution and can-execute logic
             SignUpCommand = new RelayCommand(
                 param => ClassSignUp(param),
                 param => CanSignUp(param));
         }
 
+        // Handles sign-up or cancellation for a gym class
         private void ClassSignUp(object? param)
         {
             if (param is not GymClass selectedClass) return;
 
             Debug.WriteLine($"Sign up/cancel click: {selectedClass.Name}");
-            if (selectedClass.RegisteredMemberIds.Contains(_currentUser.Id))
+            if (selectedClass.RegisteredMemberIds.Contains(_currentUser.Id)) 
             {
-                selectedClass.RegisteredMemberIds.Remove(_currentUser.Id);
+                selectedClass.RegisteredMemberIds.Remove(_currentUser.Id); // Cancel sign-up
                 Debug.WriteLine($"Removed {_currentUser.Name} from {selectedClass.Name}");
             }
             else
             {
-                selectedClass.RegisteredMemberIds.Add(_currentUser.Id);
+                selectedClass.RegisteredMemberIds.Add(_currentUser.Id); // Sign up
                 Debug.WriteLine($"Added {_currentUser.Name} to {selectedClass.Name}");
             }
             selectedClass.IsUserEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
@@ -52,6 +57,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             CommandManager.InvalidateRequerySuggested();
         }
 
+        // Determines if sign-up/cancel button should be enabled
         private bool CanSignUp(object? param)
         {
             if (param is not GymClass selectedClass) return false;
@@ -59,7 +65,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             bool isEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
             bool isFull = selectedClass.CurrentParticipants >= selectedClass.MaxParticipants;
 
-            return isEnrolled || !isFull;
+            return isEnrolled || !isFull; // Allow if enrolled or class not full
         }
     }
 }
