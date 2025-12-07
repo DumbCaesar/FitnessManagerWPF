@@ -27,7 +27,7 @@
             <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         </Style>
         
-        <!-- Side bar menu items -->
+        <!-- Side bar menu items for admin panel -->
         <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
             <Setter Property="Height" Value="45"/>
             <Setter Property="Width" Value="200"/>
@@ -73,7 +73,50 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
+
+        <!-- Side bar menu items for Member panel -->
+        <Style x:Key="MemberRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Height" Value="45"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 2 0 2"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border x:Name="R">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Border x:Name="Indicator" Grid.Column="0" Visibility="Collapsed" Background="#FF8C42" Height="45"/>
+                                <TextBlock Grid.Column="1"
+                                       x:Name="textBlock"
+                                       FontWeight="SemiBold"
+                                       Foreground="#000"
+                                       VerticalAlignment="Center"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       Text="{TemplateBinding Content}"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="textBlock" Property="Margin" Value="10 0 0 0"/>
+                                <Setter Property="Background" Value="#FFF5F0" TargetName="R"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Indicator" Property="Visibility" Value="Visible"/>
+                                <Setter TargetName="textBlock" Property="Foreground" Value="#000"/>
+                                <Setter Property="Background" Value="#FFE9DB" TargetName="R"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <!-- TextBox placeholder text -->
         <Style x:Key="PlaceholderTextBoxStyle" TargetType="TextBox">
             <!-- Override default Template -->

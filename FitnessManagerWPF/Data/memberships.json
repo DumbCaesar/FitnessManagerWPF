@@ -1,8 +1,8 @@
 [
-  { "id": 1, "name": "Basic - 1 Month",    "price": 79.99,  "durationInMonths": 1 },
-  { "id": 2, "name": "Basic - 1 Year",     "price": 799.00, "durationInMonths": 12 },
-  { "id": 3, "name": "Premium - 1 Month",  "price": 149.99, "durationInMonths": 1 },
-  { "id": 4, "name": "Premium - 1 Year",   "price": 1499.00,"durationInMonths": 12 },
-  { "id": 5, "name": "VIP - 1 Month",      "price": 299.99, "durationInMonths": 1 },
-  { "id": 6, "name": "VIP - 1 Year",       "price": 2999.00,"durationInMonths": 12 }
+  { "id": 1, "name": "Basic",    "price": 79.99,  "durationInMonths": 1 },
+  { "id": 2, "name": "Basic",     "price": 799.00, "durationInMonths": 12 },
+  { "id": 3, "name": "Premium",  "price": 149.99, "durationInMonths": 1 },
+  { "id": 4, "name": "Premium",   "price": 1499.00,"durationInMonths": 12 },
+  { "id": 5, "name": "VIP",      "price": 299.99, "durationInMonths": 1 },
+  { "id": 6, "name": "VIP",       "price": 2999.00,"durationInMonths": 12 }
 ]

@@ -15,7 +15,9 @@
     "Name": "Strength Training",
     "MaxParticipants": 15,
     "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 2,
     "time": "18:30:00"
   },
@@ -35,9 +37,7 @@
     "Name": "HIIT Blast",
     "MaxParticipants": 18,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 4,
     "time": "19:00:00"
   },
@@ -58,14 +58,5 @@
     "RegisteredMemberIds": [],
     "day": 5,
     "time": "16:30:00"
-  },
-  {
-    "Id": 7,
-    "Name": "test",
-    "MaxParticipants": 1,
-    "TrainerId": 0,
-    "RegisteredMemberIds": [],
-    "day": 3,
-    "time": "09:00:00"
   }
 ]

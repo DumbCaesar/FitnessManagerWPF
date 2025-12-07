@@ -28,6 +28,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = parentViewModel.CurrentUser;
 
+            UpdateClassEnrollment();
             Classes = new ObservableCollection<GymClass>(_dataService.GymClasses);
 
             // Initialize command with execution and can-execute logic
@@ -67,6 +68,14 @@ namespace FitnessManagerWPF.ViewModel.Member
             bool isFull = selectedClass.CurrentParticipants >= selectedClass.MaxParticipants;
 
             return isEnrolled || !isFull; // Allow if enrolled or class not full
+        }
+
+        private void UpdateClassEnrollment()
+        {
+            foreach(GymClass c in _dataService.GymClasses)
+            {
+                c.IsUserEnrolled = c.RegisteredMemberIds.Contains(_currentUser.Id);
+            }
         }
     }
 }

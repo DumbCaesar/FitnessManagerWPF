@@ -6,6 +6,50 @@
              xmlns:local="clr-namespace:FitnessManagerWPF.View.UserControl.User"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
+    <Grid Background="#F5F5F5">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30">
+                <!-- Header -->
+                <TextBlock Text="{Binding WelcomeMessage}" FontSize="32" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,5"/>
+                <TextBlock Text="{Binding CurrentDate}" FontSize="14" Foreground="#2C3E50" Margin="0,0,0,30"/>
+                <TextBlock Text="{Binding MembershipStatusDisplay}" FontSize="14" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,30"/>
+
+                <!-- Next Class -->
+                <TextBlock Text="Your Next Class" FontSize="20" FontWeight="Bold"  Foreground="#2C3E50" Margin="0,0,0,15"/>
+                <Border Background="White" Padding="30" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="12" Margin="0,0,0,25">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding NextClass.Name}" FontSize="22" FontWeight="Bold" Foreground="#2C3E50"/>
+                            <TextBlock Text="{Binding NextClass.TimeDisplay}" FontSize="16" Foreground="#2C3E50" Margin="0,6,0,0"/>
+                            <TextBlock Text="{Binding NextClass.Trainer.Name, StringFormat='with {0}'}" FontSize="14" Foreground="#2C3E50" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <!-- Next Gym Class -->
+                <TextBlock Text="Next Class at the Gym" FontSize="20" FontWeight="Bold"  Foreground="#2C3E50" Margin="0,0,0,15"/>
+                <Border Background="White" Padding="30" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="12" Margin="0,0,0,25">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding NextGymClass.Name}" FontSize="22" FontWeight="Bold" Foreground="#2C3E50"/>
+                            <TextBlock Text="{Binding NextGymClass.TimeDisplay}" FontSize="16" Foreground="#2C3E50" Margin="0,6,0,0"/>
+                            <TextBlock Text="{Binding NextGymClass.Trainer.Name, StringFormat='with {0}'}" FontSize="14" Foreground="#2C3E50" Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

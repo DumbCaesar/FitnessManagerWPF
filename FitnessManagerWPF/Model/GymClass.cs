@@ -38,6 +38,8 @@ namespace FitnessManagerWPF.Model
         [JsonIgnore] public int CurrentParticipants => RegisteredMemberIds.Count;
         [JsonIgnore] public string ClassInfo => $"{Name} - {Trainer.Name}";
         [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
+        [JsonIgnore] public DateTime NextOccurrence => GetNextClassDateTime();
+        [JsonIgnore] public string TimeDisplay => $"{Day} at {Time}";
 
         [JsonIgnore]
         public bool IsUserEnrolled // Checks if the active user logged in is enrolled in the class.
@@ -46,7 +48,8 @@ namespace FitnessManagerWPF.Model
             set => SetProperty(ref _isUserEnrolled, value);
         }
 
-        public GymClass() {
+        public GymClass() 
+        {
             // Updates relatyed computed props, whenever member list changes
             RegisteredMemberIds.CollectionChanged += (_, __) =>
             {
@@ -54,6 +57,19 @@ namespace FitnessManagerWPF.Model
                 OnPropertyChanged(nameof(CapacityDisplay));
                 OnPropertyChanged(nameof(IsUserEnrolled));
             };
+        }
+
+        private DateTime GetNextClassDateTime()
+        {
+            var today = DateTime.Now;
+            var currentDayOfWeek = today.DayOfWeek;
+            int daysUntil = ((int)Day - (int)currentDayOfWeek + 7) % 7;
+            if (daysUntil == 0 && today.TimeOfDay > Time)
+            {
+                daysUntil = 7;
+            }
+            var nextDate = today.Date.AddDays(daysUntil).Add(Time);
+            return nextDate;
         }
     }
 }
