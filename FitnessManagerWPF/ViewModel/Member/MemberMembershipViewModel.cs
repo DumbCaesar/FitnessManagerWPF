@@ -13,16 +13,19 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
+    /// <summary>
+    /// ViewModel for managing memberships for a member, including buying new memberships.
+    /// </summary>
     public class MemberMembershipViewModel : ObservableObject
     {
-        private DataService _dataService;
+        private DataService _dataService; // Access to memberships and users
         private MemberViewModel _parentViewModel;
-        private Membership _selectedMembership;
-        private User _currentUser;
-        private List<Membership> _listOfMemberships;
-        private ObservableCollection<Purchase> _userSubscriptions;
+        private Membership _selectedMembership; // Currently selected membership from UI
+        private User _currentUser; // Logged in member
+        private List<Membership> _listOfMemberships; // All available memberships
+        private ObservableCollection<Purchase> _userSubscriptions; // User's purchase history
 
-        public event Action UpdateMembershipEvent;
+        public event Action UpdateMembershipEvent; // Notifies other views of membership updates
 
         public ICommand BuyMembershipCommand { get; }
 
@@ -59,16 +62,19 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _parentViewModel = parentViewModel;
             _currentUser = user;
+            // Initialize memberships and subscriptions
             _listOfMemberships = new List<Membership>(_dataService.Memberships);
             UserSubscriptions = new ObservableCollection<Purchase>(CurrentUser.BillingHistory);
+            // Command for buying a membership
             BuyMembershipCommand = new RelayCommand(_ => BuyMembership());
         }
 
         private void BuyMembership()
         {
             var now = DateTime.Now;
-
             DateTime newExpiry;
+
+            // Extend existing membership if same type and still active
             if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Id == SelectedMembership.Id && CurrentUser.HasActiveMembership)
             {
                 newExpiry = CurrentUser.MembershipExpiresAt.Value.AddMonths(SelectedMembership.DurationInMonths);
@@ -78,11 +84,13 @@ namespace FitnessManagerWPF.ViewModel.Member
                 newExpiry = now.AddMonths(SelectedMembership.DurationInMonths);
             }
 
+            // Update user's membership info
             CurrentUser.MembershipExpiresAt = newExpiry;
             CurrentUser.ActiveMembership = SelectedMembership;
             CurrentUser.ActiveMembershipId = SelectedMembership.Id;
             CurrentUser.ActiveMembership = SelectedMembership;
 
+            // Record purchase
             var purchase = new Purchase
             {
                 Id = ++_dataService.MaxSubscriptionId,
@@ -95,7 +103,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             CurrentUser.BillingHistory.Add(purchase);
             UserSubscriptions.Add(purchase);
             _dataService.SaveUsers();
-            UpdateMembershipEvent?.Invoke();
+            UpdateMembershipEvent?.Invoke(); // Notify other views of change
         }
     }
 }
