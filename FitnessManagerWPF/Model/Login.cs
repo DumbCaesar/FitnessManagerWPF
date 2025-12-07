@@ -8,8 +8,8 @@ namespace FitnessManagerWPF.Model
 {
     public class Login
     {
-        public int MembershipId { get; set; }
-        public string Username { get; set; } 
+        public int MembershipId { get; set; } // Foreign id property for the user. MembershipId = User.Id
+        public string Username { get; set; }
         public string Password { get; set; }
         public Login() { } // Empty constructor used for JSON serialization
 
