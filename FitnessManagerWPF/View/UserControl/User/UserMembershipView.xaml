@@ -7,31 +7,62 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Width="200">
-            <ComboBox ItemsSource="{Binding ListOfMemberships}" SelectedItem="{Binding SelectedMembership}">
-                <ComboBox.ItemTemplate>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding ListOfMemberships}" Margin="20">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Name}"/>
+                        <Border Margin="5" Background="WhiteSmoke" Padding="15" BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Width="250">
+                            <StackPanel>
+                                <TextBlock Text="{Binding Name}" FontSize="28" FontWeight="Bold" TextTrimming="CharacterEllipsis"/>
+                                <TextBlock Text="Price" FontSize="14" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding Price}" FontSize="28" FontWeight="Bold"/>
+                                <TextBlock Text="Months" FontSize="14" FontWeight="SemiBold"/>
+                                <TextBlock Text="{Binding DurationInMonths}" FontSize="28" FontWeight="Bold"/>
+                                <Button FontSize="14" Command="{Binding DataContext.BuyMembership, RelativeSource={RelativeSource AncestorType=UserControl}}" CommandParameter="{Binding}" Height="30">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Content" Value="Buy Membership"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                            <Setter Property="Background" Value="DarkOrange"/>
+                                            <Setter Property="BorderBrush" Value="Orange"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}"
+                                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                                CornerRadius="10">
+                                                            <ContentPresenter Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsUserEnrolled}" Value="True">
+                                                    <Setter Property="Content" Value="Extend Membership"/>
+                                                </DataTrigger>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="Green"/>
+                                                </Trigger>
+                                                <Trigger Property="IsPressed" Value="True">
+                                                    <Setter Property="Background" Value="Blue"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </StackPanel>
+                        </Border>
                     </DataTemplate>
-                </ComboBox.ItemTemplate>
-            </ComboBox>
-            <Button Content="Buy" Width="50" Margin="5" Command="{Binding BuyMembershipCommand}"/>
-        </StackPanel>
-        <ListBox Grid.Column="1" ItemsSource="{Binding UserSubscriptions}">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Id, StringFormat='Subscription ID: {0}'}"/>
-                        <TextBlock Text="{Binding DateDisplay}"/>
-                        <TextBlock Text="{Binding Membership.Name}"/>
-                        <TextBlock Text="{Binding AmountDisplay}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </Grid>
 </UserControl>

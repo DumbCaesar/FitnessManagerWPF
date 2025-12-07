@@ -61,6 +61,7 @@ namespace FitnessManagerWPF.ViewModel.Member
         private bool CanSignUp(object? param)
         {
             if (param is not GymClass selectedClass) return false;
+            if (!_currentUser.HasActiveMembership) return false;
             // Only disable if class is full and currentUser is not enrolled
             bool isEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
             bool isFull = selectedClass.CurrentParticipants >= selectedClass.MaxParticipants;

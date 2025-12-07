@@ -134,6 +134,7 @@ namespace FitnessManagerWPF.Services
             if (login != null)
             {
                 CurrentUser = _users.FirstOrDefault(u => u.Id == login.MembershipId);
+                UpdateClassEnrollment(CurrentUser);
                 return true;
             }
             CurrentUser = null;
@@ -161,6 +162,14 @@ namespace FitnessManagerWPF.Services
             foreach (GymClass c in _gymClasses)
             {
                 c.Trainer = _users.FirstOrDefault(u => u.Id == c.TrainerId) ?? new User { Id = c.TrainerId, Name = "Deleted Trainer" };
+            }
+        }
+
+        private void UpdateClassEnrollment(User u)
+        {
+            foreach (GymClass c in _gymClasses)
+            {
+                c.IsUserEnrolled = c.RegisteredMemberIds.Contains(u.Id);
             }
         }
 
