@@ -7,33 +7,38 @@ using FitnessManagerWPF.View;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    /// <summary>
+    /// ViewModel for handling login and navigation to role specific dashboards.
+    /// </summary>
     public class LoginViewModel : ObservableObject
     {
-        private readonly DataService _dataService;
+        private readonly DataService _dataService; // Provides access to stored users and validation
         private string _username;
         private string _password;
-        private object _currentView;
+        private object _currentView; // Tracks whether login or register view is shown
         private RegisterViewModel _registerViewModel;
-        public event Action LoginSucceeded;
+        public event Action LoginSucceeded; // Raised after successful login, tells the login view to close.
 
         public User CurrentUser { get; private set; }
-        public ICommand LoginCommand { get; set; } // Command used for logging in
-        public ICommand ShowRegisterCommand { get; set; } // responsible for switching to register user control
-        public ICommand ShowLoginCommand { get; set; } // responsible for switching to login user control
 
-        public object CurrentView
+        // Commands for login and switching views
+        public ICommand LoginCommand { get; set; } 
+        public ICommand ShowRegisterCommand { get; set; } 
+        public ICommand ShowLoginCommand { get; set; } 
+
+        public object CurrentView // The current view
         {
             get => _currentView;
             set => SetProperty(ref _currentView, value);
         }
 
-        public string Username
+        public string Username // The username the user typed
         {
             get => _username;
             set => SetProperty(ref _username, value);
         }
 
-        public string Password
+        public string Password // The password the user typed
         {
             get => _password;
             set => SetProperty(ref _password, value);
@@ -41,17 +46,18 @@ namespace FitnessManagerWPF.ViewModel
         public LoginViewModel(DataService dataService)
         {
             _dataService = dataService;
+            // Bind UI buttons to actions
             LoginCommand = new RelayCommand(_ => Login());
             ShowRegisterCommand = new RelayCommand(_ => ShowRegister());
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
             _registerViewModel = new RegisterViewModel(this, _dataService);
 
-            ShowLogin();
+            ShowLogin(); // Default screen
         }
 
         private void ShowLogin()
         {
-            CurrentView = this;
+            CurrentView = this; // Login view binds directly to this ViewModel
         }
         
         private void ShowRegister()
@@ -64,6 +70,7 @@ namespace FitnessManagerWPF.ViewModel
             Debug.WriteLine($"Username is: {Username}");
             Debug.WriteLine($"Password is: {Password}");
 
+            // Attempt to validate user credentials
             if (_dataService.ValidateUser(Username, Password))
             {
                 Debug.WriteLine("Found user!");
@@ -78,6 +85,7 @@ namespace FitnessManagerWPF.ViewModel
 
             if(CurrentUser != null)
             {
+                // Open the correct dashboard window depending on user type
                 switch (CurrentUser.UserRole)
                 {
                     case UserRole.Admin:
@@ -96,6 +104,7 @@ namespace FitnessManagerWPF.ViewModel
                         memberView.Show();
                         break;
                 }
+                // Notify listeners (close login view)
                 LoginSucceeded?.Invoke();
             }
         }

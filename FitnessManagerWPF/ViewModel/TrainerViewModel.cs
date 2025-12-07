@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // Not currently used for anything, as Trainer section of the app has been shelved.
     public class TrainerViewModel : ObservableObject
     {
         private readonly DataService _dataService;
@@ -25,7 +26,7 @@ namespace FitnessManagerWPF.ViewModel
             _dataService = dataService;
         }
 
-        public TrainerViewModel() // Empty ctor used for DataContext in view
+        public TrainerViewModel()
         {
             
         }
