@@ -1,5 +1,6 @@
 ﻿using FitnessManagerWPF.Model;
 using FitnessManagerWPF.Services;
+using FitnessManagerWPF.View;
 using FitnessManagerWPF.ViewModel.Member;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,14 @@ namespace FitnessManagerWPF.ViewModel
         private User _currentUser; // Logged-in member
 
         public event Action DataChanged; // Event for updating UI when underlying data updates.
+        public event Action Logout; // Event invoked when logging out, closes MemberView.
 
         // Commands for navigation
         public ICommand DashboardCommand { get; set; }
         public ICommand ClassesCommand { get; set; }
         public ICommand ProfileCommand { get; set; }
         public ICommand MembershipCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         public object CurrentView
         {
@@ -60,6 +63,7 @@ namespace FitnessManagerWPF.ViewModel
             ClassesCommand = new RelayCommand(_ => ShowClasses());
             ProfileCommand = new RelayCommand(_ => ShowProfile());
             MembershipCommand = new RelayCommand(_ => ShowMembership());
+            LogoutCommand = new RelayCommand(_ => OnLogout());
 
             // Update profile role when membership changes
             _memberMembershipViewModel.UpdateMembershipEvent += _memberProfileViewModel.UpdateMemberRole;
@@ -67,9 +71,16 @@ namespace FitnessManagerWPF.ViewModel
             ShowDashboard(); // Default page
         }
 
-        public MemberViewModel() 
+        public MemberViewModel() // Empty constructor used for DataContext
         {
             
+        }
+
+        private void OnLogout()
+        {
+            var loginView = new LoginView();
+            loginView.Show();
+            Logout?.Invoke();
         }
 
         // The command methods for switching to a different view.

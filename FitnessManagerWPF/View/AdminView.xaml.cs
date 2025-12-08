@@ -20,12 +20,17 @@ namespace FitnessManagerWPF.View
     /// </summary>
     public partial class AdminView : Window
     {
-        private AdminViewModel viewModel;
         public AdminView()
         {
             InitializeComponent();
-            viewModel = new AdminViewModel();
-            DataContext = viewModel;
+            Loaded += (s, e) =>
+            {
+                if (DataContext is AdminViewModel vm)
+                    vm.Logout += () =>
+                    {
+                        this.Close();
+                    };
+            };
         }
     }
 }
