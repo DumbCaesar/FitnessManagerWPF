@@ -18,6 +18,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private string _username;
         private string _password;
         private DataService _dataService;
+        // Events for notifying parent window that a new member has been created
+        // and for closing the window.
         public event Action<User> NewMemberCreated;
         public event Action CloseView;
 
@@ -57,6 +59,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void Cancel()
         {
+            // Close this window
             CloseView?.Invoke();
         }
 
@@ -72,6 +75,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Debug.WriteLine($"Email: {Email}");
             _dataService.CreateUser(user, login);
             MessageBox.Show("User successfully created!");
+            // Notify UI and close window
             NewMemberCreated?.Invoke(user);
             CloseView?.Invoke();
         }
