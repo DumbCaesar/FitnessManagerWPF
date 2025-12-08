@@ -13,6 +13,7 @@ namespace FitnessManagerWPF.ViewModel
     public class LoginViewModel : ObservableObject
     {
         private readonly DataService _dataService; // Provides access to stored users and validation
+        private bool _hasLoginFailed;
         private string _username;
         private string _password;
         private object _currentView; // Tracks whether login or register view is shown
@@ -43,6 +44,25 @@ namespace FitnessManagerWPF.ViewModel
             get => _password;
             set => SetProperty(ref _password, value);
         }
+
+        public bool HasLoginFailed
+        {
+            get => _hasLoginFailed;
+            set => SetProperty(ref _hasLoginFailed, value);
+        }
+
+        public string ValidationError
+        {
+            get
+            {
+                if (HasLoginFailed && !_dataService.ValidateUser(Username, Password)) 
+                { 
+                    return "Incorrect Username or Password"; 
+                }
+                return "";
+            }
+        }
+
         public LoginViewModel(DataService dataService)
         {
             _dataService = dataService;
@@ -73,6 +93,8 @@ namespace FitnessManagerWPF.ViewModel
             // Attempt to validate user credentials
             if (_dataService.ValidateUser(Username, Password))
             {
+                HasLoginFailed = false;
+                OnPropertyChanged(nameof(ValidationError)); // Clear error
                 Debug.WriteLine("Found user!");
                 Debug.WriteLine($"User role is {_dataService.CurrentUser.UserRole}");
                 CurrentUser = _dataService.CurrentUser;
@@ -80,6 +102,8 @@ namespace FitnessManagerWPF.ViewModel
             else
             {
                 Debug.WriteLine("User not found!");
+                HasLoginFailed = true;
+                OnPropertyChanged(nameof(ValidationError)); // Display error
                 return;
             }
 
