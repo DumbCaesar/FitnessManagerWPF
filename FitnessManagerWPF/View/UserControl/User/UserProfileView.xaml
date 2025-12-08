@@ -7,58 +7,170 @@
              xmlns:helper="clr-namespace:FitnessManagerWPF.Helpers"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="600">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" Grid.RowSpan="2" BorderThickness="1" Margin="2" CornerRadius="12" VerticalAlignment="Top" Height="340" Background="WhiteSmoke">
-            <StackPanel Grid.Column="0" Margin="2">
-                <TextBlock Text="{Binding DateJoined, StringFormat='Member since: {0:dd/MM/yyyy}'}" Margin="2 0 0 0"/>
-                <TextBlock Text="{Binding MembershipTypeDisplay, StringFormat='Status: {0}'}" Margin="2 2 0 0"/>
-                <Separator Margin="2 2 0 0" Width="195" HorizontalAlignment="Left" Background="Black"/>
-                <TextBlock Text="Name:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Name}"/>
-                </Border>
-                <TextBlock Text="Email:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Email}"/>
-                </Border>
-                <TextBlock Text="Login:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" Background="Transparent" Text="{Binding Username}"/>
-                </Border>
-                <TextBlock Text="Current Password:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding Password}" Background="Transparent"/>
-                </Border>
-                <TextBlock Text="New Password:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPassword}" Background="Transparent"/>
-                </Border>
-                <TextBlock Text="New Password:" Margin="2"/>
-                <Border BorderBrush="Black" Background="FloralWhite" BorderThickness="1" CornerRadius="8" Width="200" HorizontalAlignment="Left">
-                    <TextBox Margin="2" BorderThickness="0" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPasswordCompare}" Background="Transparent"/>
-                </Border>
-                <Grid Margin="2 5 0 0">
+    <Grid Background="#F5F5F5">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="30">
+                <!-- Header -->
+                <TextBlock Text="My Profile" FontSize="28" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,5"/>
+                <TextBlock Text="{Binding DateJoined, StringFormat='Member since {0:MMMM dd, yyyy}'}" FontSize="13" Foreground="#2C3E50" Margin="0,0,0,25"/>
+
+                <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="20"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Grid.Column="0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#63bf3c">
-                        <Button Height="20" Width="50" Content="Save" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding SaveCommand}" HorizontalAlignment="Center"/>
-                    </Border>
-                    <Border Grid.Column="1" Margin="2 0 0 0" Width="50" BorderThickness="1" BorderBrush="Black" CornerRadius="8" Padding="2" Background="#DC143C">
-                        <Button Height="20" Width="50" Content="Discard" BorderThickness="0" Background="Transparent" Style="{StaticResource FlatButton}" Command="{Binding DiscardCommand}" HorizontalAlignment="Center"/>
+
+                    <!-- Account Information -->
+                    <Border Grid.Column="0" Background="White" Padding="25" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="12">
+                        <StackPanel>
+                            <TextBlock Text="Account Information" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+
+                            <!-- Membership Status -->
+                            <Border Margin="0,0,0,20">
+                                <StackPanel>
+                                    <TextBlock Text="Current Status" FontSize="11" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,5"/>
+                                    <TextBlock Text="{Binding MembershipTypeDisplay}" FontSize="16" FontWeight="Bold" Foreground="#2C3E50"/>
+                                    <TextBlock Text="{Binding MembershipExpiresDisplay}" FontSize="13" Foreground="#2C3E50"/>
+                                </StackPanel>
+                            </Border>
+
+                            <!-- Name -->
+                            <TextBlock Text="Name" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1" CornerRadius="8" Margin="0,0,0,15">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" Text="{Binding Name}" FontSize="14"/>
+                            </Border>
+
+                            <!-- Email -->
+                            <TextBlock Text="Email" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1" CornerRadius="8" Margin="0,0,0,15">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" Text="{Binding Email}" FontSize="14"/>
+                            </Border>
+
+                            <!-- Username -->
+                            <TextBlock Text="Username" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1" CornerRadius="8" Margin="0,0,0,25">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" Text="{Binding Username}" FontSize="14"/>
+                            </Border>
+
+                            <!-- Password Section -->
+                            <TextBlock Text="Change Password" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,15"/>
+
+                            <!-- Current Password -->
+                            <TextBlock Text="Current Password" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1" CornerRadius="8" Margin="0,0,0,15">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding Password}" FontSize="14"/>
+                            </Border>
+
+                            <!-- New Password -->
+                            <TextBlock Text="New Password" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1" CornerRadius="8" Margin="0,0,0,15">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPassword}" FontSize="14"/>
+                            </Border>
+
+                            <!-- Confirm New Password -->
+                            <TextBlock Text="Confirm New Password" FontSize="12" FontWeight="SemiBold" Foreground="#2C3E50" Margin="0,0,0,6"/>
+                            <Border BorderBrush="#E0E0E0" Background="White" BorderThickness="1"  CornerRadius="8" Margin="0,0,0,20">
+                                <TextBox Padding="12,10" BorderThickness="0" Background="Transparent" helper:PasswordBoxHelper.PasswordChar="True" helper:PasswordBoxHelper.ActualPassword="{Binding NewPasswordCompare}" FontSize="14"/>
+                            </Border>
+
+                            <!-- Buttons -->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Grid.Column="0" Height="42" Content="Save Changes" Command="{Binding SaveCommand}" Cursor="Hand">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="#FF8C42"/>
+                                            <Setter Property="Foreground" Value="White"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="BorderThickness" Value="0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" CornerRadius="8">
+                                                            <ContentPresenter HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#FF7A28"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+
+                                <Button Grid.Column="2" Height="42" Content="Discard" Command="{Binding DiscardCommand}" Cursor="Hand">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Setter Property="Background" Value="White"/>
+                                            <Setter Property="Foreground" Value="#2C3E50"/>
+                                            <Setter Property="FontWeight" Value="SemiBold"/>
+                                            <Setter Property="FontSize" Value="14"/>
+                                            <Setter Property="BorderThickness" Value="1"/>
+                                            <Setter Property="BorderBrush" Value="#E0E0E0"/>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="Button">
+                                                        <Border Background="{TemplateBinding Background}" 
+                                                               BorderBrush="{TemplateBinding BorderBrush}"
+                                                               BorderThickness="{TemplateBinding BorderThickness}"
+                                                               CornerRadius="8">
+                                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Background" Value="#F5F5F5"/>
+                                                    <Setter Property="Foreground" Value="#2C3E50"/>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </Grid>
+                        </StackPanel>
                     </Border>
 
+                    <!-- Billing History -->
+                    <Border Grid.Column="2" Background="White" Padding="25" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="12">
+                        <StackPanel>
+                            <TextBlock Text="Billing History" FontSize="18" FontWeight="Bold" Foreground="#2C3E50" Margin="0,0,0,20"/>
+                            <ScrollViewer MaxHeight="500" VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding UserSubscriptions}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Background="WhiteSmoke" Padding="15" CornerRadius="5" Margin="0,0,5,5">
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <TextBlock Grid.Row="0" Text="{Binding Membership.Name}"  FontSize="15" FontWeight="SemiBold" Foreground="#2C3E50"/>
+                                                    <TextBlock Grid.Row="1" Text="{Binding DateDisplay}" FontSize="12" Foreground="#2C3E50" Margin="0,4,0,0"/>
+                                                    <TextBlock Grid.Row="2" Text="{Binding AmountDisplay}" FontSize="16" FontWeight="Bold" Foreground="#2C3E50" Margin="0,6,0,0"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </ScrollViewer>
+                        </StackPanel>
+                    </Border>
                 </Grid>
             </StackPanel>
-        </Border>
+        </ScrollViewer>
     </Grid>
 </UserControl>

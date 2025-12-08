@@ -28,6 +28,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = parentViewModel.CurrentUser;
 
+            UpdateClassEnrollment();
             Classes = new ObservableCollection<GymClass>(_dataService.GymClasses);
 
             // Initialize command with execution and can-execute logic
@@ -61,11 +62,20 @@ namespace FitnessManagerWPF.ViewModel.Member
         private bool CanSignUp(object? param)
         {
             if (param is not GymClass selectedClass) return false;
+            if (!_currentUser.HasActiveMembership) return false;
             // Only disable if class is full and currentUser is not enrolled
             bool isEnrolled = selectedClass.RegisteredMemberIds.Contains(_currentUser.Id);
             bool isFull = selectedClass.CurrentParticipants >= selectedClass.MaxParticipants;
 
             return isEnrolled || !isFull; // Allow if enrolled or class not full
+        }
+
+        private void UpdateClassEnrollment()
+        {
+            foreach(GymClass c in _dataService.GymClasses)
+            {
+                c.IsUserEnrolled = c.RegisteredMemberIds.Contains(_currentUser.Id);
+            }
         }
     }
 }

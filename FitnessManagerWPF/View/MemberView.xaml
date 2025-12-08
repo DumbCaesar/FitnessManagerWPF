@@ -37,11 +37,11 @@
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Grid.Row="1">
-            <RadioButton Content="Dashboard" Style="{StaticResource RadioButtonStyle}" Command="{Binding DashboardCommand}" IsChecked="True"/>
-            <RadioButton Content="Classes" Style="{StaticResource RadioButtonStyle}" Command="{Binding ClassesCommand}"/>
-            <RadioButton Content="Membership" Style="{StaticResource RadioButtonStyle}" Command="{Binding MembershipCommand}"/>
-            <RadioButton Content="Profile" Style="{StaticResource RadioButtonStyle}" Command="{Binding ProfileCommand}"/>
+        <StackPanel Grid.Column="0" Grid.Row="1" Background="#FAFAFA">
+            <RadioButton Content="Dashboard" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding DashboardCommand}" IsChecked="True"/>
+            <RadioButton Content="Classes" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding ClassesCommand}"/>
+            <RadioButton Content="Membership" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding MembershipCommand}"/>
+            <RadioButton Content="Profile" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding ProfileCommand}"/>
         </StackPanel>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>
     </Grid>

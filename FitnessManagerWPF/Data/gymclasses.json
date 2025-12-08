@@ -4,7 +4,9 @@
     "Name": "Morning Yoga",
     "MaxParticipants": 5,
     "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 1,
     "time": "07:00:00"
   },
@@ -22,7 +24,9 @@
     "Name": "Indoor Cycling",
     "MaxParticipants": 25,
     "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 3,
     "time": "17:30:00"
   },
@@ -31,9 +35,7 @@
     "Name": "HIIT Blast",
     "MaxParticipants": 18,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 4,
     "time": "19:00:00"
   },
@@ -42,9 +44,7 @@
     "Name": "Weekend Flow Yoga",
     "MaxParticipants": 22,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 6,
     "time": "10:00:00"
   },
@@ -53,19 +53,8 @@
     "Name": "Core Stretch",
     "MaxParticipants": 20,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [],
     "day": 5,
     "time": "16:30:00"
-  },
-  {
-    "Id": 7,
-    "Name": "test",
-    "MaxParticipants": 1,
-    "TrainerId": 0,
-    "RegisteredMemberIds": [],
-    "day": 3,
-    "time": "09:00:00"
   }
 ]

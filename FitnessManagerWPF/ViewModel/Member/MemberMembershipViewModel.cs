@@ -65,45 +65,57 @@ namespace FitnessManagerWPF.ViewModel.Member
             // Initialize memberships and subscriptions
             _listOfMemberships = new List<Membership>(_dataService.Memberships);
             UserSubscriptions = new ObservableCollection<Purchase>(CurrentUser.BillingHistory);
+            UpdateIsActiveType();
             // Command for buying a membership
-            BuyMembershipCommand = new RelayCommand(_ => BuyMembership());
+            BuyMembershipCommand = new RelayCommand(param => BuyMembership(param));
         }
 
-        private void BuyMembership()
+        private void BuyMembership(object? param)
         {
+            if (param is not Membership selectedMembership) return;
             var now = DateTime.Now;
             DateTime newExpiry;
 
             // Extend existing membership if same type and still active
-            if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Id == SelectedMembership.Id && CurrentUser.HasActiveMembership)
+            if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Name == selectedMembership.Name && CurrentUser.HasActiveMembership)
             {
-                newExpiry = CurrentUser.MembershipExpiresAt.Value.AddMonths(SelectedMembership.DurationInMonths);
+                newExpiry = CurrentUser.MembershipExpiresAt.Value.AddMonths(selectedMembership.DurationInMonths);
             }
             else
             {
-                newExpiry = now.AddMonths(SelectedMembership.DurationInMonths);
+                newExpiry = now.AddMonths(selectedMembership.DurationInMonths);
             }
 
             // Update user's membership info
             CurrentUser.MembershipExpiresAt = newExpiry;
-            CurrentUser.ActiveMembership = SelectedMembership;
-            CurrentUser.ActiveMembershipId = SelectedMembership.Id;
-            CurrentUser.ActiveMembership = SelectedMembership;
+            CurrentUser.ActiveMembership = selectedMembership;
+            CurrentUser.ActiveMembershipId = selectedMembership.Id;
+            CurrentUser.ActiveMembership = selectedMembership;
 
             // Record purchase
             var purchase = new Purchase
             {
                 Id = ++_dataService.MaxSubscriptionId,
-                Membership = SelectedMembership,
-                MembershipId = SelectedMembership.Id,
-                AmountPaid = SelectedMembership.Price,
+                Membership = selectedMembership,
+                MembershipId = selectedMembership.Id,
+                AmountPaid = selectedMembership.Price,
                 PurchasedAt = now
             };
 
             CurrentUser.BillingHistory.Add(purchase);
             UserSubscriptions.Add(purchase);
             _dataService.SaveUsers();
+            UpdateIsActiveType();
+            _parentViewModel.NotifyDataChanged();
             UpdateMembershipEvent?.Invoke(); // Notify other views of change
+        }
+
+        private void UpdateIsActiveType()
+        {
+            foreach (Membership m in ListOfMemberships)
+            {
+                m.IsActiveType = CurrentUser.ActiveMembership?.Name == m.Name;
+            }
         }
     }
 }

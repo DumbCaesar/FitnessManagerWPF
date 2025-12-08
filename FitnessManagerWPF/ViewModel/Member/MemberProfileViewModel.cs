@@ -3,6 +3,7 @@ using FitnessManagerWPF.Services;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Windows;
+using System.Collections.ObjectModel;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
@@ -25,6 +26,8 @@ namespace FitnessManagerWPF.ViewModel.Member
         private string _newPasswordCompare;
         private DateTime _dateJoined;
         private int _membershipId;
+        private string _membershipExpiresDisplay;
+        private ObservableCollection<Purchase> _userSubscriptions; // User's purchase history
 
         // Commands bound to Save and Discard buttons
         public ICommand SaveCommand { get; }
@@ -77,10 +80,22 @@ namespace FitnessManagerWPF.ViewModel.Member
             get => _currentUser?.MembershipStatusDisplay ?? "No Active Membership";
         }
 
+        public string MembershipExpiresDisplay
+        {
+            get => _currentUser?.MembershipExpiresDisplay ?? "";
+            set => SetProperty(ref _membershipExpiresDisplay, value);
+        }
+
         public int MembershipId
         {
             get => _membershipId;
             set => SetProperty(ref _membershipId, value);
+        }
+
+        public ObservableCollection<Purchase> UserSubscriptions
+        {
+            get => _userSubscriptions;
+            set => SetProperty(ref _userSubscriptions, value);
         }
 
 
@@ -90,7 +105,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             _dataService = dataService;
             _currentUser = user;
             _dateJoined = user.DateJoined;
-
+            _parentViewModel.DataChanged += UpdateBillingHistory;
             SaveCommand = new RelayCommand(_ => Save());
             DiscardCommand = new RelayCommand(_ => Discard());
 
@@ -101,6 +116,7 @@ namespace FitnessManagerWPF.ViewModel.Member
             Name = _currentUser.Name ?? "";
             Email = _currentUser.Email ?? "";
             Username = _currentUserLogin?.Username ?? "";
+            UserSubscriptions = new ObservableCollection<Purchase>(user.BillingHistory);
         }
 
         private void Save()
@@ -152,6 +168,11 @@ namespace FitnessManagerWPF.ViewModel.Member
         public void UpdateMemberRole() 
         {
             OnPropertyChanged(nameof(MembershipTypeDisplay));
+        }
+
+        private void UpdateBillingHistory()
+        {
+            UserSubscriptions = new ObservableCollection<Purchase>(_currentUser.BillingHistory);
         }
     }
 }

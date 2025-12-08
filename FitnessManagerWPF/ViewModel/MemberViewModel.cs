@@ -25,6 +25,8 @@ namespace FitnessManagerWPF.ViewModel
         private MemberMembershipViewModel _memberMembershipViewModel;
         private User _currentUser; // Logged-in member
 
+        public event Action DataChanged; // Event for updating UI when underlying data updates.
+
         // Commands for navigation
         public ICommand DashboardCommand { get; set; }
         public ICommand ClassesCommand { get; set; }
@@ -89,6 +91,11 @@ namespace FitnessManagerWPF.ViewModel
         private void ShowMembership()
         {
             CurrentView = _memberMembershipViewModel;
+        }
+
+        public void NotifyDataChanged() // The event that get's invoked
+        {
+            DataChanged?.Invoke();
         }
     }
 }
