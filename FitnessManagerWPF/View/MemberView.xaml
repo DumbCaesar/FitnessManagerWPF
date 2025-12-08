@@ -43,6 +43,7 @@
             <RadioButton Content="Membership" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding MembershipCommand}"/>
             <RadioButton Content="Profile" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding ProfileCommand}"/>
         </StackPanel>
+        <RadioButton Grid.Column="0" Grid.Row="1" VerticalAlignment="Bottom" Content="Logout" Style="{StaticResource MemberRadioButtonStyle}" Command="{Binding LogoutCommand}"/>
         <ContentControl Grid.Column="1" Grid.Row="1" Content="{Binding CurrentView}"/>
     </Grid>
 </Window>

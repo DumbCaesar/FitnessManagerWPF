@@ -1,4 +1,5 @@
 ﻿using FitnessManagerWPF.ViewModel;
+using FitnessManagerWPF.ViewModel.Admin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,17 @@ namespace FitnessManagerWPF.View
     /// </summary>
     public partial class MemberView : Window
     {
-        private MemberViewModel viewModel;
         public MemberView()
         {
             InitializeComponent();
-            viewModel = new MemberViewModel();
-            DataContext = viewModel;
+            Loaded += (s, e) =>
+            {
+                if (DataContext is MemberViewModel vm)
+                    vm.Logout += () =>
+                    {
+                        this.Close();
+                    };
+            };
         }
     }
 }
