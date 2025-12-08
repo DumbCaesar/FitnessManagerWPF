@@ -41,12 +41,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _parentViewModel = parentViewModel;
             _trainerList = new List<User>();
             _dataService = dataService;
+            // add them to list and observableCollection
             _trainerList = GetTrainers();
             _listOfTrainers = new ObservableCollection<User>(_trainerList);
         }
 
         private List<User> GetTrainers()
         {
+            // Return all trainers
             return _dataService.Users.Where(u => u.UserRole == UserRole.Trainer).ToList();
         }
     }

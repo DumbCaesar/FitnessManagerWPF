@@ -17,19 +17,20 @@ namespace FitnessManagerWPF.Services
 {
     public class DataService
     {
-        // file paths
+        // File Paths
         private readonly string _basePath;
         private readonly string _usersFile;
         private readonly string _loginFile;
         private readonly string _gymClassesFile;
         private readonly string _membershipsFile;
 
-        //  lists
+        // Data Collections
         private List<User> _users;
         private List<Login> _logins;
         private List<Membership> _memberships;
         private List<GymClass> _gymClasses;
 
+        // Public Properties
         public User CurrentUser { get; private set; }
         public List<Membership> Memberships
         {
@@ -51,19 +52,22 @@ namespace FitnessManagerWPF.Services
             get => _gymClasses;
             private set => _gymClasses = value;
         }
+        // Properties to track the maximum IDs for new record generation
         public int MaxUserId { get; set; }
-
         public int MaxSubscriptionId { get; set; }
         public int MaxClassId { get; set; }
 
         public DataService()
         {
+            // Calculate base path relative to the application's root directory
             _basePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..");
+            // Define full file paths for JSON data
             _usersFile = Path.Combine(_basePath, "Data/users.json");
             _loginFile = Path.Combine(_basePath, "Data/logins.json");
             _gymClassesFile = Path.Combine(_basePath, "Data/gymclasses.json");
             _membershipsFile = Path.Combine(_basePath, "Data/memberships.json");
 
+            // Initialize lists
             _users = new List<User>();
             _logins = new List<Login>();
             _gymClasses = new List<GymClass>();
@@ -71,10 +75,12 @@ namespace FitnessManagerWPF.Services
 
             try
             {
+                // Load all data from JSON files
                 LoadData();
             }
             catch (Exception ex)
             {
+                // Log and re-throw exceptions during initialization
                 Debug.WriteLine($"Failed to initialize DataService: {ex.Message}");
                 throw;
             }
@@ -115,17 +121,19 @@ namespace FitnessManagerWPF.Services
             }
         }
 
+        // --- Data Loading and Initialization ---
         public void LoadData()
         {
             try
             {
+                // Set up JSON deserialization options
                 var options = new JsonSerializerOptions
                 {
                     PropertyNameCaseInsensitive = true,
                 };
-
                 options.Converters.Add(new JsonStringEnumConverter());
 
+                // Deserialize data from JSON files into in-memory lists
                 _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_usersFile), options);
                 Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_usersFile}");
 
@@ -138,9 +146,11 @@ namespace FitnessManagerWPF.Services
                 _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
 
+                // Establish object relationships (e.g., link User to their Membership object)
                 LinkMemberships();
                 LinkTrainers();
             }
+            // Catch specific file/format exceptions
             catch (FileNotFoundException ex)
             {
                 Debug.WriteLine($"Data file not found: {ex.Message}");
@@ -155,11 +165,15 @@ namespace FitnessManagerWPF.Services
             }
         }
 
+        // --- Core Application Logic ---
+
+        // Validates a user's login credentials against the loaded logins.
         public bool ValidateUser(string username, string password)
         {
             var login = _logins.FirstOrDefault(u => u.Username == username && u.Password == password);
             if (login != null)
             {
+                // Set the CurrentUser if login is successful
                 CurrentUser = _users.FirstOrDefault(u => u.Id == login.MembershipId);
                 return true;
             }
@@ -167,30 +181,36 @@ namespace FitnessManagerWPF.Services
             return false;
         }
 
+        // Links User objects to their Membership objects using IDs.
         private void LinkMemberships()
         {
-            foreach(User u in _users)
+            foreach (User u in _users)
             {
                 if (u.ActiveMembershipId == null)
                     u.ActiveMembership = null;
                 else
+                    // Find and assign the active membership object
                     u.ActiveMembership = _memberships.Where(m => m.Id == u.ActiveMembershipId).FirstOrDefault();
 
                 foreach (Purchase p in u.BillingHistory)
                 {
+                    // Find and assign the membership object for each purchase in history
                     p.Membership = _memberships.Where(m => m.Id == p.MembershipId).FirstOrDefault();
                 }
             }
         }
 
+        // Links GymClass objects to their Trainer (User) objects using the TrainerId.
         private void LinkTrainers()
         {
             foreach (GymClass c in _gymClasses)
             {
+                // Find and assign the trainer user object, or a placeholder if the trainer is missing
                 c.Trainer = _users.FirstOrDefault(u => u.Id == c.TrainerId) ?? new User { Id = c.TrainerId, Name = "Deleted Trainer" };
             }
         }
 
+        // Retrieves the login details (username/password) for a given User.
         public Login? LoadUserInfo(User user)
         {
             if (user == null)
@@ -201,6 +221,7 @@ namespace FitnessManagerWPF.Services
 
             try
             {
+                // Find the corresponding Login object by MembershipId
                 return _logins.Where(l => l.MembershipId == user.Id).FirstOrDefault();
             }
             catch (Exception ex)
@@ -210,6 +231,7 @@ namespace FitnessManagerWPF.Services
             }
         }
 
+        // Adds a new User and their Login details to the in-memory lists and persists the changes to JSON files.
         public void CreateUser(User user, Login login)
         {
             var options = new JsonSerializerOptions
@@ -221,9 +243,11 @@ namespace FitnessManagerWPF.Services
             _users.Add(user);
             _logins.Add(login);
 
+            // Serialize updated lists to JSON strings
             string userJson = JsonSerializer.Serialize(_users, options);
-            string loginJson = JsonSerializer.Serialize(_logins, options); 
+            string loginJson = JsonSerializer.Serialize(_logins, options);
 
+            // Write JSON strings back to files
             File.WriteAllText(_usersFile, userJson);
             File.WriteAllText(_loginFile, loginJson);
 
@@ -231,6 +255,7 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Added {login.Username} to {_loginFile}");
         }
 
+        // Saves the current state of GymClasses to its JSON file.
         public void SaveGymClasses()
         {
             var options = new JsonSerializerOptions
@@ -243,6 +268,7 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Updated {_gymClassesFile}");
         }
 
+        // Saves the current state of Users to its JSON file.
         public void SaveUsers()
         {
             var options = new JsonSerializerOptions
@@ -255,6 +281,7 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Updated {_usersFile}");
         }
 
+        // Saves the current state of Logins to its JSON file.
         public void SaveLogins()
         {
             var options = new JsonSerializerOptions
@@ -266,14 +293,19 @@ namespace FitnessManagerWPF.Services
             File.WriteAllText(_loginFile, loginsJson);
             Debug.WriteLine($"Updated {_loginFile}");
         }
+
+        // Retrieves an ObservableCollection of Users registered for a specific GymClass.
         public ObservableCollection<User> GetSelectedClass(GymClass cls)
         {
             if (cls == null) return null;
+            // Find all users whose ID is in the class's RegisteredMemberIds list
             var users = _users.FindAll(u => cls.RegisteredMemberIds.Contains(u.Id));
             ObservableCollection<User> temp = new ObservableCollection<User>(users);
             return temp;
 
         }
+
+        // Deletes a User and their associated Login from the system and updates files.
         public void DeleteMember(User user)
         {
             try
@@ -288,7 +320,7 @@ namespace FitnessManagerWPF.Services
                 // Remove user
                 _users.Remove(user);
 
-                // Remove user from all classes
+                // Remove user ID from all registered classes
                 foreach (var cls in _gymClasses)
                 {
                     while (cls.RegisteredMemberIds.Contains(user.Id))
@@ -297,6 +329,7 @@ namespace FitnessManagerWPF.Services
                     }
                 }
 
+                // Persist all changes
                 SaveGymClasses();
                 SaveLogins();
                 SaveUsers();

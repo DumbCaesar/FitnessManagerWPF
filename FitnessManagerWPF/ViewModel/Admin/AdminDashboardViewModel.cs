@@ -15,6 +15,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private object _currentView;
         private AdminViewModel _parentViewModel;
 
+        // Dashboard KPIs
         public int TotalMemberCount { get; set; }
         public int ActiveMemberCount { get; set; }
         public int InactiveMemberCount { get; set; }
@@ -23,7 +24,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         public double CapacityPercentage { get; set; }
         public int MonthlySignups { get; set; }
         public int ExpiringMemberships { get; set; }
-        public decimal MRR { get; set; }
+        public decimal MRR { get; set; } // Monthly Recurring Revenue
 
         public object CurrentView
         {
@@ -35,6 +36,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _parentViewModel = parentViewModel;
             _dataService = dataService;
+            // Refresh dashboard whenever data changes elsewhere in the app
             _parentViewModel.DataChanged += RefreshAll;
             UpdateMemberCounts();
             UpdateClasses();
@@ -51,6 +53,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {   
             ClassesToday = _dataService.GymClasses.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
             ClassesWeek = _dataService.GymClasses.Count();
+            // Total possible vs actual attendance to compute global capacity
             int MaxAttendance = _dataService.GymClasses.Sum(a => a.MaxParticipants);
             Debug.WriteLine($"Max attendance this week: {MaxAttendance}");
             int CurrentAttendance = _dataService.GymClasses.Sum(a => a.CurrentParticipants);
@@ -61,7 +64,9 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void UpdateKPIs()
         {
+            // Users who joined this month
             MonthlySignups = _dataService.Users.Where(u => u.DateJoined.Month == DateTime.Today.Month).Count();
+            // Memberships expiring within the next 7 days
             ExpiringMemberships = _dataService.Users
                 .Where(u => u.HasActiveMembership)
                 .Count(u => u.MembershipExpiresAt >= DateTime.Today &&
@@ -73,8 +78,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             decimal total = 0m;
             var now = DateTime.Now;
-
-            foreach(var user in _dataService.Users)
+            // Converts each user's membership to a monthly equivalent
+            foreach (var user in _dataService.Users)
             {
                 if (user.MembershipExpiresAt > now && user.ActiveMembership != null)
                 {

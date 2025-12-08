@@ -1,13 +1,14 @@
-﻿using System;
+﻿using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
+using FitnessManagerWPF.View;
+using FitnessManagerWPF.View.UserControl.Admin;
+using FitnessManagerWPF.ViewModel.Admin;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using FitnessManagerWPF.Model;
-using FitnessManagerWPF.Services;
-using FitnessManagerWPF.View.UserControl.Admin;
-using FitnessManagerWPF.ViewModel.Admin;
 
 namespace FitnessManagerWPF.ViewModel
 {
@@ -25,12 +26,14 @@ namespace FitnessManagerWPF.ViewModel
         private AdminMemberViewModel _adminMemberViewModel;
         private AdminTrainerViewModel _adminTrainerViewModel;
         public event Action DataChanged; // Event for updating UI when underlying data updates.
+        public event Action Logout; // Event invoked when logging out, closes AdminView.
 
         // Commands for switching between admin pages
         public ICommand DashboardCommand { get; set; }
         public ICommand MemberCommand { get; set; }
         public ICommand TrainerCommand { get; set; } 
         public ICommand ClassesCommand { get; set; }
+        public ICommand LogoutCommand { get; set; }
 
         // The active view shown in the admin panel
         public object CurrentView
@@ -59,13 +62,21 @@ namespace FitnessManagerWPF.ViewModel
             MemberCommand = new RelayCommand(_ => ShowMembers());
             TrainerCommand = new RelayCommand(_ => ShowTrainers());
             ClassesCommand = new RelayCommand(_ => ShowClasses());
+            LogoutCommand = new RelayCommand(_ => OnLogout());
             // Default page (start page)
             ShowDashboard();
         }
 
-        public AdminViewModel() // Empty ctor used for DataContext in view
+        public AdminViewModel() // Empty constructor used for DataContext
         {
             
+        }
+
+        private void OnLogout()
+        {
+            var loginView = new LoginView();
+            loginView.Show();
+            Logout?.Invoke();
         }
 
         // The command methods for switching to a different view.

@@ -13,7 +13,11 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    class AddClassViewModel : ObservableObject
+    /// <summary>
+    /// ViewModel used for creating a new gym class inside the Admin panel.
+    /// Handles trainer selection, schedule, participant limits, and class creation.
+    /// </summary>
+    public class AddClassViewModel : ObservableObject
     {
         private DataService _dataService;
         private TimeSpan _time;
@@ -30,6 +34,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             get => _maxParticipants;
             set
             {
+                // Validate numeric input and ensure class capacity stays within allowed range
                 if (string.IsNullOrEmpty(value) || 
                     (int.TryParse(value, out int num) && num >= 1 && num <= 100)) // max 100 in a class
                 {
@@ -39,12 +44,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
         }
         public ObservableCollection<User> TrainerList { get; set; }
         public DayOfWeek Day { get; set; }
+
+        // Used for binding dropdown of days in UI
         public IEnumerable<DayOfWeek> DaysOfWeek => Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
         public TimeSpan Time 
         {
             get => _time; 
             set => SetProperty(ref _time, value); 
         }
+
+        // Generates selectable time slots (5:00 → 22:00, every 30 minutes)
         public List<TimeSpan> TimeSlots
         {
             get
@@ -65,12 +74,17 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
         public ICommand SaveClassCommand { get; set; }
+
+        // Event for closing the Add Class dialog
         public event Action? CloseRequest;
         public ICommand CancelCommand { get; set; }
+
+        // Notifies parent UI that a new class was created
         public event Action<GymClass> ClassCreated;
         public AddClassViewModel(DataService dataService) 
         {
             _dataService = dataService;
+            // Populate trainer list with only users who are trainers
             TrainerList = new ObservableCollection<User>(_dataService.Users.Where(u => u.UserRole == UserRole.Trainer));
             SaveClassCommand = new RelayCommand(_ => SaveClass());
             CancelCommand = new RelayCommand(_ => CloseRequest?.Invoke());
@@ -78,6 +92,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void SaveClass()
         {
+            // If participant count is invalid, abort
             if (!int.TryParse(MaxParticipants, out int participants)) return;
 
             Debug.WriteLine("Creating new class...");
@@ -99,10 +114,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
             _dataService.GymClasses.Add(newClass);
             _dataService.SaveGymClasses();
-            
+
+            // Notify UI layer and close window, pass along the new class as well.
             ClassCreated?.Invoke(newClass);
             MessageBox.Show($"Successfully created class: {Name}");
-
             CloseRequest?.Invoke();
         }
     }
