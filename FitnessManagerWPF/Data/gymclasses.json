@@ -15,7 +15,9 @@
     "Name": "Strength Training",
     "MaxParticipants": 15,
     "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIds": [
+      1
+    ],
     "day": 2,
     "time": "18:30:00"
   },

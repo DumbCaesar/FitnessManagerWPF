@@ -19,11 +19,29 @@
         "MembershipId": 1,
         "AmountPaid": 79.99,
         "PurchasedAt": "2025-12-02T15:26:09.6384033+01:00"
+      },
+      {
+        "Id": 15,
+        "MembershipId": 3,
+        "AmountPaid": 149.99,
+        "PurchasedAt": "2025-12-08T11:18:25.4309137+01:00"
+      },
+      {
+        "Id": 16,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-12-08T11:37:32.3300908+01:00"
+      },
+      {
+        "Id": 17,
+        "MembershipId": 6,
+        "AmountPaid": 2999.00,
+        "PurchasedAt": "2025-12-08T11:37:35.6944808+01:00"
       }
     ],
     "DateJoined": "2023-09-15T00:00:00",
-    "MembershipExpiresAt": "2026-01-07T21:35:12.6906303+01:00",
-    "ActiveMembershipId": 1,
+    "MembershipExpiresAt": "2027-01-08T11:37:32.3300908+01:00",
+    "ActiveMembershipId": 6,
     "role": 0
   },
   {
