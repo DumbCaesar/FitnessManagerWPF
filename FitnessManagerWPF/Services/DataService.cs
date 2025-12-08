@@ -72,19 +72,46 @@ namespace FitnessManagerWPF.Services
             try
             {
                 LoadData();
-                MaxUserId = _users.Max(u => u.Id);
-                MaxSubscriptionId = _users
-                .Where(u => u.BillingHistory != null)
-                .SelectMany(u => u.BillingHistory)
-                .Select(sub => sub.Id)
-                .DefaultIfEmpty(0)
-                .Max();
-                MaxClassId = _gymClasses.Max(c => c.Id);
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Failed to initialize DataService: {ex.Message}");
                 throw;
+            }
+
+            try
+            {
+                MaxUserId = _users.Max(u => u.Id);
+            }
+            catch(InvalidOperationException ex)
+            {
+                MaxUserId = 0;
+                Debug.WriteLine($"Failed to read max user ID. Defaulting to 0. Error: {ex.Message}");
+            }
+
+            try
+            {
+                MaxSubscriptionId = _users
+                                    .Where(u => u.BillingHistory != null)
+                                    .SelectMany(u => u.BillingHistory)
+                                    .Select(sub => sub.Id)
+                                    .DefaultIfEmpty(0)
+                                    .Max();
+            }
+            catch (InvalidOperationException ex)
+            {
+                MaxSubscriptionId = 0;
+                Debug.WriteLine($"Failed to read max subscription ID. Defaulting to 0. Error: {ex.Message}");
+            }
+
+            try
+            {
+                MaxClassId = _gymClasses.Max(c => c.Id);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MaxClassId = 0;
+                Debug.WriteLine($"Failed to read max class ID. Defaulting to 0. Error: {ex.Message}");
             }
         }
 

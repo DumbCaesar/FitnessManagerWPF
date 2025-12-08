@@ -39,7 +39,7 @@ namespace FitnessManagerWPF.Model
         [JsonIgnore] public string ClassInfo => $"{Name} - {Trainer.Name}";
         [JsonIgnore] public string CapacityDisplay => $"{CurrentParticipants}/{MaxParticipants}";
         [JsonIgnore] public DateTime NextOccurrence => GetNextClassDateTime();
-        [JsonIgnore] public string TimeDisplay => $"{Day} at {Time}";
+        [JsonIgnore] public string TimeDisplay => $"{Day} at {Time.ToString(@"hh\:mm")}";
 
         [JsonIgnore]
         public bool IsUserEnrolled // Checks if the active user logged in is enrolled in the class.
