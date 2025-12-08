@@ -64,12 +64,14 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _parentViewModel = parentViewModel;
             _userList = new List<User>();
             _dataService = dataService;
+            // Load all users and filter only members
             _userList = _dataService.Users;
             _listOfMembers = new ObservableCollection<User>(_userList.Where(u => u.UserRole == UserRole.Member));
         }
 
         private void ShowNewUserView()
         {
+            // Open "Add Member" dialog
             AddMemberViewModel addMemberViewModel = new AddMemberViewModel(_dataService);
             addMemberViewModel.NewMemberCreated += OnMemberCreated;
             AddMemberView addMemberView = new AddMemberView { DataContext = addMemberViewModel };
@@ -80,7 +82,9 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private void OnMemberDoubleClick()
         {
             if (SelectedMember == null) return;
+            // Open Selected Member details page
             SelectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
+            // Listen for updates/deletes from inside the window
             SelectedMemberViewModel.MemberChanged += OnMemberUpdated;
             SelectedMemberViewModel.MemberDeleted += OnMemberDeleted;
             var SelectedMemberView = new SelectedMemberView { DataContext = SelectedMemberViewModel };
@@ -92,6 +96,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void OnMemberUpdated()
         {
+            // Reload updated user from dataService
             _userList = _dataService.Users;
             var updatedUser = _userList.FirstOrDefault(u => u.Id == SelectedMember.Id);
 
@@ -127,6 +132,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         private void OnMemberCreated(User user)
         {
+            // Add newly created member to the list
             MemberList.Add(user);
             UserCreated?.Invoke();
             _parentViewModel.NotifyDataChanged();

@@ -63,6 +63,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _dataService = dataService;
             SelectedClass = classes;
             _gymClasses = _dataService.GymClasses;
+            // Get classes and users
             _listOfClasses = new ObservableCollection<GymClass>(_gymClasses);
             _listOfUsers = _dataService.GetSelectedClass(classes);
             MemberDoubleClickCommand = new RelayCommand(_ => ShowSelectedMember());
@@ -72,6 +73,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private void ShowSelectedMember()
         {
             if (SelectedMember == null) return;
+            // Show the selected class from the list
             SelectedMemberViewModel selectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
             SelectedMemberView selectedMemberView = new SelectedMemberView { DataContext = selectedMemberViewModel };
             selectedMemberView.ShowDialog();

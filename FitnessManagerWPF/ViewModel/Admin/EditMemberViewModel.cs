@@ -22,6 +22,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private string _email;
         private string _username;
         private string _password;
+        // Event raised when member details updates
         public event Action MemberChanged;
         public ICommand SaveCommand { get; }
         public ICommand DiscardCommand { get; }
@@ -93,7 +94,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
                 _dataService.SaveUsers();
                 _dataService.SaveLogins();
-
+                // Invoke Event
                 MemberChanged?.Invoke();
                 Debug.WriteLine("Saved...");
             }
