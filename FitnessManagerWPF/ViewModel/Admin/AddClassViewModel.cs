@@ -95,11 +95,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
         // Validates if the input in add class is valid.
         private bool CanSaveClass()
         {
-            if(Name == null || Name.Length < 4) return false;
+            if (Name == null || Name.Length < 4) return false;
             if (MaxParticipants == null) return false;
             if (Trainer == null) return false;
-            if(Day == null) return false;
-            if(Time == null) return false;
+            if (Day == null) return false;
+            if (Time == null) return false;
             return true;
         }
 
