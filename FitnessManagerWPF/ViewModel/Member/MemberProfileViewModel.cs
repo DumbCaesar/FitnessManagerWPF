@@ -1,9 +1,12 @@
-﻿using FitnessManagerWPF.Model;
-using FitnessManagerWPF.Services;
-using System.Windows.Input;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Net.Mail;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
-using System.Collections.ObjectModel;
+using System.Windows.Input;
+using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
@@ -37,37 +40,61 @@ namespace FitnessManagerWPF.ViewModel.Member
         public string Name
         {
             get => _name;
-            set => SetProperty(ref _name, value);
+            set
+            {
+                if (SetProperty(ref _name, value))
+                    OnPropertyChanged(nameof(NameValidationError));
+            }
         }
 
         public string Email
         {
             get => _email;
-            set => SetProperty(ref _email, value);
+            set
+            {
+                if (SetProperty(ref _email, value))
+                    OnPropertyChanged(nameof(EmailValidationError));
+            }
         }
 
         public string Username
         {
             get => _username;
-            set => SetProperty(ref _username, value);
+            set
+            {
+                if (SetProperty(ref _username, value))
+                    OnPropertyChanged(nameof(UsernameValidationError));
+            }
         }
 
         public string Password
         {
             get => _password;
-            set => SetProperty(ref _password, value);
+            set
+            {
+                if (SetProperty(ref _password, value))
+                    OnPropertyChanged(nameof(PasswordValidationError));
+            }
         }
 
         public string NewPassword
         {
             get => _newPassword;
-            set => SetProperty(ref _newPassword, value);
+            set
+            {
+                if (SetProperty(ref _newPassword, value))
+                    OnPropertyChanged(nameof(PasswordValidationError));
+            }
         }
 
         public string NewPasswordCompare
         {
             get => _newPasswordCompare;
-            set => SetProperty(ref _newPasswordCompare, value);
+            set
+            {
+                if (SetProperty(ref _newPasswordCompare, value))
+                    OnPropertyChanged(nameof(PasswordValidationError));
+            }
         }
 
         public DateTime DateJoined
@@ -97,7 +124,38 @@ namespace FitnessManagerWPF.ViewModel.Member
             get => _userSubscriptions;
             set => SetProperty(ref _userSubscriptions, value);
         }
-
+        public string UsernameValidationError
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Username)) return "Username cannot be empty";
+                return Username != _currentUserLogin.Username && UsernameExists(Username) ? "Username is taken" : "";
+            }
+        }
+        public string EmailValidationError
+        {
+            get
+            {
+                if (!IsValidEmail(_email)) return "Invalid email";
+                if (Email != _currentUser.Email && EmailExists(Email)) return "Email is already taken";
+                return "";
+            }
+        }
+        public string PasswordValidationError
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(Password)) return "Enter password to save changes";
+                if (Password != _currentUserLogin.Password) return "Incorrect password";
+                if (!string.IsNullOrEmpty(_newPassword) || !string.IsNullOrEmpty(_newPasswordCompare))
+                {
+                    if (!IsValidPassword(NewPassword)) return "Password must contain 8+ characters, uppercase, lowercase and a digit";
+                    if (NewPassword != NewPasswordCompare) return "Passwords do not match";
+                }
+                return "";
+            }
+        }
+        public string NameValidationError => string.IsNullOrEmpty(Name) ? "Name cannot be empty" : "";
 
         public MemberProfileViewModel(MemberViewModel parentViewModel, DataService dataService, User user)
         {
@@ -106,7 +164,8 @@ namespace FitnessManagerWPF.ViewModel.Member
             _currentUser = user;
             _dateJoined = user.DateJoined;
             _parentViewModel.DataChanged += UpdateBillingHistory;
-            SaveCommand = new RelayCommand(_ => Save());
+            SaveCommand = new RelayCommand(_ => Save(),
+                                           _ => CanSaveChanges());
             DiscardCommand = new RelayCommand(_ => Discard());
 
             // Load login info
@@ -124,13 +183,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
             if (messageBox != MessageBoxResult.OK) return;
 
-            if (Password != _currentUserLogin.Password) return; // validate password
-
-            if (!string.IsNullOrEmpty(NewPassword) || !string.IsNullOrEmpty(NewPasswordCompare))
-            {
-                if (NewPassword != NewPasswordCompare) return; // validate new password
-                _currentUserLogin.Password = NewPassword;
-            }
             Debug.WriteLine($"Username before: {_currentUserLogin.Username}");
             _currentUser.Name = Name;
             _currentUser.Email = Email;
@@ -173,6 +225,56 @@ namespace FitnessManagerWPF.ViewModel.Member
         private void UpdateBillingHistory()
         {
             UserSubscriptions = new ObservableCollection<Purchase>(_currentUser.BillingHistory);
+        }
+
+        private bool CanSaveChanges()
+        {
+            if (string.IsNullOrEmpty(Password)) return false;
+            if (Password != _currentUserLogin.Password) return false; // validate password
+            
+            // required fields
+            if (string.IsNullOrWhiteSpace(Name)) return false;
+            if (string.IsNullOrWhiteSpace(Username)) return false;
+            if (!IsValidEmail(Email)) return false;
+
+            // unique username
+            if (Username != _currentUserLogin.Username && UsernameExists(Username)) return false;
+
+            // unique email
+            if (Email != _currentUser.Email && EmailExists(Email)) return false;
+
+            // optional newpassword
+            bool newPasswordEntered = !string.IsNullOrEmpty(NewPassword);
+            bool comparePasswordEntered = !string.IsNullOrEmpty(NewPasswordCompare);
+
+            if (newPasswordEntered || comparePasswordEntered)
+            {
+                if (!newPasswordEntered || !comparePasswordEntered) return false;
+                if (!IsValidPassword(NewPassword)) return false;
+                if (NewPassword != NewPasswordCompare) return false;
+            }
+            return true;
+        }
+
+        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username);
+        private bool EmailExists(string email) => _dataService.Users.Any(u => u.Email == email);
+        private bool IsValidEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email)) return false;
+            if (!MailAddress.TryCreate(email, out var mailAddress)) return false;
+            return mailAddress.Host.Contains('.');
+        }
+
+        private bool IsValidPassword(string password)
+        {
+            if (string.IsNullOrWhiteSpace(password)) return false;
+            if (password.Length < 8) return false;
+
+            var hasUpperCase = Regex.IsMatch(password, @"[A-Z]");
+            var hasLowerCase = Regex.IsMatch(password, @"[a-z]");
+            var hasDigit = Regex.IsMatch(password, @"\d");
+
+            return hasUpperCase && hasLowerCase && hasDigit;
         }
     }
 }
