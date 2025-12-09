@@ -8,21 +8,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
     public class SelectedClassViewModel : ObservableObject
     {
-        private ObservableCollection<GymClass> _listOfClasses;
+        private ObservableCollection<GymClass> _gymClasses;
         private ObservableCollection<User> _listOfUsers;
-        private List<GymClass> _gymClasses;
         private GymClass _selectedClass;
         private User _selectedMember;
         private AdminClassesViewModel _parentViewModel;
         private DataService _dataService;
+        public event Action<GymClass> ClassDeleted;
 
         public ICommand MemberDoubleClickCommand { get; set; }
+        public ICommand DeleteClassCommand { get; set; }
 
         public GymClass SelectedClass
         {
@@ -46,28 +48,25 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
 
-        public ObservableCollection<GymClass> ListOfClasses
-        {
-            get => _listOfClasses;
-            set => SetProperty(ref _listOfClasses, value);
-        }
-
         public ObservableCollection<User> ListOfUsers
         {
             get => _listOfUsers;
             set => SetProperty(ref _listOfUsers, value);
         }
-
+        public ObservableCollection<GymClass> GymClasses
+        {
+            get => _gymClasses;
+            set => SetProperty(ref _gymClasses, value);
+        }
         public SelectedClassViewModel(DataService dataService, GymClass classes)
         {
             _dataService = dataService;
             SelectedClass = classes;
-            _gymClasses = _dataService.GymClasses;
             // Get classes and users
-            _listOfClasses = new ObservableCollection<GymClass>(_gymClasses);
+            _gymClasses = new ObservableCollection<GymClass>(_dataService.GymClasses);
             _listOfUsers = _dataService.GetSelectedClass(classes);
             MemberDoubleClickCommand = new RelayCommand(_ => ShowSelectedMember());
-
+            DeleteClassCommand = new RelayCommand(_ => DeleteClass());
         }
 
         private void ShowSelectedMember()
@@ -77,6 +76,19 @@ namespace FitnessManagerWPF.ViewModel.Admin
             SelectedMemberViewModel selectedMemberViewModel = new SelectedMemberViewModel(SelectedMember, _dataService);
             SelectedMemberView selectedMemberView = new SelectedMemberView { DataContext = selectedMemberViewModel };
             selectedMemberView.ShowDialog();
+        }
+
+        private void DeleteClass()
+        {
+            GymClass classToDelete = SelectedClass;
+
+            var messageBox = MessageBox.Show($"Are you sure you want to delete {SelectedClass.Name}?", "Are you sure?", MessageBoxButton.OKCancel);
+            if (messageBox != MessageBoxResult.OK) return;
+            GymClasses.Remove(classToDelete);
+
+            _dataService.GymClasses.Remove(classToDelete);
+            _dataService.SaveGymClasses();
+            ClassDeleted?.Invoke(classToDelete);
         }
     }
 }
