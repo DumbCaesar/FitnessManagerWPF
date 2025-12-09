@@ -1,6 +1,4 @@
-﻿using FitnessManagerWPF.Model;
-using FitnessManagerWPF.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -10,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Xml.Linq;
+using FitnessManagerWPF.Model;
+using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
@@ -80,10 +81,20 @@ namespace FitnessManagerWPF.ViewModel.Member
             if (CurrentUser.ActiveMembership is not null && CurrentUser.ActiveMembership.Name == selectedMembership.Name && CurrentUser.HasActiveMembership)
             {
                 newExpiry = CurrentUser.MembershipExpiresAt.Value.AddMonths(selectedMembership.DurationInMonths);
+                MessageBox.Show($"Your membership was extended by {selectedMembership.DurationInMonths} months");
             }
             else
             {
                 newExpiry = now.AddMonths(selectedMembership.DurationInMonths);
+                if (CurrentUser.HasActiveMembership)
+                {
+                    var messageBox = MessageBox.Show($"Your current membership will end now and you will be changed to a {selectedMembership.Name} subscription", "Are you sure?", MessageBoxButton.OKCancel);
+                    if (messageBox != MessageBoxResult.OK) return;
+                }
+                else
+                {
+                    MessageBox.Show($"You purchased a {selectedMembership.Name} subscription!");
+                }
             }
 
             // Update user's membership info
