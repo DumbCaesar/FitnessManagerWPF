@@ -100,8 +100,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             if (Trainer == null) return false;
             if(Day == null) return false;
             if(Time == null) return false;
-            else
-                return true;
+            return true;
         }
 
         private void SaveClass()
