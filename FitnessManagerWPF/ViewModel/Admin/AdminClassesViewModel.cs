@@ -24,6 +24,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private ObservableCollection<GymClass> _gymClasses;
         // Raised when a new class is created from the AddClass popup
         public event Action ClassCreated;
+        public event Action ClassDeleted;
         public ICommand AddClassCommand { get; set; }
         public ICommand ShowSelectedClassCommand { get; set; }
 
@@ -81,8 +82,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             if (SelectedClass == null) return;
             // Opens details window for the selected class
             SelectedClassViewModel selectedClassViewModel = new SelectedClassViewModel(_dataService, SelectedClass);
+            selectedClassViewModel.ClassDeleted += OnClassDeleted;
             SelectedClassView selectedClassView = new SelectedClassView { DataContext = selectedClassViewModel };
+
             selectedClassView.ShowDialog();
+            selectedClassViewModel.ClassDeleted -= OnClassDeleted;
         }
 
         private void OnClassCreated(GymClass newClass)
@@ -91,6 +95,13 @@ namespace FitnessManagerWPF.ViewModel.Admin
             GymClasses.Add(newClass);
             _parentViewModel.NotifyDataChanged();
             ClassCreated?.Invoke();
+        }
+
+        private void OnClassDeleted(GymClass deletedClass)
+        {
+            GymClasses.Remove(deletedClass);
+            _parentViewModel.NotifyDataChanged();
+            ClassDeleted?.Invoke();
         }
     }
 }
