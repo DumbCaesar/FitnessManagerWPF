@@ -15,10 +15,6 @@ using System.Windows.Controls;
 
 namespace FitnessManagerWPF.Services
 {
-    // =====================================
-    //             DataService
-    //      Author: Nicolaj og Oliver
-    // =====================================
     public class DataService
     {
         // File Paths
@@ -125,11 +121,6 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        // =====================================
-        //             LoadData()
-        //      Author: Nicolaj og Oliver
-        // =====================================
-
         // --- Data Loading and Initialization ---
         public void LoadData()
         {
@@ -174,11 +165,8 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        // =====================================
-        //           ValidateUser()
-        //      Author: Nicolaj og Oliver
-        // =====================================
         // --- Core Application Logic ---
+
         // Validates a user's login credentials against the loaded logins.
         public bool ValidateUser(string username, string password)
         {
@@ -193,10 +181,6 @@ namespace FitnessManagerWPF.Services
             return false;
         }
 
-        // =====================================
-        //            LinkMemberships()
-        //            Author: Nicolaj
-        // =====================================
         // Links User objects to their Membership objects using IDs.
         private void LinkMemberships()
         {
@@ -216,11 +200,6 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        // =====================================
-        //             LinkTrainers()
-        //            Author: Nicolaj
-        // =====================================
-
         // Links GymClass objects to their Trainer (User) objects using the TrainerId.
         private void LinkTrainers()
         {
@@ -231,10 +210,6 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        // =====================================
-        //            LoadUserInfo()
-        //            Author: Oliver
-        // =====================================
         // Retrieves the login details (username/password) for a given User.
         public Login? LoadUserInfo(User user)
         {
@@ -256,12 +231,8 @@ namespace FitnessManagerWPF.Services
             }
         }
 
-        // =====================================
-        //             CreateUser()
-        //      Author: Nicolaj og Oliver
-        // =====================================
         // Adds a new User and their Login details to the in-memory lists and persists the changes to JSON files.
-        public void CreateUser(User user, Login login)  
+        public void CreateUser(User user, Login login)
         {
             var options = new JsonSerializerOptions
             {
@@ -284,10 +255,6 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Added {login.Username} to {_loginFile}");
         }
 
-        // =====================================
-        //           SaveGymClasses()
-        //           Author: Nicolaj
-        // =====================================
         // Saves the current state of GymClasses to its JSON file.
         public void SaveGymClasses()
         {
@@ -301,10 +268,6 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Updated {_gymClassesFile}");
         }
 
-        // =====================================
-        //           SaveGymClasses()
-        //           Author: Nicolaj
-        // =====================================
         // Saves the current state of Users to its JSON file.
         public void SaveUsers()
         {
@@ -318,10 +281,6 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Updated {_usersFile}");
         }
 
-        // =====================================
-        //           SaveGymClasses()
-        //           Author: Nicolaj
-        // =====================================
         // Saves the current state of Logins to its JSON file.
         public void SaveLogins()
         {
@@ -335,10 +294,6 @@ namespace FitnessManagerWPF.Services
             Debug.WriteLine($"Updated {_loginFile}");
         }
 
-        // =====================================
-        //         GetSelectedClass()
-        //           Author: Oliver
-        // =====================================
         // Retrieves an ObservableCollection of Users registered for a specific GymClass.
         public ObservableCollection<User> GetSelectedClass(GymClass cls)
         {
@@ -350,10 +305,6 @@ namespace FitnessManagerWPF.Services
 
         }
 
-        // =====================================
-        //           DeleteMember()
-        //           Author: Oliver
-        // =====================================
         // Deletes a User and their associated Login from the system and updates files.
         public void DeleteMember(User user)
         {

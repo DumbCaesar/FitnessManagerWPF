@@ -12,10 +12,6 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    // =====================================
-    //       SelectedMemberViewModel()
-    //       Author: Oliver + Nicolaj
-    // =====================================
     public class SelectedMemberViewModel : ObservableObject
     {
         private readonly DataService _dataService;
@@ -53,11 +49,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             EditMemberCommand = new RelayCommand(_ => ShowEditMember());
             DeleteMemberCommand = new RelayCommand(_ => OnDeleteMember());
         }
-
-        // =====================================
-        //           ShowEditMember()
-        //           Author: Oliver
-        // =====================================
         private void ShowEditMember()
         {
             if(SelectedMember == null) return;
@@ -69,10 +60,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _editMemberViewModel.MemberChanged -= OnUpdateMemberInfo;
         }
 
-        // =====================================
-        //           OnDeleteMember()
-        //           Author: Oliver
-        // =====================================
         private void OnDeleteMember()
         {
             if (SelectedMember == null) return;
@@ -90,11 +77,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
             return;
         }
-
-        // =====================================
-        //          OnUpdateMemberInfo()
-        //           Author: Oliver
-        // =====================================
         // Invoke event if member info is updated
         private void OnUpdateMemberInfo()
         {

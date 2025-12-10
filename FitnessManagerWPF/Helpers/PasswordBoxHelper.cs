@@ -7,10 +7,6 @@ using System.Windows.Media;
 // Defines a static class for WPF Attached Properties to extend the functionality of a TextBox
 namespace FitnessManagerWPF.Helpers
 {
-    // =====================================
-    //          PasswordBoxHelper
-    //     Author: StackoverFlow/Claude
-    // =====================================
     public static class PasswordBoxHelper
     {
         // --- Attached Properties ---

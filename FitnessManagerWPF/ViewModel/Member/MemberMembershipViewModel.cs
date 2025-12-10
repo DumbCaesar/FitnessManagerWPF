@@ -14,10 +14,6 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
-    // =====================================
-    //       MemberMembershipViewModel
-    //        Author: Nicolaj + Oliver
-    // =====================================
     /// <summary>
     /// ViewModel for managing memberships for a member, including buying new memberships.
     /// </summary>
@@ -75,10 +71,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             BuyMembershipCommand = new RelayCommand(param => BuyMembership(param));
         }
 
-        // =====================================
-        //          BuyMembership()
-        //          Author: Nicolaj
-        // =====================================
         private void BuyMembership(object? param)
         {
             if (param is not Membership selectedMembership) return;
@@ -129,10 +121,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             UpdateMembershipEvent?.Invoke(); // Notify other views of change
         }
 
-        // =====================================
-        //        UpdateIsActiveType()
-        //          Author: Nicolaj
-        // =====================================
         private void UpdateIsActiveType()
         {
             foreach (Membership m in ListOfMemberships)

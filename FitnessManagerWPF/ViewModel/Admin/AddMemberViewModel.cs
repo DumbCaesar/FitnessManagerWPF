@@ -11,10 +11,6 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    // =====================================
-    //         AddMemberViewModel
-    //       Author: Oliver + Nicolaj
-    // =====================================
     public class AddMemberViewModel : ObservableObject
     {
         private string _name;
@@ -61,20 +57,12 @@ namespace FitnessManagerWPF.ViewModel.Admin
             CreateUserCommand = new RelayCommand(_ => CreateUser());
         }
 
-        // =====================================
-        //              Cancel()
-        //           Author: Oliver
-        // =====================================
         private void Cancel()
         {
             // Close this window
             CloseView?.Invoke();
         }
 
-        // =====================================
-        //              CreateUser()
-        //           Author: Oliver
-        // =====================================
         private void CreateUser()
         {
             int userId = ++_dataService.MaxUserId;

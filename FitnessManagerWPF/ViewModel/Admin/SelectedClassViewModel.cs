@@ -13,10 +13,6 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    // =====================================
-    //           SelectedClassViewModel
-    //           Author: Oliver + Nicolaj
-    // =====================================
     public class SelectedClassViewModel : ObservableObject
     {
         private ObservableCollection<GymClass> _gymClasses;
@@ -73,10 +69,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             DeleteClassCommand = new RelayCommand(_ => DeleteClass());
         }
 
-        // =====================================
-        //           ShowSelectedMember()
-        //           Author: Oliver
-        // =====================================
         private void ShowSelectedMember()
         {
             if (SelectedMember == null) return;
@@ -86,10 +78,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             selectedMemberView.ShowDialog();
         }
 
-        // =====================================
-        //           DeleteClass()
-        //           Author: Nicolaj
-        // =====================================
         private void DeleteClass()
         {
             GymClass classToDelete = SelectedClass;

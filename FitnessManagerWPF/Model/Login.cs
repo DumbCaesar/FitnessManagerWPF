@@ -6,10 +6,6 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.Model
 {
-    // =====================================
-    //                Login
-    //     Author: Oliver og Nicolaj
-    // =====================================
     public class Login
     {
         public int MembershipId { get; set; } // Foreign id property for the user. MembershipId = User.Id

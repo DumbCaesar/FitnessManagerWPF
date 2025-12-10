@@ -10,10 +10,6 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
-    // =====================================
-    //           MemberProfileViewModel
-    //          Author: Nicolaj + Oliver
-    // =====================================
     /// <summary>
     /// ViewModel for managing member profile information, including personal details and password updates.
     /// </summary>
@@ -182,10 +178,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             UserSubscriptions = new ObservableCollection<Purchase>(user.BillingHistory);
         }
 
-        // =====================================
-        //                Save()
-        //           Author: Oliver
-        // =====================================
         private void Save()
         {
             var messageBox = MessageBox.Show("Are you sure you want to update your information?", "Are you sure?", MessageBoxButton.OKCancel);
@@ -209,10 +201,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             Debug.WriteLine("Saved...");
         }
 
-        // =====================================
-        //              Discard()
-        //           Author: Oliver
-        // =====================================
         private void Discard()
         {
             Debug.WriteLine("Discard clicked - reloading data");
@@ -229,28 +217,16 @@ namespace FitnessManagerWPF.ViewModel.Member
             Debug.WriteLine($"Restored Username: {_currentUserLogin?.Username}");
         }
 
-        // =====================================
-        //          UpdateMemberRole()
-        //           Author: Oliver
-        // =====================================
         public void UpdateMemberRole() 
         {
             OnPropertyChanged(nameof(MembershipTypeDisplay));
         }
 
-        // =====================================
-        //          UpdateBillingHistory
-        //           Author: Oliver
-        // =====================================
         private void UpdateBillingHistory()
         {
             UserSubscriptions = new ObservableCollection<Purchase>(_currentUser.BillingHistory);
         }
 
-        // =====================================
-        //           CanSaveChanges()
-        //           Author: Nicolaj
-        // =====================================
         private bool CanSaveChanges()
         {
             if (string.IsNullOrEmpty(Password)) return false;
@@ -280,30 +256,15 @@ namespace FitnessManagerWPF.ViewModel.Member
             return true;
         }
 
-        // =====================================
-        //           UsernameExist()
-        //           Author: Nicolaj
-        // =====================================
         private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username);
-        // =====================================
-        //           EmailExist()
-        //           Author: Nicolaj
-        // =====================================
         private bool EmailExists(string email) => _dataService.Users.Any(u => u.Email == email);
-        // =====================================
-        //           IsValidEmail()
-        //           Author: Nicolaj
-        // =====================================
         private bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
             if (!MailAddress.TryCreate(email, out var mailAddress)) return false;
             return mailAddress.Host.Contains('.');
         }
-        // =====================================
-        //          IsValidPassword()
-        //           Author: Nicolaj
-        // =====================================
+
         private bool IsValidPassword(string password)
         {
             if (string.IsNullOrWhiteSpace(password)) return false;

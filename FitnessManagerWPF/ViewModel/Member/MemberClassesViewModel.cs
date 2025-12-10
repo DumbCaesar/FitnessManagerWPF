@@ -11,10 +11,6 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
-    // =====================================
-    //       MemberClassesViewModel
-    //      Author: Oliver + Nicolaj
-    // =====================================
     /// <summary>
     /// ViewModel for managing class sign-ups for a member.
     /// </summary>
@@ -41,10 +37,6 @@ namespace FitnessManagerWPF.ViewModel.Member
                 param => CanSignUp(param));
         }
 
-        // =====================================
-        //           ClassSignUp()
-        //          Author: Nicolaj
-        // =====================================
         // Handles sign-up or cancellation for a gym class
         private void ClassSignUp(object? param)
         {
@@ -66,10 +58,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             CommandManager.InvalidateRequerySuggested();
         }
 
-        // =====================================
-        //            CanSignUp()
-        //          Author: Nicolaj
-        // =====================================
         // Determines if sign-up/cancel button should be enabled
         private bool CanSignUp(object? param)
         {
@@ -82,10 +70,6 @@ namespace FitnessManagerWPF.ViewModel.Member
             return isEnrolled || !isFull; // Allow if enrolled or class not full
         }
 
-        // =====================================
-        //        UpdateClassEnrollment()
-        //          Author: Nicolaj
-        // =====================================
         private void UpdateClassEnrollment()
         {
             foreach(GymClass c in _dataService.GymClasses)
