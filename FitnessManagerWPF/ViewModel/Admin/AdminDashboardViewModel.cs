@@ -9,6 +9,10 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
+    // =====================================
+    //           AdminDashboardViewModel
+    //           Author: Nicolaj + Oliver
+    // =====================================
     public class AdminDashboardViewModel : ObservableObject
     {
         private readonly DataService _dataService;
@@ -42,6 +46,11 @@ namespace FitnessManagerWPF.ViewModel.Admin
             UpdateClasses();
             UpdateKPIs();
         }
+
+        // =====================================
+        //           UpdateMemberCount()
+        //           Author: Nicolaj
+        // =====================================
         private void UpdateMemberCounts()
         {
             TotalMemberCount = _dataService.Users.Where(u => u.UserRole == Model.UserRole.Member).Count();
@@ -49,6 +58,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             InactiveMemberCount = TotalMemberCount - ActiveMemberCount;
         }
 
+        // =====================================
+        //           UpdateClasses()
+        //           Author: Nicolaj
+        // =====================================
         private void UpdateClasses()
         {   
             ClassesToday = _dataService.GymClasses.Where(d => d.Day == DateTime.Today.DayOfWeek).Count();
@@ -62,6 +75,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Debug.WriteLine($"Attendance: {CapacityPercentage}");
         }
 
+        // =====================================
+        //           UpdateKPIs()
+        //           Author: Nicolaj
+        // =====================================
         private void UpdateKPIs()
         {
             // Users who joined this month
@@ -74,6 +91,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             MRR = CalculateMRR();
         }
 
+        // =====================================
+        //           CalculateMRR()
+        //           Author: Nicolaj
+        // =====================================
         private decimal CalculateMRR()
         {
             decimal total = 0m;
@@ -90,6 +111,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             return total;
         }
 
+        // =====================================
+        //           RefreshAll()
+        //           Author: Nicolaj
+        // =====================================
         public void RefreshAll()
         {
             UpdateClasses();

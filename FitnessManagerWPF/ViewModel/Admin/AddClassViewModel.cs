@@ -13,6 +13,10 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
+    // =====================================
+    //          AddClassViewModel
+    //      Author: Oliver + Nicolaj
+    // =====================================
     /// <summary>
     /// ViewModel used for creating a new gym class inside the Admin panel.
     /// Handles trainer selection, schedule, participant limits, and class creation.
@@ -92,6 +96,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             CancelCommand = new RelayCommand(_ => CloseRequest?.Invoke());
         }
 
+        // =====================================
+        //            CanSaveClass()
+        //           Author: Oliver
+        // =====================================
         // Validates if the input in add class is valid.
         private bool CanSaveClass()
         {
@@ -103,6 +111,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             return true;
         }
 
+        // =====================================
+        //             SaveClass()
+        //           Author: Oliver
+        // =====================================
         private void SaveClass()
         {
             // If participant count is invalid, abort

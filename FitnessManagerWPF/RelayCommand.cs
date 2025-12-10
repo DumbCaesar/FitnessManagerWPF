@@ -7,6 +7,10 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF
 {
+    // =====================================
+    //            RelayCommand
+    //      Author: Oliver + Nicolaj
+    // =====================================
     /// <summary>
     /// Represents a command that can be executed in response to user actions or other events for MVVM pattern
     /// Makes ViewModel methods callable from XAML UI elements
