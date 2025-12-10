@@ -3,6 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // =====================================
+    //           ObservableObject
+    //        Author: Oliver + Nicolaj
+    // =====================================
     // Abstract class, as we don't want object creation to be possible.
     // Implements INotifyPropertyChanged, allowing property change notifications to update the UI.
     public abstract class ObservableObject : INotifyPropertyChanged 

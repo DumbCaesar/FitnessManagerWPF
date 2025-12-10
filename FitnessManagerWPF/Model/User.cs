@@ -8,6 +8,10 @@ using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
+    // =====================================
+    //               User
+    //     Author: Oliver og Nicolaj
+    // =====================================
     public class User
     {
         public int Id { get; set; } // Unique user id

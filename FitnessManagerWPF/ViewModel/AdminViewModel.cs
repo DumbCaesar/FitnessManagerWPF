@@ -12,6 +12,10 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // =====================================
+    //      AdminViewModel + Functions
+    //     Author: Oliver og Nicolaj
+    // =====================================
     /// <summary>
     /// Handles navigation and state for the Admin section of the application.
     /// </summary>

@@ -7,6 +7,10 @@ using FitnessManagerWPF.View;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // =====================================
+    //            LoginViewModel
+    //      Author: Oliver og Nicolaj
+    // =====================================
     /// <summary>
     /// ViewModel for handling login and navigation to role specific dashboards.
     /// </summary>
@@ -79,7 +83,7 @@ namespace FitnessManagerWPF.ViewModel
         {
             CurrentView = this; // Login view binds directly to this ViewModel
         }
-        
+
         private void ShowRegister()
         {
             CurrentView = _registerViewModel;

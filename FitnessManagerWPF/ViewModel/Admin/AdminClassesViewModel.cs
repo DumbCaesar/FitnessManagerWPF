@@ -15,6 +15,10 @@ using FitnessManagerWPF.View.Admin;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
+    // =====================================
+    //        AdminClassesViewModel
+    //       Author: Oliver + Nicolaj
+    // =====================================
     public class AdminClassesViewModel : ObservableObject
     {
         private object _currentView;
@@ -64,6 +68,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             ShowSelectedClassCommand = new RelayCommand(_ => ShowSelectedClass());
         }
 
+        // =====================================
+        //              AddClass()
+        //           Author: Nicolaj
+        // =====================================
         private void AddClass()
         {
             Debug.WriteLine("Clicked add class");
@@ -77,6 +85,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             addClassViewModel.ClassCreated -= OnClassCreated;
         }
 
+        // =====================================
+        //          ShowSelectedClass()
+        //           Author: Oliver
+        // =====================================
         private void ShowSelectedClass()
         {
             if (SelectedClass == null) return;
@@ -89,6 +101,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             selectedClassViewModel.ClassDeleted -= OnClassDeleted;
         }
 
+        // =====================================
+        //           OnClassCreated()
+        //           Author: Nicolaj
+        // =====================================
         private void OnClassCreated(GymClass newClass)
         {
             // Add newly created class to the list and notify parent viewmodel to raise dashboard update event.
@@ -97,6 +113,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             ClassCreated?.Invoke();
         }
 
+        // =====================================
+        //           OnClassDeleted()
+        //           Author: Nicolaj
+        // =====================================
         private void OnClassDeleted(GymClass deletedClass)
         {
             GymClasses.Remove(deletedClass);
