@@ -11,6 +11,10 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // =====================================
+    //            MemberViewModel
+    //       Author: Oliver + Nicolaj
+    // =====================================
     /// <summary>
     /// Manages navigation and state for the Member views.
     /// </summary>

@@ -12,6 +12,10 @@ using System.Xml.Linq;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
+    // =====================================
+    //           EditMemberViewModel
+    //           Author: Oliver + Nicolaj
+    // =====================================
     public class EditMemberViewModel : ObservableObject
     {
         private SelectedMemberViewModel _parentViewModel;
@@ -81,6 +85,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Password = _userLogin?.Password ?? "";
         }
 
+        // =====================================
+        //                Save()
+        //           Author: Oliver
+        // =====================================
         private void Save()
         {
             Debug.WriteLine("Save clicked");
@@ -101,6 +109,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             return;
         }
 
+        // =====================================
+        //               Discard()
+        //           Author: Oliver
+        // =====================================
         private void Discard()
         {
             Debug.WriteLine("Discard clicked - reloading data");

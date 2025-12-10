@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
+    // =====================================
+    //           AdminTrainerViewModel
+    //           Author: Oliver + Nicolaj
+    // =====================================
     public class AdminTrainerViewModel : ObservableObject
     {
         private User _selectedTrainer;
@@ -46,6 +50,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _listOfTrainers = new ObservableCollection<User>(_trainerList);
         }
 
+        // =====================================
+        //           GetTrainers()
+        //           Author: Nicolaj
+        // =====================================
         private List<User> GetTrainers()
         {
             // Return all trainers

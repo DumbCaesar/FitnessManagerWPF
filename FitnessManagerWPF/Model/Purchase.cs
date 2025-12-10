@@ -7,9 +7,10 @@ using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
-    /// <summary>
-    /// A membership plan belonging to a user
-    /// </summary>
+    // =====================================
+    //              Purchase
+    //     Author: Oliver og Nicolaj
+    // =====================================
     public class Purchase
     {
         public int Id { get; set; } // an auto incrementing id for every purchase.

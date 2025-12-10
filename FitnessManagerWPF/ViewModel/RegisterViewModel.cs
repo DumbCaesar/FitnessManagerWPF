@@ -13,6 +13,10 @@ using FitnessManagerWPF.Services;
 
 namespace FitnessManagerWPF.ViewModel
 {
+    // =====================================
+    //             ShowLogin()
+    //       Author: Oliver + Nicolaj
+    // =====================================
     // <summary>
     /// ViewModel for registering new users, including validation and switching back to login.
     /// </summary>
@@ -116,11 +120,7 @@ namespace FitnessManagerWPF.ViewModel
             get => _fullname;
             set => SetProperty(ref _fullname, value);
         }
-        private void ShowLogin()
-        {
-            _parentViewModel.ShowLoginCommand.Execute(null);
-        }
-
+        
         public RegisterViewModel(LoginViewModel parentViewModel, DataService dataService)
         {
             _parentViewModel = parentViewModel;
@@ -134,6 +134,20 @@ namespace FitnessManagerWPF.ViewModel
             ShowLoginCommand = new RelayCommand(_ => ShowLogin());
         }
 
+        // =====================================
+        //             ShowLogin()
+        //            Author: Oliver
+        // =====================================
+        private void ShowLogin()
+        {
+            _parentViewModel.ShowLoginCommand.Execute(null);
+        }
+
+
+        // =====================================
+        //             CreateUser()
+        //            Author: Oliver
+        // =====================================
         // Creates a new User and Login entry in the DataService
         private void CreateUser()
         {
@@ -154,6 +168,10 @@ namespace FitnessManagerWPF.ViewModel
             _parentViewModel.ShowLoginCommand.Execute(null);
         }
 
+        // =====================================
+        //            CanCreateUser()
+        //             Author: Nicolaj
+        // =====================================
         // Checks if all fields are valid for enabling CreateUser button
         private bool CanCreateUser()
         {
@@ -168,8 +186,20 @@ namespace FitnessManagerWPF.ViewModel
         }
 
         // Helper methods to check existing usernames/emails and validate email/password format
-        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username); 
+        // =====================================
+        //            UsernameExists()
+        //             Author: Nicolaj
+        // =====================================
+        private bool UsernameExists(string username) => _dataService.Logins.Any(u => u.Username == username);
+        // =====================================
+        //            EmailExists()
+        //             Author: Nicolaj
+        // =====================================
         private bool EmailExists(string email) => _dataService.Users.Any(u => u.Email == email);
+        // =====================================
+        //            IsValidEmail()
+        //             Author: Nicolaj
+        // =====================================
         private bool IsValidEmail(string email) 
         {
             if (string.IsNullOrWhiteSpace(email)) return false;
@@ -177,6 +207,10 @@ namespace FitnessManagerWPF.ViewModel
             return mailAddress.Host.Contains('.');
         }
 
+        // =====================================
+        //            IsValidPassword()
+        //             Author: Nicolaj
+        // =====================================
         private bool IsValidPassword(string password)
         {
             if (string.IsNullOrWhiteSpace(password)) return false;
