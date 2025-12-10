@@ -12,10 +12,6 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Admin
 {
-    // =====================================
-    //           AdminMemberViewModel
-    //           Author: Nicolaj + Oliver
-    // =====================================
     public class AdminMemberViewModel : ObservableObject
     {
         private object _currentView;
@@ -73,10 +69,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _listOfMembers = new ObservableCollection<User>(_userList.Where(u => u.UserRole == UserRole.Member));
         }
 
-        // =====================================
-        //           ShowNewUserView()
-        //           Author: Oliver
-        // =====================================
         private void ShowNewUserView()
         {
             // Open "Add Member" dialog
@@ -87,10 +79,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             addMemberViewModel.NewMemberCreated -= OnMemberCreated;
         }
 
-        // =====================================
-        //           OnMemberDoubleClick()
-        //           Author: Oliver
-        // =====================================
         private void OnMemberDoubleClick()
         {
             if (SelectedMember == null) return;
@@ -106,10 +94,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
 
         }
 
-        // =====================================
-        //           OnMemberUpdated()
-        //           Author: Oliver
-        // =====================================
         private void OnMemberUpdated()
         {
             // Reload updated user from dataService
@@ -132,10 +116,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
 
-        // =====================================
-        //           OnMemberDeleted()
-        //           Author: Oliver
-        // =====================================
         private void OnMemberDeleted()
         {
             // SelectedUser was deleted, remove from ObservableCollection
@@ -150,10 +130,6 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _parentViewModel.NotifyDataChanged();
         }
 
-        // =====================================
-        //           OnMemberCreated()
-        //           Author: Oliver
-        // =====================================
         private void OnMemberCreated(User user)
         {
             // Add newly created member to the list

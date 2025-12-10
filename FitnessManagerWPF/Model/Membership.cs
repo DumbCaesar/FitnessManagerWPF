@@ -8,10 +8,9 @@ using FitnessManagerWPF.ViewModel;
 
 namespace FitnessManagerWPF.Model
 {
-    // =====================================
-    //             Membership
-    //     Author: Oliver og Nicolaj
-    // =====================================
+    /// <summary>
+    /// A membership plan offered by the gym
+    /// </summary>
     public class Membership : ObservableObject
     {
         [JsonIgnore] private bool _isActiveType; // if membership has same type as user's current active membership

@@ -8,10 +8,6 @@ using System.Threading.Tasks;
 
 namespace FitnessManagerWPF.ViewModel
 {
-    // =====================================
-    //     TainerViewModel (Not used)
-    //      Author: Oliver + Nicolaj
-    // =====================================
     // Not currently used for anything, as Trainer section of the app has been shelved.
     public class TrainerViewModel : ObservableObject
     {

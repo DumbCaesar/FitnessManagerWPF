@@ -9,10 +9,6 @@ using System.Windows.Input;
 
 namespace FitnessManagerWPF.ViewModel.Member
 {
-    // =====================================
-    //       MemberDashboardViewModel
-    //       Author: Nicolaj + Oliver
-    // =====================================
     public class MemberDashboardViewModel : ObservableObject
     {
         private DataService _dataService;

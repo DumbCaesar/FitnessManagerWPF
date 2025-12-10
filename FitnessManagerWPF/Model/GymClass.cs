@@ -9,10 +9,6 @@ using System.Text.Json.Serialization;
 
 namespace FitnessManagerWPF.Model
 {
-    // =====================================
-    //               GymClass
-    //     Author: Oliver og Nicolaj
-    // =====================================
     public class GymClass : ObservableObject
     {
         private bool _isUserEnrolled;
@@ -63,10 +59,6 @@ namespace FitnessManagerWPF.Model
             };
         }
 
-        // =====================================
-        //         GetNextClassDateTime
-        //           Author: Nicolaj
-        // =====================================
         private DateTime GetNextClassDateTime()
         {
             var today = DateTime.Now;
