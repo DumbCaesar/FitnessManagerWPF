@@ -43,8 +43,10 @@
         <TextBlock Text="Time:" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8"/>
         <ComboBox Grid.Row="4" Grid.Column="1" Margin="0,4,0,8" ItemsSource="{Binding TimeSlots}" SelectedItem="{Binding Time}" ItemStringFormat="{}{0:hh}:{0:mm}"/>
 
+        <TextBlock Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding ValidationError}" Foreground="Red" TextWrapping="Wrap" FontSize="12"/>
+
         <!-- Buttons -->
-        <StackPanel Grid.Row="5" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,16,0,0">
+        <StackPanel Grid.Row="6" Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,16,0,0">
             <Button Content="Cancel" Width="80" Height="28" Margin="0,0,8,0"
                     Command="{Binding CancelCommand}"
                     IsCancel="True"/>

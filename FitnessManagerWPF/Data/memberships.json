@@ -1,4 +1,4 @@
-[
+﻿[
   { "id": 1, "name": "Basic",    "price": 79.99,  "durationInMonths": 1 },
   { "id": 2, "name": "Basic",     "price": 799.00, "durationInMonths": 12 },
   { "id": 3, "name": "Premium",  "price": 149.99, "durationInMonths": 1 },

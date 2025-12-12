@@ -1,8 +1,8 @@
-[
+﻿[
   {
     "Id": 0,
     "Name": "Admin",
-    "Email": "admin@admin.dk",
+    "Email": "admin@fitnessmanager.dk",
     "BillingHistory": [],
     "DateJoined": "2020-01-01T00:00:00",
     "MembershipExpiresAt": "0001-01-01T00:00:00",
@@ -11,253 +11,247 @@
   },
   {
     "Id": 1,
-    "Name": "Bo",
-    "Email": "bo@dania.dk",
+    "Name": "Lars Nielsen",
+    "Email": "lars.nielsen@email.dk",
     "BillingHistory": [
       {
-        "Id": 14,
-        "MembershipId": 1,
-        "AmountPaid": 79.99,
-        "PurchasedAt": "2025-12-09T13:36:17.4027485+01:00"
+        "Id": 1,
+        "MembershipId": 3,
+        "AmountPaid": 149.99,
+        "PurchasedAt": "2025-11-12T09:30:00"
+      },
+      {
+        "Id": 2,
+        "MembershipId": 3,
+        "AmountPaid": 149.99,
+        "PurchasedAt": "2025-12-12T09:30:00"
       }
     ],
-    "DateJoined": "2023-09-15T00:00:00",
-    "MembershipExpiresAt": "2026-01-09T14:46:43.3179582+01:00",
+    "DateJoined": "2024-03-15T10:20:00",
+    "MembershipExpiresAt": "2026-01-12T09:30:00",
     "ActiveMembershipId": 3,
     "role": 0
   },
   {
     "Id": 2,
-    "Name": "Bob",
-    "Email": "bob@dania.dk",
-    "BillingHistory": [],
-    "DateJoined": "2025-06-01T00:00:00",
-    "MembershipExpiresAt": null,
-    "ActiveMembershipId": null,
+    "Name": "Maria Petersen",
+    "Email": "maria.p@email.dk",
+    "BillingHistory": [
+      {
+        "Id": 3,
+        "MembershipId": 4,
+        "AmountPaid": 1499.00,
+        "PurchasedAt": "2025-02-01T14:00:00"
+      }
+    ],
+    "DateJoined": "2025-02-01T14:00:00",
+    "MembershipExpiresAt": "2026-02-01T14:00:00",
+    "ActiveMembershipId": 4,
     "role": 0
   },
   {
     "Id": 3,
-    "Name": "Bobby",
-    "Email": "bobby@dania.dk",
+    "Name": "Thomas Hansen",
+    "Email": "thomas.hansen@email.dk",
     "BillingHistory": [],
-    "DateJoined": "2021-03-20T00:00:00",
+    "DateJoined": "2023-06-10T11:00:00",
     "MembershipExpiresAt": null,
     "ActiveMembershipId": null,
     "role": 1
   },
   {
     "Id": 4,
-    "Name": "Sarah Johnson",
-    "Email": "sarah.johnson@email.com",
+    "Name": "Anna Christensen",
+    "Email": "anna.c@email.dk",
     "BillingHistory": [
       {
-        "Id": 1,
-        "MembershipId": 4,
-        "AmountPaid": 1499.00,
-        "PurchasedAt": "2025-01-15T09:30:00"
+        "Id": 4,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-11-20T10:00:00"
+      },
+      {
+        "Id": 5,
+        "MembershipId": 5,
+        "AmountPaid": 299.99,
+        "PurchasedAt": "2025-12-20T10:00:00"
       }
     ],
-    "DateJoined": "2024-01-15T09:30:00",
-    "MembershipExpiresAt": "2026-01-15T09:30:00",
-    "ActiveMembershipId": 4,
+    "DateJoined": "2024-05-20T09:15:00",
+    "MembershipExpiresAt": "2026-01-20T10:00:00",
+    "ActiveMembershipId": 5,
     "role": 0
   },
   {
     "Id": 5,
-    "Name": "Michael Chen",
-    "Email": "michael.chen@email.com",
+    "Name": "Mikkel Johansen",
+    "Email": "mikkel.j@email.dk",
     "BillingHistory": [
       {
-        "Id": 2,
-        "MembershipId": 3,
-        "AmountPaid": 149.99,
-        "PurchasedAt": "2025-11-01T00:00:00"
+        "Id": 6,
+        "MembershipId": 1,
+        "AmountPaid": 79.99,
+        "PurchasedAt": "2025-11-25T16:30:00"
       },
       {
-        "Id": 3,
-        "MembershipId": 3,
-        "AmountPaid": 149.99,
-        "PurchasedAt": "2025-12-01T00:00:00"
+        "Id": 7,
+        "MembershipId": 1,
+        "AmountPaid": 79.99,
+        "PurchasedAt": "2025-12-25T16:30:00"
       }
     ],
-    "DateJoined": "2024-03-22T14:15:00",
-    "MembershipExpiresAt": "2026-01-01T00:00:00",
-    "ActiveMembershipId": 3,
+    "DateJoined": "2024-08-12T13:20:00",
+    "MembershipExpiresAt": "2026-01-25T16:30:00",
+    "ActiveMembershipId": 1,
     "role": 0
   },
   {
     "Id": 6,
-    "Name": "Emily Rodriguez",
-    "Email": "emily.rodriguez@email.com",
+    "Name": "Sophie Andersen",
+    "Email": "sophie.andersen@email.dk",
     "BillingHistory": [],
-    "DateJoined": "2024-06-10T11:00:00",
-    "MembershipExpiresAt": "0001-01-01T00:00:00",
+    "DateJoined": "2024-04-15T14:30:00",
+    "MembershipExpiresAt": null,
     "ActiveMembershipId": null,
     "role": 1
   },
   {
     "Id": 7,
-    "Name": "David Thompson",
-    "Email": "david.thompson@email.com",
+    "Name": "Frederik Møller",
+    "Email": "frederik.m@email.dk",
     "BillingHistory": [
       {
-        "Id": 4,
+        "Id": 8,
         "MembershipId": 2,
         "AmountPaid": 799.00,
-        "PurchasedAt": "2024-07-05T16:45:00"
+        "PurchasedAt": "2025-03-10T11:00:00"
       }
     ],
-    "DateJoined": "2024-07-05T16:45:00",
-    "MembershipExpiresAt": "2025-07-05T16:45:00",
+    "DateJoined": "2025-03-10T11:00:00",
+    "MembershipExpiresAt": "2026-03-10T11:00:00",
     "ActiveMembershipId": 2,
     "role": 0
   },
   {
     "Id": 8,
-    "Name": "Olivia Hansen",
-    "Email": "olivia.hansen@email.com",
-    "BillingHistory": [
-      {
-        "Id": 5,
-        "MembershipId": 5,
-        "AmountPaid": 299.99,
-        "PurchasedAt": "2025-11-15T00:00:00"
-      },
-      {
-        "Id": 6,
-        "MembershipId": 5,
-        "AmountPaid": 299.99,
-        "PurchasedAt": "2025-12-15T00:00:00"
-      }
-    ],
-    "DateJoined": "2025-08-15T10:00:00",
-    "MembershipExpiresAt": "2026-01-15T00:00:00",
-    "ActiveMembershipId": 5,
-    "role": 0
-  },
-  {
-    "Id": 9,
-    "Name": "James Martinez",
-    "Email": "james.martinez@email.com",
-    "BillingHistory": [
-      {
-        "Id": 7,
-        "MembershipId": 1,
-        "AmountPaid": 79.99,
-        "PurchasedAt": "2025-11-15T08:30:00"
-      },
-      {
-        "Id": 8,
-        "MembershipId": 1,
-        "AmountPaid": 79.99,
-        "PurchasedAt": "2025-12-15T08:30:00"
-      }
-    ],
-    "DateJoined": "2024-08-12T13:20:00",
-    "MembershipExpiresAt": "2026-01-15T08:30:00",
-    "ActiveMembershipId": 1,
-    "role": 0
-  },
-  {
-    "Id": 10,
-    "Name": "Amanda Taylor",
-    "Email": "amanda.taylor@email.com",
+    "Name": "Isabella Sørensen",
+    "Email": "isabella.s@email.dk",
     "BillingHistory": [
       {
         "Id": 9,
-        "MembershipId": 4,
-        "AmountPaid": 1499.00,
-        "PurchasedAt": "2025-05-01T00:00:00"
-      }
-    ],
-    "DateJoined": "2025-05-01T00:00:00",
-    "MembershipExpiresAt": "2026-05-01T00:00:00",
-    "ActiveMembershipId": 4,
-    "role": 0
-  },
-  {
-    "Id": 11,
-    "Name": "Robert Garcia",
-    "Email": "robert.garcia@email.com",
-    "BillingHistory": [],
-    "DateJoined": "2024-02-28T15:00:00",
-    "MembershipExpiresAt": "0001-01-01T00:00:00",
-    "ActiveMembershipId": null,
-    "role": 1
-  },
-  {
-    "Id": 12,
-    "Name": "Lisa Anderson",
-    "Email": "lisa.anderson@email.com",
-    "BillingHistory": [
-      {
-        "Id": 10,
         "MembershipId": 6,
         "AmountPaid": 2999.00,
-        "PurchasedAt": "2025-09-01T12:30:00"
+        "PurchasedAt": "2025-01-05T09:00:00"
       }
     ],
-    "DateJoined": "2025-09-01T12:30:00",
-    "MembershipExpiresAt": "2026-09-01T12:30:00",
+    "DateJoined": "2025-01-05T09:00:00",
+    "MembershipExpiresAt": "2026-01-05T09:00:00",
     "ActiveMembershipId": 6,
     "role": 0
   },
   {
-    "Id": 13,
-    "Name": "Christopher Lee",
-    "Email": "christopher.lee@email.com",
+    "Id": 9,
+    "Name": "Kasper Jensen",
+    "Email": "kasper.jensen@email.dk",
     "BillingHistory": [
       {
-        "Id": 11,
-        "MembershipId": 2,
-        "AmountPaid": 799.00,
-        "PurchasedAt": "2025-01-10T09:45:00"
-      }
-    ],
-    "DateJoined": "2025-01-10T09:45:00",
-    "MembershipExpiresAt": "2026-01-10T09:45:00",
-    "ActiveMembershipId": 2,
-    "role": 0
-  },
-  {
-    "Id": 14,
-    "Name": "Nicole Davis",
-    "Email": "nicole.davis@email.com",
-    "BillingHistory": [
-      {
-        "Id": 12,
+        "Id": 10,
         "MembershipId": 3,
         "AmountPaid": 149.99,
-        "PurchasedAt": "2025-12-01T14:00:00"
+        "PurchasedAt": "2025-12-01T14:20:00"
       }
     ],
-    "DateJoined": "2025-04-01T14:00:00",
-    "MembershipExpiresAt": "2026-01-01T14:00:00",
+    "DateJoined": "2024-07-18T10:45:00",
+    "MembershipExpiresAt": "2026-01-01T14:20:00",
     "ActiveMembershipId": 3,
     "role": 0
   },
   {
-    "Id": 15,
-    "Name": "Brandon Moore",
-    "Email": "brandon.moore@email.com",
+    "Id": 10,
+    "Name": "Emma Larsen",
+    "Email": "emma.larsen@email.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-11-28T15:00:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
+    "role": 0
+  },
+  {
+    "Id": 11,
+    "Name": "Mads Pedersen",
+    "Email": "mads.p@email.dk",
+    "BillingHistory": [
+      {
+        "Id": 11,
+        "MembershipId": 1,
+        "AmountPaid": 79.99,
+        "PurchasedAt": "2025-12-05T08:15:00"
+      }
+    ],
+    "DateJoined": "2025-11-05T08:15:00",
+    "MembershipExpiresAt": "2026-01-05T08:15:00",
+    "ActiveMembershipId": 1,
+    "role": 0
+  },
+  {
+    "Id": 12,
+    "Name": "Caroline Rasmussen",
+    "Email": "caroline.r@email.dk",
+    "BillingHistory": [
+      {
+        "Id": 12,
+        "MembershipId": 4,
+        "AmountPaid": 1499.00,
+        "PurchasedAt": "2025-06-15T12:30:00"
+      }
+    ],
+    "DateJoined": "2025-06-15T12:30:00",
+    "MembershipExpiresAt": "2026-06-15T12:30:00",
+    "ActiveMembershipId": 4,
+    "role": 0
+  },
+  {
+    "Id": 13,
+    "Name": "Oliver Nielsen",
+    "Email": "oliver.nielsen@email.dk",
     "BillingHistory": [
       {
         "Id": 13,
         "MembershipId": 5,
         "AmountPaid": 299.99,
-        "PurchasedAt": "2025-11-20T11:30:00"
-      },
-      {
-        "Id": 2,
-        "MembershipId": 5,
-        "AmountPaid": 299.99,
-        "PurchasedAt": "2025-12-20T11:30:00"
+        "PurchasedAt": "2025-12-08T10:00:00"
       }
     ],
-    "DateJoined": "2025-10-20T11:30:00",
-    "MembershipExpiresAt": "2026-01-20T11:30:00",
+    "DateJoined": "2024-09-20T11:30:00",
+    "MembershipExpiresAt": "2026-01-08T10:00:00",
     "ActiveMembershipId": 5,
+    "role": 0
+  },
+  {
+    "Id": 14,
+    "Name": "Freja Thomsen",
+    "Email": "freja.t@email.dk",
+    "BillingHistory": [
+      {
+        "Id": 14,
+        "MembershipId": 2,
+        "AmountPaid": 799.00,
+        "PurchasedAt": "2025-05-12T09:45:00"
+      }
+    ],
+    "DateJoined": "2025-05-12T09:45:00",
+    "MembershipExpiresAt": "2026-05-12T09:45:00",
+    "ActiveMembershipId": 2,
+    "role": 0
+  },
+  {
+    "Id": 15,
+    "Name": "Victor Hansen",
+    "Email": "victor.h@email.dk",
+    "BillingHistory": [],
+    "DateJoined": "2025-12-10T16:20:00",
+    "MembershipExpiresAt": null,
+    "ActiveMembershipId": null,
     "role": 0
   }
 ]
