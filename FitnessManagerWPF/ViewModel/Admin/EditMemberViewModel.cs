@@ -72,7 +72,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
             _user = user;
             _dataService = dataService;
 
-            SaveCommand = new RelayCommand(_ => Save());
+            SaveCommand = new RelayCommand(_ => Save(), 
+                                           _ => CanSave());
             DiscardCommand = new RelayCommand(_ => Discard());
 
             // Load login info
@@ -131,6 +132,29 @@ namespace FitnessManagerWPF.ViewModel.Admin
             Password = restoredLogin?.Password ?? "";
 
             Debug.WriteLine("Discard complete");
+        }
+
+        private bool CanSave()
+        {
+            if (!HasChanges()) return false;
+            if (string.IsNullOrWhiteSpace(Username)) return false;
+            // check if user is taken
+            var existingLogin = _dataService.Logins.FirstOrDefault(l => l.Username == Username && l.MembershipId != _user.Id);
+            // check if email is taken
+            var existingUser = _dataService.Users.FirstOrDefault(u => u.Email == Email && u.Id != _user.Id);
+            return existingLogin == null && existingUser == null;
+        }
+
+        private bool HasChanges()
+        {
+            // check for changes
+            bool nameChanged = Name != _user.Name;
+            bool emailChanged = Email != _user.Email;
+
+            bool usernameChanged = Username != _userLogin.Username;
+            bool passwordChanged = Password != _userLogin.Password;
+
+            return nameChanged || emailChanged || usernameChanged || passwordChanged;
         }
     }
 }
