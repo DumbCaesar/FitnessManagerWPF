@@ -48,7 +48,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set
             {
                 SetProperty(ref _selectedMember, value);
-                Debug.WriteLine($"Selcted Member is: {SelectedMember.Name}");
+                Debug.WriteLine($"Selcted Member is: {SelectedMember?.Name}");
             }
         }
 
