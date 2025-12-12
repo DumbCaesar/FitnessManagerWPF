@@ -29,6 +29,10 @@ namespace FitnessManagerWPF.ViewModel.Admin
         // range for max participants
         private const int MIN_CLASS_SIZE = 1; 
         private const int MAX_CLASS_SIZE = 100;
+        private const int GYM_OPENING_TIME = 5; // gym opening time
+        private const int GYM_CLOSING_TIME = 22; // gym closing time
+        private const int TIME_SLOT_INTERVAL = 30; // time between slots
+
         public User Trainer
         {
             get => _trainer;
@@ -66,13 +70,9 @@ namespace FitnessManagerWPF.ViewModel.Admin
             get
             {
                 var times = new List<TimeSpan>();
-                int startHour = 5; // gym opening time
-                int endHour = 22; // gym closing time
-                int intervalMinutes = 30; // time between slots
-
-                for (int hour = startHour; hour < endHour; hour++)
+                for (int hour = GYM_OPENING_TIME; hour < GYM_CLOSING_TIME; hour++)
                 {
-                    for (int minute = 0; minute < 60; minute += intervalMinutes)
+                    for (int minute = 0; minute < 60; minute += TIME_SLOT_INTERVAL)
                     {
                         times.Add(new TimeSpan(hour, minute, 0));
                     }

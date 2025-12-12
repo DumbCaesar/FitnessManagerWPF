@@ -2,33 +2,27 @@
   {
     "Id": 1,
     "Name": "Morning Yoga",
-    "MaxParticipants": 5,
+    "MaxParticipants": 15,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [1, 2, 4, 5, 7, 9, 11, 12, 13],
     "day": 1,
     "time": "07:00:00"
   },
   {
     "Id": 2,
     "Name": "Strength Training",
-    "MaxParticipants": 15,
+    "MaxParticipants": 20,
     "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "RegisteredMemberIds": [1, 2, 5, 7, 9, 12, 14],
     "day": 2,
-    "time": "18:30:00"
+    "time": "18:00:00"
   },
   {
     "Id": 3,
     "Name": "Indoor Cycling",
     "MaxParticipants": 25,
-    "TrainerId": 3,
-    "RegisteredMemberIds": [
-      1
-    ],
+    "TrainerId": 6,
+    "RegisteredMemberIds": [1, 4, 5, 7, 9, 11, 13],
     "day": 3,
     "time": "17:30:00"
   },
@@ -36,27 +30,45 @@
     "Id": 4,
     "Name": "HIIT Blast",
     "MaxParticipants": 18,
-    "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "TrainerId": 6,
+    "RegisteredMemberIds": [2, 4, 8, 9, 12, 13],
     "day": 4,
     "time": "19:00:00"
   },
   {
     "Id": 5,
     "Name": "Weekend Flow Yoga",
-    "MaxParticipants": 22,
+    "MaxParticipants": 12,
     "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "RegisteredMemberIds": [1, 4, 7, 8, 11, 12, 13, 14],
     "day": 6,
     "time": "10:00:00"
   },
   {
     "Id": 6,
-    "Name": "Core Stretch",
-    "MaxParticipants": 20,
-    "TrainerId": 3,
-    "RegisteredMemberIds": [],
+    "Name": "Core & Stretch",
+    "MaxParticipants": 15,
+    "TrainerId": 6,
+    "RegisteredMemberIds": [2, 5, 8, 9, 14],
     "day": 5,
     "time": "16:30:00"
+  },
+  {
+    "Id": 7,
+    "Name": "Boxing Fundamentals",
+    "MaxParticipants": 10,
+    "TrainerId": 3,
+    "RegisteredMemberIds": [1, 2, 4, 5, 7, 8, 9, 11, 12, 13],
+    "day": 3,
+    "time": "19:30:00"
+  },
+  {
+    "Id": 8,
+    "Name": "Advanced Pilates",
+    "MaxParticipants": 12,
+    "TrainerId": 6,
+    "RegisteredMemberIds": [4, 8, 12, 14],
+    "day": 2,
+    "time": "10:00:00"
   }
 ]

@@ -2,81 +2,81 @@
   {
     "MembershipId": 0,
     "Username": "admin",
-    "Password": "password123"
+    "Password": "Admin123"
   },
   {
     "MembershipId": 1,
-    "Username": "bo",
-    "Password": "password123"
+    "Username": "lars.n",
+    "Password": "Password123"
   },
   {
     "MembershipId": 2,
-    "Username": "bob",
-    "Password": "password123"
+    "Username": "maria.p",
+    "Password": "Maria2024!"
   },
   {
     "MembershipId": 3,
-    "Username": "bobby",
-    "Password": "password123"
+    "Username": "thomas.h",
+    "Password": "Trainer123"
   },
   {
     "MembershipId": 4,
-    "Username": "sjohnson",
-    "Password": "SarahFit2024!"
+    "Username": "anna.c",
+    "Password": "Anna@2025"
   },
   {
     "MembershipId": 5,
-    "Username": "mchen",
-    "Password": "Chen$ecure99"
+    "Username": "mikkel.j",
+    "Password": "Mikkel99!"
   },
   {
     "MembershipId": 6,
-    "Username": "erodriguez",
-    "Password": "TrainerEmily#2024"
+    "Username": "sophie.a",
+    "Password": "Trainer456"
   },
   {
     "MembershipId": 7,
-    "Username": "dthompson",
-    "Password": "David@Gym123"
+    "Username": "frederik.m",
+    "Password": "Frederik#1"
   },
   {
     "MembershipId": 8,
-    "Username": "ohansen",
-    "Password": "Olivia#Strong88"
+    "Username": "isabella.s",
+    "Password": "Bella2025!"
   },
   {
     "MembershipId": 9,
-    "Username": "jmartinez",
-    "Password": "James*Flex88"
+    "Username": "kasper.j",
+    "Password": "Kasper@123"
   },
   {
     "MembershipId": 10,
-    "Username": "ataylor",
-    "Password": "AmandaFit#456"
+    "Username": "emma.l",
+    "Password": "Emma2025!"
   },
   {
     "MembershipId": 11,
-    "Username": "rgarcia",
-    "Password": "Robert!Train99"
+    "Username": "mads.p",
+    "Password": "Mads123!"
   },
   {
     "MembershipId": 12,
-    "Username": "landerson",
-    "Password": "Lisa\u0026Workout24"
+    "Username": "caroline.r",
+    "Password": "Carol@2025"
   },
   {
     "MembershipId": 13,
-    "Username": "clee",
-    "Password": "Chris#Premium12"
+    "Username": "oliver.n",
+    "Password": "Oliver99!"
   },
   {
     "MembershipId": 14,
-    "Username": "ndavis",
-    "Password": "Nicole$Gym555"
+    "Username": "freja.t",
+    "Password": "Freja#2025"
   },
   {
     "MembershipId": 15,
-    "Username": "bmoore",
-    "Password": "Brandon@Fit77"
+    "Username": "victor.h",
+    "Password": "Victor123!"
   }
 ]
