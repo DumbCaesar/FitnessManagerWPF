@@ -26,13 +26,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
         private DataService _dataService;
         private TimeSpan? _time;
         private User _trainer;
+        // range for max participants
+        private const int MIN_CLASS_SIZE = 1; 
+        private const int MAX_CLASS_SIZE = 100;
         public User Trainer
         {
             get => _trainer;
             set => SetProperty(ref _trainer, value);
         }
         public string Name { get; set; }
-        private string _maxParticipants = "1";
+        private string _maxParticipants = MIN_CLASS_SIZE.ToString();
         public string MaxParticipants
         {
             get => _maxParticipants;
@@ -40,7 +43,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             {
                 // Validate numeric input and ensure class capacity stays within allowed range
                 if (string.IsNullOrEmpty(value) || 
-                    (int.TryParse(value, out int num) && num >= 1 && num <= 100)) // max 100 in a class
+                    (int.TryParse(value, out int num) && num >= MIN_CLASS_SIZE && num <= MAX_CLASS_SIZE))
                 {
                     SetProperty(ref _maxParticipants, value);
                 }
