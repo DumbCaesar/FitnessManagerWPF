@@ -195,6 +195,10 @@ namespace FitnessManagerWPF.ViewModel.Member
             _currentUser.Name = Name;
             _currentUser.Email = Email;
             _currentUserLogin.Username = Username;
+            if (!string.IsNullOrEmpty(NewPassword))
+            {
+                _currentUserLogin.Password = NewPassword;
+            }
             Debug.WriteLine($"Username after: {_currentUserLogin.Username}");
 
 
