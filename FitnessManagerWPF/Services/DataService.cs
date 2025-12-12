@@ -143,16 +143,16 @@ namespace FitnessManagerWPF.Services
                 options.Converters.Add(new JsonStringEnumConverter());
 
                 // Deserialize data from JSON files into in-memory lists
-                _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_usersFile), options);
+                _users = JsonSerializer.Deserialize<List<User>>(File.ReadAllText(_usersFile, Encoding.UTF8), options);
                 Debug.WriteLine($"Loaded {_users?.Count ?? 0} entries from {_usersFile}");
 
-                _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile), options);
+                _logins = JsonSerializer.Deserialize<List<Login>>(File.ReadAllText(_loginFile, Encoding.UTF8), options);
                 Debug.WriteLine($"Loaded {_logins?.Count ?? 0} entries from {_loginFile}");
 
-                _gymClasses = JsonSerializer.Deserialize<List<GymClass>>(File.ReadAllText(_gymClassesFile), options);
+                _gymClasses = JsonSerializer.Deserialize<List<GymClass>>(File.ReadAllText(_gymClassesFile, Encoding.UTF8), options);
                 Debug.WriteLine($"Loaded {_gymClasses?.Count ?? 0} entries from {_gymClasses}");
 
-                _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile), options);
+                _memberships = JsonSerializer.Deserialize<List<Membership>>(File.ReadAllText(_membershipsFile, Encoding.UTF8), options);
                 Debug.WriteLine($"Loaded {_memberships?.Count ?? 0} entries from {_membershipsFile}");
 
                 // Establish object relationships (e.g., link User to their Membership object)
@@ -277,8 +277,8 @@ namespace FitnessManagerWPF.Services
             string loginJson = JsonSerializer.Serialize(_logins, options);
 
             // Write JSON strings back to files
-            File.WriteAllText(_usersFile, userJson);
-            File.WriteAllText(_loginFile, loginJson);
+            File.WriteAllText(_usersFile, userJson, Encoding.UTF8);
+            File.WriteAllText(_loginFile, loginJson, Encoding.UTF8);
 
             Debug.WriteLine($"Added {user.Name} to {_usersFile}");
             Debug.WriteLine($"Added {login.Username} to {_loginFile}");
@@ -297,7 +297,7 @@ namespace FitnessManagerWPF.Services
                 WriteIndented = true
             };
             string gymClassesJson = JsonSerializer.Serialize(_gymClasses, options);
-            File.WriteAllText(_gymClassesFile, gymClassesJson);
+            File.WriteAllText(_gymClassesFile, gymClassesJson, Encoding.UTF8);
             Debug.WriteLine($"Updated {_gymClassesFile}");
         }
 
@@ -314,7 +314,7 @@ namespace FitnessManagerWPF.Services
                 WriteIndented = true
             };
             string membersJson = JsonSerializer.Serialize(_users, options);
-            File.WriteAllText(_usersFile, membersJson);
+            File.WriteAllText(_usersFile, membersJson, Encoding.UTF8);
             Debug.WriteLine($"Updated {_usersFile}");
         }
 
@@ -331,7 +331,7 @@ namespace FitnessManagerWPF.Services
                 WriteIndented = true
             };
             string loginsJson = JsonSerializer.Serialize(_logins, options);
-            File.WriteAllText(_loginFile, loginsJson);
+            File.WriteAllText(_loginFile, loginsJson, Encoding.UTF8);
             Debug.WriteLine($"Updated {_loginFile}");
         }
 
