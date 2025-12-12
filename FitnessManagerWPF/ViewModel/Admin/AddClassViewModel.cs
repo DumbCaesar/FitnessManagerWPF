@@ -35,7 +35,7 @@ namespace FitnessManagerWPF.ViewModel.Admin
             set => SetProperty(ref _trainer, value);
         }
         public string Name { get; set; }
-        private string _maxParticipants = "1";
+        private string _maxParticipants = MIN_CLASS_SIZE.ToString();
         public string MaxParticipants
         {
             get => _maxParticipants;
