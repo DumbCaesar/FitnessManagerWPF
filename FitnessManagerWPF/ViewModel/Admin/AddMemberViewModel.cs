@@ -58,7 +58,8 @@ namespace FitnessManagerWPF.ViewModel.Admin
         {
             _dataService = dataService;
             CancelCommand = new RelayCommand(_ => Cancel());
-            CreateUserCommand = new RelayCommand(_ => CreateUser());
+            CreateUserCommand = new RelayCommand(_ => CreateUser(),
+                                                 _ => CanCreateUser());
         }
 
         // =====================================
@@ -90,6 +91,16 @@ namespace FitnessManagerWPF.ViewModel.Admin
             // Notify UI and close window
             NewMemberCreated?.Invoke(user);
             CloseView?.Invoke();
+        }
+
+        private bool CanCreateUser()
+        {
+            if (string.IsNullOrWhiteSpace(Username)) return false;
+            // check if user is taken
+            var existingLogin = _dataService.Logins.FirstOrDefault(l => l.Username == Username);
+            // check if email is taken
+            var existingUser = _dataService.Users.FirstOrDefault(u => u.Email == Email);
+            return existingLogin == null && existingUser == null;
         }
     }
 }
