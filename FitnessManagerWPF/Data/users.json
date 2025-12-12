@@ -117,7 +117,7 @@
   },
   {
     "Id": 7,
-    "Name": "Frederik Møller",
+    "Name": "Frederik M\u00F8ller",
     "Email": "frederik.m@email.dk",
     "BillingHistory": [
       {
@@ -134,7 +134,7 @@
   },
   {
     "Id": 8,
-    "Name": "Isabella Sørensen",
+    "Name": "Isabella S\u00F8rensen",
     "Email": "isabella.s@email.dk",
     "BillingHistory": [
       {
