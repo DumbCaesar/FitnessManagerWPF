@@ -25,18 +25,25 @@ namespace FitnessManagerWPF.ViewModel.Admin
     {
         private DataService _dataService;
         private TimeSpan? _time;
+        private DayOfWeek? _day;
         private User _trainer;
-        // range for max participants
-        private const int MIN_CLASS_SIZE = 1; 
-        private const int MAX_CLASS_SIZE = 100;
+       
+        private const int MIN_CLASS_SIZE = 1; // min for max participants
+        private const int MAX_CLASS_SIZE = 100; // max for max participants
         private const int GYM_OPENING_TIME = 5; // gym opening time
         private const int GYM_CLOSING_TIME = 22; // gym closing time
         private const int TIME_SLOT_INTERVAL = 30; // time between slots
 
+        private string _validationError;
+
         public User Trainer
         {
             get => _trainer;
-            set => SetProperty(ref _trainer, value);
+            set
+            {
+                if (SetProperty(ref _trainer, value))
+                    CommandManager.InvalidateRequerySuggested();
+            }
         }
         public string Name { get; set; }
         private string _maxParticipants = MIN_CLASS_SIZE.ToString();
@@ -54,14 +61,31 @@ namespace FitnessManagerWPF.ViewModel.Admin
             }
         }
         public ObservableCollection<User> TrainerList { get; set; }
-        public DayOfWeek? Day { get; set; }
+        public DayOfWeek? Day
+        {
+            get => _day;
+            set
+            {
+                if (SetProperty(ref _day, value))
+                    CommandManager.InvalidateRequerySuggested();
+            }
+        }
+        public string ValidationError
+        {
+            get => _validationError;
+            set => SetProperty(ref _validationError, value);
+        }
 
         // Used for binding dropdown of days in UI
         public IEnumerable<DayOfWeek> DaysOfWeek => Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>();
         public TimeSpan? Time 
         {
-            get => _time; 
-            set => SetProperty(ref _time, value); 
+            get => _time;
+            set
+            {
+                if (SetProperty(ref _time, value))
+                    CommandManager.InvalidateRequerySuggested();
+            }
         }
 
         // Generates selectable time slots (5:00 → 22:00, every 30 minutes)
@@ -111,6 +135,13 @@ namespace FitnessManagerWPF.ViewModel.Admin
             if (Trainer == null) return false;
             if (Day == null) return false;
             if (Time == null) return false;
+
+            if (TrainerHasConflict())
+            {
+                ValidationError = $"{Trainer.Name} already has a class on {Day} at {Time}";
+                return false;
+            }
+            ValidationError = "";
             return true;
         }
 
@@ -147,6 +178,12 @@ namespace FitnessManagerWPF.ViewModel.Admin
             ClassCreated?.Invoke(newClass);
             MessageBox.Show($"Successfully created class: {Name}");
             CloseRequest?.Invoke();
+        }
+
+        private bool TrainerHasConflict()
+        {
+            if (Trainer == null || Day == null || Time == null) return false;
+            return _dataService.GymClasses.Any(c => c.TrainerId == Trainer.Id && c.Day == Day.Value && c.Time == Time.Value);
         }
     }
 }
